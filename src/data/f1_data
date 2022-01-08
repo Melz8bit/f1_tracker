@@ -1,0 +1,36 @@
+import fastf1 as ff1
+import requests
+import os
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+dir_path = os.path.join(dir_path, 'cache')
+print(dir_path)
+
+ff1.Cache.enable_cache(dir_path)
+
+def ergast_retrieve(api_endpoint: str):
+    url = f'https://ergast.com/api/f1/{api_endpoint}.json'
+    response = requests.get(url).json()
+
+    return response['MRData']
+
+def get_drivers():
+    driver_list = []
+
+    # TODO: remove the race selection requirement
+    # TODO: pull data from ergast if no race selection made
+    race = ff1.get_session(2021, 22, 'R').results
+
+    for count, driver in enumerate(race, start=1):
+        driver_list.append(f"{driver['Driver']['familyName']}, {driver['Driver']['givenName']}")
+
+    driver_list.sort()
+
+    return driver_list
+
+def get_teams():
+    teams_list = []
+
+
+
+print(get_drivers())
