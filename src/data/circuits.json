@@ -1,0 +1,31 @@
+{
+  "2026": [
+    {
+      "round": 1,
+      "name": "Bahrain Grand Prix",
+      "circuit": "Bahrain International Circuit",
+      "location": "Sakhir, Bahrain",
+      "country": "BH",
+      "raceDate": "2026-03-22",
+      "speedTrapInsight": "The long start-finish straight rewards top-speed efficiency. Low-drag setups tend to gain here."
+    },
+    {
+      "round": 2,
+      "name": "Saudi Arabian Grand Prix",
+      "circuit": "Jeddah Corniche Circuit",
+      "location": "Jeddah, Saudi Arabia",
+      "country": "SA",
+      "raceDate": "2026-03-29",
+      "speedTrapInsight": "Jeddah's high-speed flowing layout means sustained top speed through long corners rewards active aero efficiency."
+    },
+    {
+      "round": 3,
+      "name": "Australian Grand Prix",
+      "circuit": "Albert Park Circuit",
+      "location": "Melbourne, Australia",
+      "country": "AU",
+      "raceDate": "2026-04-12",
+      "speedTrapInsight": "Albert Park's mix of fast and slow corners creates a balance challenge; straight-line speed is less decisive here."
+    }
+  ]
+}

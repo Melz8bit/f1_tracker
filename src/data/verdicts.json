@@ -1,0 +1,64 @@
+{
+  "2026": [
+    {
+      "team": "mercedes",
+      "strengths": ["Placeholder strength 1", "Placeholder strength 2"],
+      "weaknesses": ["Placeholder weakness 1"],
+      "outlook": "Placeholder season outlook for Mercedes."
+    },
+    {
+      "team": "red_bull",
+      "strengths": ["Placeholder strength 1", "Placeholder strength 2"],
+      "weaknesses": ["Placeholder weakness 1"],
+      "outlook": "Placeholder season outlook for Red Bull."
+    },
+    {
+      "team": "ferrari",
+      "strengths": ["Placeholder strength 1", "Placeholder strength 2"],
+      "weaknesses": ["Placeholder weakness 1"],
+      "outlook": "Placeholder season outlook for Ferrari."
+    },
+    {
+      "team": "mclaren",
+      "strengths": ["Placeholder strength 1", "Placeholder strength 2"],
+      "weaknesses": ["Placeholder weakness 1"],
+      "outlook": "Placeholder season outlook for McLaren."
+    },
+    {
+      "team": "aston_martin",
+      "strengths": ["Placeholder strength 1", "Placeholder strength 2"],
+      "weaknesses": ["Placeholder weakness 1"],
+      "outlook": "Placeholder season outlook for Aston Martin."
+    },
+    {
+      "team": "alpine",
+      "strengths": ["Placeholder strength 1", "Placeholder strength 2"],
+      "weaknesses": ["Placeholder weakness 1"],
+      "outlook": "Placeholder season outlook for Alpine."
+    },
+    {
+      "team": "williams",
+      "strengths": ["Placeholder strength 1", "Placeholder strength 2"],
+      "weaknesses": ["Placeholder weakness 1"],
+      "outlook": "Placeholder season outlook for Williams."
+    },
+    {
+      "team": "haas",
+      "strengths": ["Placeholder strength 1", "Placeholder strength 2"],
+      "weaknesses": ["Placeholder weakness 1"],
+      "outlook": "Placeholder season outlook for Haas."
+    },
+    {
+      "team": "sauber",
+      "strengths": ["Placeholder strength 1", "Placeholder strength 2"],
+      "weaknesses": ["Placeholder weakness 1"],
+      "outlook": "Placeholder season outlook for Sauber."
+    },
+    {
+      "team": "racing_bulls",
+      "strengths": ["Placeholder strength 1", "Placeholder strength 2"],
+      "weaknesses": ["Placeholder weakness 1"],
+      "outlook": "Placeholder season outlook for Racing Bulls."
+    }
+  ]
+}

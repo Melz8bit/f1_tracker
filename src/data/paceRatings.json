@@ -1,0 +1,16 @@
+{
+  "2026": {
+    "1": {
+      "mercedes":     { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
+      "red_bull":     { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
+      "ferrari":      { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
+      "mclaren":      { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
+      "aston_martin": { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
+      "alpine":       { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
+      "williams":     { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
+      "haas":         { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
+      "sauber":       { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
+      "racing_bulls": { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 }
+    }
+  }
+}
