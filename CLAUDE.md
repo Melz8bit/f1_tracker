@@ -29,7 +29,7 @@ The Home page is a 5-tab dashboard (Standings / Pace Profile / Speed Trap / Race
 ## Team Colors (2026)
 mercedes: #00D2BE | red_bull: #3671C6 | ferrari: #E8002D | mclaren: #FF8000
 aston_martin: #358C75 | alpine: #FF87BC | williams: #64C4FF
-haas: #B6BABD | sauber: #52E252 | racing_bulls: #6692FF
+haas: #B6BABD | audi: #C0C0C0 | racing_bulls: #6692FF | cadillac: #FFFFFF
 
 ## Global Filter (Zustand — filterStore.ts)
 { season: number, roundMin: number, roundMax: number }
