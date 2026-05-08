@@ -1,6 +1,6 @@
-import type { Driver, Constructor, DriverStanding, ConstructorStanding, Race, RaceResult } from '../types/f1'
+import type { DriverStanding, ConstructorStanding, Race } from '../types/f1'
 
-const BASE_URL = 'https://ergast.com/api/f1'
+const BASE_URL = 'https://api.jolpi.ca/ergast/f1'
 
 interface ErgastDriver {
     driverId: string;
@@ -177,6 +177,3 @@ export async function fetchAllRaces(season: number): Promise<Race[]> {
     if (!races) throw new Error(`No race found for ${season}`)
     return races.map(mapRace)
 }
-
-
-
