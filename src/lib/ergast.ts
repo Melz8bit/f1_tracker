@@ -51,7 +51,8 @@ interface ErgastRace {
     raceName: string;
     Circuit: { circuitId: string; circuitName: string }
     date: string;
-    Results: ErgastRaceResult[];
+    Results?: ErgastRaceResult[];
+    SprintResults?: ErgastRaceResult[];
 }
 
 // API call
@@ -134,7 +135,7 @@ function mapRace(race: ErgastRace): Race {
         circuitId: race.Circuit.circuitId,
         circuitName: race.Circuit.circuitName,
         date: race.date,
-        results: race.Results.map(r => ({
+        results: (race.Results ?? []).map(r => ({
             position: parseInt(r.position),
             points: parseFloat(r.points),
             grid: parseInt(r.grid),
@@ -172,8 +173,45 @@ export async function fetchRaceResults(season: number, round: number): Promise<R
 }
 
 export async function fetchAllRaces(season: number): Promise<Race[]> {
-    const data = await ergastFetch<RaceTableResponse>(`/${season}/results.json`)
+    const data = await ergastFetch<RaceTableResponse>(`/${season}/results.json?limit=500`)
     const races = data.MRData.RaceTable.Races
     if (!races) throw new Error(`No race found for ${season}`)
     return races.map(mapRace)
+}
+
+
+export async function fetchAllSprints(season: number): Promise<Race[]> {
+    const data = await ergastFetch<RaceTableResponse>(`/${season}/sprint.json?limit=500`)
+    const sprints = data.MRData.RaceTable.Races
+    if (!sprints) throw new Error(`No sprint found for ${season}`)
+    return sprints.map(r => ({
+        ...mapRace(r),
+        results: (r.SprintResults ?? []).map(result => ({
+            position: parseInt(result.position),
+            points: parseFloat(result.points),
+            grid: parseInt(result.grid),
+            laps: parseInt(result.laps),
+            status: result.status,
+            time: result.Time?.time,
+            driver: {
+                driverId: result.Driver.driverId,
+                code: result.Driver.code,
+                permanentNumber: result.Driver.permanentNumber,
+                givenName: result.Driver.givenName,
+                familyName: result.Driver.familyName,
+                nationality: result.Driver.nationality,
+                dateOfBirth: result.Driver.dateOfBirth,
+            },
+            constructor: {
+                constructorId: result.Constructor.constructorId,
+                name: result.Constructor.name,
+                nationality: result.Constructor.nationality,
+            },
+            fastestLap: result.FastestLap ? {
+                rank: parseInt(result.FastestLap.rank),
+                lap: parseInt(result.FastestLap.lap),
+                time: result.FastestLap.Time?.time
+            } : undefined,
+        }))
+    }))
 }

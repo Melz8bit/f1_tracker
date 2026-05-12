@@ -16,7 +16,7 @@ The Home page is a 5-tab dashboard (Standings / Pace Profile / Speed Trap / Race
 - React Router v6
 - Embla Carousel (mobile tab swiping)
 - Primary API: OpenF1 — https://api.openf1.org/v1 (no key required)
-- Fallback API: Ergast — https://ergast.com/api/f1 (no key required)
+- Fallback API: Jolpica — https://api.jolpi.ca/ergast/f1 (Ergast mirror, no key required; Ergast was decommissioned end of 2024)
 - Hosting: Vercel
 
 ## Design System
@@ -46,11 +46,11 @@ GET /car_data?session_key=...&driver_number=...   ← speed trap source
 GET /intervals?session_key=...
 GET /pit?session_key=...
 
-### Ergast
+### Jolpica (Ergast mirror)
 GET /2026/driverStandings.json
 GET /2026/constructorStandings.json
 GET /2026/{round}/results.json
-GET /2026/results.json?limit=100
+GET /2026/results.json?limit=500
 GET /2026/qualifying.json
 GET /drivers/{driverId}.json
 

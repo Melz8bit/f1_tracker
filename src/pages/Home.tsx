@@ -1,5 +1,6 @@
 import React from "react";
 import StandingsTab from "../components/dashboard/StandingsTab";
+import RaceByRaceTab from "../components/dashboard/RaceByRaceTab";
 import RangeFilter from "../components/dashboard/RangeFilter";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
         <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
             <RangeFilter />
             <StandingsTab />
+            <RaceByRaceTab />
         </div>
     )
 }
