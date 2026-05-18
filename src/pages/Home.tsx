@@ -2,6 +2,7 @@ import React from "react";
 import StandingsTab from "../components/dashboard/StandingsTab";
 import RaceByRaceTab from "../components/dashboard/RaceByRaceTab";
 import SpeedTrapTab from "../components/dashboard/SpeedTrapTab";
+import PaceProfileTab from "../components/dashboard/PaceProfileTab";
 import RangeFilter from "../components/dashboard/RangeFilter";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
             <StandingsTab />
             <RaceByRaceTab />
             <SpeedTrapTab />
+            <PaceProfileTab />
         </div>
     )
 }

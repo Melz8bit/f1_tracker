@@ -1,16 +1,52 @@
 {
   "2026": {
     "1": {
-      "mercedes":     { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
-      "red_bull":     { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
-      "ferrari":      { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
-      "mclaren":      { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
-      "aston_martin": { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
-      "alpine":       { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
-      "williams":     { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
-      "haas":         { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
-      "sauber":       { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 },
-      "racing_bulls": { "qualifying": 0, "race": 0, "tires": 0, "topSpeed": 0, "activeAero": 0 }
+      "mercedes":     { "qualifying": 82, "race": 85, "tires": 78, "topSpeed": 80, "activeAero": 75 },
+      "red_bull":     { "qualifying": 70, "race": 68, "tires": 72, "topSpeed": 75, "activeAero": 70 },
+      "ferrari":      { "qualifying": 78, "race": 75, "tires": 74, "topSpeed": 77, "activeAero": 72 },
+      "mclaren":      { "qualifying": 80, "race": 82, "tires": 80, "topSpeed": 79, "activeAero": 78 },
+      "aston_martin": { "qualifying": 65, "race": 63, "tires": 68, "topSpeed": 66, "activeAero": 64 },
+      "alpine":       { "qualifying": 60, "race": 58, "tires": 62, "topSpeed": 61, "activeAero": 59 },
+      "williams":     { "qualifying": 63, "race": 61, "tires": 60, "topSpeed": 64, "activeAero": 60 },
+      "haas":         { "qualifying": 62, "race": 64, "tires": 63, "topSpeed": 62, "activeAero": 61 },
+      "audi":       { "qualifying": 55, "race": 53, "tires": 57, "topSpeed": 56, "activeAero": 54 },
+      "racing_bulls": { "qualifying": 68, "race": 66, "tires": 65, "topSpeed": 67, "activeAero": 63 }
+    },
+    "2": {
+      "mercedes":     { "qualifying": 84, "race": 88, "tires": 80, "topSpeed": 82, "activeAero": 76 },
+      "red_bull":     { "qualifying": 68, "race": 65, "tires": 70, "topSpeed": 73, "activeAero": 68 },
+      "ferrari":      { "qualifying": 80, "race": 78, "tires": 76, "topSpeed": 79, "activeAero": 74 },
+      "mclaren":      { "qualifying": 79, "race": 80, "tires": 82, "topSpeed": 78, "activeAero": 79 },
+      "aston_martin": { "qualifying": 64, "race": 62, "tires": 67, "topSpeed": 65, "activeAero": 63 },
+      "alpine":       { "qualifying": 61, "race": 60, "tires": 63, "topSpeed": 62, "activeAero": 60 },
+      "williams":     { "qualifying": 64, "race": 62, "tires": 61, "topSpeed": 65, "activeAero": 61 },
+      "haas":         { "qualifying": 63, "race": 65, "tires": 64, "topSpeed": 63, "activeAero": 62 },
+      "audi":       { "qualifying": 54, "race": 52, "tires": 56, "topSpeed": 55, "activeAero": 53 },
+      "racing_bulls": { "qualifying": 69, "race": 67, "tires": 66, "topSpeed": 68, "activeAero": 64 }
+    },
+    "3": {
+      "mercedes":     { "qualifying": 83, "race": 86, "tires": 79, "topSpeed": 81, "activeAero": 76 },
+      "red_bull":     { "qualifying": 69, "race": 66, "tires": 71, "topSpeed": 74, "activeAero": 69 },
+      "ferrari":      { "qualifying": 79, "race": 76, "tires": 75, "topSpeed": 78, "activeAero": 73 },
+      "mclaren":      { "qualifying": 81, "race": 83, "tires": 81, "topSpeed": 80, "activeAero": 80 },
+      "aston_martin": { "qualifying": 64, "race": 62, "tires": 67, "topSpeed": 65, "activeAero": 63 },
+      "alpine":       { "qualifying": 60, "race": 59, "tires": 62, "topSpeed": 61, "activeAero": 59 },
+      "williams":     { "qualifying": 64, "race": 62, "tires": 61, "topSpeed": 65, "activeAero": 61 },
+      "haas":         { "qualifying": 63, "race": 65, "tires": 64, "topSpeed": 63, "activeAero": 62 },
+      "audi":       { "qualifying": 54, "race": 52, "tires": 56, "topSpeed": 55, "activeAero": 53 },
+      "racing_bulls": { "qualifying": 68, "race": 66, "tires": 65, "topSpeed": 67, "activeAero": 63 }
+    },
+    "4": {
+      "mercedes":     { "qualifying": 82, "race": 84, "tires": 79, "topSpeed": 80, "activeAero": 75 },
+      "red_bull":     { "qualifying": 70, "race": 67, "tires": 72, "topSpeed": 75, "activeAero": 70 },
+      "ferrari":      { "qualifying": 78, "race": 76, "tires": 75, "topSpeed": 78, "activeAero": 73 },
+      "mclaren":      { "qualifying": 83, "race": 86, "tires": 83, "topSpeed": 82, "activeAero": 81 },
+      "aston_martin": { "qualifying": 63, "race": 61, "tires": 66, "topSpeed": 64, "activeAero": 62 },
+      "alpine":       { "qualifying": 61, "race": 60, "tires": 63, "topSpeed": 62, "activeAero": 60 },
+      "williams":     { "qualifying": 65, "race": 63, "tires": 62, "topSpeed": 66, "activeAero": 62 },
+      "haas":         { "qualifying": 64, "race": 66, "tires": 65, "topSpeed": 64, "activeAero": 63 },
+      "audi":       { "qualifying": 55, "race": 53, "tires": 57, "topSpeed": 56, "activeAero": 54 },
+      "racing_bulls": { "qualifying": 69, "race": 67, "tires": 66, "topSpeed": 68, "activeAero": 64 }
     }
   }
 }
