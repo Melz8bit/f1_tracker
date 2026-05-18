@@ -34,6 +34,7 @@ interface OpenF1Lap {
     lap_number: number;
     lap_duration: number | null;
     session_key: number;
+    st_speed: number | null;
 }
 
 interface OpenF1CarData {
@@ -67,6 +68,10 @@ export async function fetchDrivers(sessionKey: number): Promise<OpenF1Driver[]> 
 
 export async function fetchLaps(sessionKey: number, driverNumber: number): Promise<OpenF1Lap[]> {
     return openF1Fetch<OpenF1Lap[]>(`/laps?session_key=${sessionKey}&driver_number=${driverNumber}`)
+}
+
+export async function fetchAllLaps(sessionKey: number): Promise<OpenF1Lap[]> {
+    return openF1Fetch<OpenF1Lap[]>(`/laps?session_key=${sessionKey}`)
 }
 
 export async function fetchCarData(sessionKey: number, driverNumber: number): Promise<OpenF1CarData[]> {
