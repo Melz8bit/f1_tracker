@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 2026 Season Dashboard</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e8e8e8; min-height: 100vh; padding: 20px; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #2a2a2a; flex-wrap: wrap; gap: 8px; }
+  .header h1 { font-size: 18px; font-weight: 600; letter-spacing: 0.05em; color: #fff; }
+  .updated { font-size: 11px; color: #666; background: #1a1a1a; padding: 3px 10px; border-radius: 20px; border: 1px solid #2a2a2a; }
+  .tab-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+  .tb { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; padding: 7px 16px; font-size: 13px; cursor: pointer; color: #888; transition: all 0.15s; }
+  .tb:hover { color: #ccc; border-color: #444; }
+  .tb.on { background: #222; border-color: #555; color: #fff; font-weight: 500; }
+  .sec { display: none; }
+  .sec.on { display: block; }
+  .grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 20px; }
+  .metric { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 10px; padding: 14px; }
+  .ml { font-size: 11px; color: #666; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .mv { font-size: 22px; font-weight: 600; }
+  .ms { font-size: 11px; color: #555; margin-top: 4px; }
+  .section-label { font-size: 12px; font-weight: 600; color: #555; margin: 20px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #1e1e1e; text-transform: uppercase; letter-spacing: 0.06em; }
+  /* Constructor rows */
+  .con-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid #1a1a1a; }
+  .con-row:last-child { border-bottom: none; }
+  .con-pos { font-size: 12px; color: #555; min-width: 20px; font-weight: 600; }
+  .con-name { font-size: 13px; font-weight: 500; flex: 1; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .con-badge { font-size: 10px; padding: 2px 7px; border-radius: 8px; background: #222; color: #777; border: 1px solid #333; }
+  .con-bar-wrap { width: 90px; height: 5px; background: #222; border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+  .con-bar { height: 100%; border-radius: 3px; }
+  .con-pts { font-size: 13px; font-weight: 600; min-width: 36px; text-align: right; }
+  /* Title pill */
+  .title-pill { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; white-space: nowrap; min-width: 60px; text-align: center; }
+  .pill-yes  { background: #0e2a0e; color: #4caf50; border: 1px solid #1e4a1e; }
+  .pill-no   { background: #1e1e1e; color: #444;    border: 1px solid #2a2a2a; text-decoration: line-through; }
+  .pill-math { background: #1a1400; color: #cc9900; border: 1px solid #3a2e00; }
+  /* Driver table */
+  table.drv { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.drv th { font-size: 11px; color: #555; font-weight: 500; text-align: left; padding: 6px 8px; border-bottom: 1px solid #222; text-transform: uppercase; letter-spacing: 0.04em; }
+  table.drv th.r { text-align: right; }
+  table.drv td { padding: 8px 8px; border-bottom: 1px solid #181818; vertical-align: middle; }
+  table.drv tr:last-child td { border-bottom: none; }
+  table.drv tr:hover td { background: #161616; }
+  .drv-zone-hdr td { background: #141414; font-size: 11px; color: #444; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 5px 8px; }
+  .pip { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; flex-shrink: 0; }
+  .drv-name { font-weight: 500; color: #e8e8e8; }
+  .drv-team { font-size: 11px; color: #555; margin-top: 1px; }
+  .pts-bar-wrap { width: 80px; height: 4px; background: #222; border-radius: 2px; overflow: hidden; }
+  .pts-bar { height: 100%; border-radius: 2px; }
+  /* Title math explainer */
+  .title-note { background: #141414; border: 1px solid #222; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 12px; color: #666; line-height: 1.6; }
+  .title-note strong { color: #999; }
+  /* Pace profiles */
+  .team-block { border-bottom: 1px solid #1e1e1e; padding-bottom: 18px; margin-bottom: 18px; }
+  .team-block:last-child { border-bottom: none; margin-bottom: 0; }
+  .team-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .tdot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .tname { font-size: 14px; font-weight: 600; flex: 1; }
+  .tpu { font-size: 11px; color: #555; font-weight: 400; margin-left: 6px; }
+  .overall-chip { font-size: 20px; font-weight: 700; padding: 3px 12px; border-radius: 8px; }
+  .arow { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .alabel { font-size: 12px; color: #666; min-width: 190px; }
+  .btrack { flex: 1; height: 6px; background: #1e1e1e; border-radius: 3px; overflow: hidden; }
+  .bfill { height: 100%; border-radius: 3px; }
+  .aval { font-size: 12px; font-weight: 600; min-width: 28px; text-align: right; color: #888; }
+  .tier-divider { font-size: 11px; color: #444; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin: 22px 0 14px; padding-top: 6px; border-top: 1px solid #1e1e1e; }
+  /* Component tracker */
+  .comp-toggle { display: flex; align-items: center; gap: 6px; margin-top: 12px; cursor: pointer; user-select: none; background: #161616; border: 1px solid #242424; border-radius: 6px; padding: 6px 10px; width: fit-content; transition: background 0.15s; }
+  .comp-toggle:hover { background: #1e1e1e; }
+  .comp-toggle-label { font-size: 11px; color: #666; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+  .comp-toggle-arrow { font-size: 10px; color: #444; transition: transform 0.2s; }
+  .comp-toggle-arrow.open { transform: rotate(180deg); }
+  .comp-panel { display: none; margin-top: 8px; background: #141414; border: 1px solid #1e1e1e; border-radius: 8px; overflow: hidden; }
+  .comp-panel.open { display: block; }
+  .comp-header-row { display: grid; grid-template-columns: 1fr 60px 60px 60px 80px; gap: 6px; padding: 6px 12px; border-bottom: 1px solid #1e1e1e; }
+  .comp-header-row span { font-size: 10px; color: #444; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  .comp-header-row span:nth-child(2), .comp-header-row span:nth-child(3), .comp-header-row span:nth-child(4) { text-align: center; }
+  .comp-header-row span:nth-child(5) { text-align: right; }
+  .comp-row { display: grid; grid-template-columns: 1fr 60px 60px 60px 80px; gap: 6px; padding: 7px 12px; border-bottom: 1px solid #181818; align-items: center; }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-name { font-size: 12px; color: #aaa; }
+  .comp-used { font-size: 12px; font-weight: 600; text-align: center; }
+  .comp-alloc { font-size: 12px; color: #555; text-align: center; }
+  .comp-left { font-size: 12px; font-weight: 600; text-align: center; }
+  .comp-pips { display: flex; gap: 3px; justify-content: flex-end; flex-wrap: wrap; }
+  .comp-pip-used { width: 10px; height: 10px; border-radius: 2px; }
+  .comp-pip-left { width: 10px; height: 10px; border-radius: 2px; background: #2a2a2a; border: 1px solid #333; }
+  .comp-pip-warn { width: 10px; height: 10px; border-radius: 2px; background: #3a2000; border: 1px solid #5a3000; }
+  .comp-note { font-size: 10px; color: #555; padding: 5px 12px 7px; font-style: italic; }
+  /* Race collapse rows */
+  .race-summary-row { cursor: pointer; transition: background 0.12s; }
+  .race-summary-row:hover td { background: #1a1a1a; }
+  .race-summary-row.cancelled-row { opacity: 0.35; cursor: default; }
+  .race-detail-row td { padding: 0; border-bottom: 1px solid #222; }
+  .race-detail-inner { overflow: hidden; max-height: 0; transition: max-height 0.5s ease; }
+  .race-detail-inner.open { max-height: 3000px; }
+  .race-detail-body { padding: 12px 14px 14px; background: #141414; }
+  .race-detail-title { font-size: 13px; font-weight: 600; color: #ddd; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+  .race-bullet-list { list-style: none; padding: 0; margin: 0 0 14px 0; }
+  .race-bullet-list li { font-size: 12px; color: #777; line-height: 1.6; padding: 3px 0 3px 14px; position: relative; border-bottom: 1px solid #1a1a1a; }
+  .race-bullet-list li:last-child { border-bottom: none; }
+  .race-bullet-list li::before { content: '—'; position: absolute; left: 0; color: #444; }
+  .race-bullet-list li strong { color: #bbb; font-weight: 600; }
+  .race-expand-icon { font-size: 10px; color: #444; transition: transform 0.2s; display: inline-block; margin-left: 8px; }
+  .race-expand-icon.open { transform: rotate(180deg); }
+  /* Race results table */
+  .res-section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #555; padding: 8px 0 4px; margin-top: 4px; border-top: 1px solid #1e1e1e; }
+  .res-section-label:first-child { border-top: none; margin-top: 0; }
+  table.res-tbl { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 4px; }
+  table.res-tbl th { font-size: 10px; color: #444; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 6px; border-bottom: 1px solid #1e1e1e; text-align: left; }
+  table.res-tbl th.rc { text-align: center; }
+  table.res-tbl th.rr { text-align: right; }
+  table.res-tbl td { padding: 5px 6px; border-bottom: 1px solid #181818; vertical-align: middle; }
+  table.res-tbl tr:last-child td { border-bottom: none; }
+  table.res-tbl tr.dnf-row td { opacity: 0.5; }
+  .res-pos { font-weight: 700; color: #aaa; min-width: 20px; }
+  .res-driver { font-weight: 500; color: #ddd; }
+  .res-team { font-size: 10px; color: #555; }
+  .res-grid { color: #555; text-align: center; }
+  .res-pts { font-weight: 700; text-align: right; }
+  .delta-up { color: #4caf50; font-weight: 700; text-align: center; }
+  .delta-dn { color: #cc4422; font-weight: 700; text-align: center; }
+  .delta-eq { color: #555; text-align: center; }
+  .medal-1 { color: #FFD700; }
+  .medal-2 { color: #C0C0C0; }
+  .medal-3 { color: #CD7F32; }
+  /* Cards */
+  .card { background: #1a1a1a; border: 1px solid #242424; border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; }
+  .ct { font-size: 13px; font-weight: 600; color: #ddd; margin-bottom: 6px; }
+  .cb { font-size: 13px; color: #777; line-height: 1.65; }
+  .cb strong { color: #bbb; font-weight: 600; }
+  /* Verdicts */
+  .vgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin: 12px 0 16px; }
+  .vcard { background: #1a1a1a; border: 1px solid #242424; border-radius: 10px; padding: 11px 13px; }
+  .vlabel { font-size: 10px; color: #555; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
+  .vteam { font-size: 15px; font-weight: 700; }
+  .vsub { font-size: 11px; color: #555; margin-top: 3px; }
+  .note { font-size: 11px; color: #444; margin-top: 12px; font-style: italic; line-height: 1.5; }
+  /* Reg cards */
+  .reg-card { background: #161616; border: 1px solid #242424; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+  .reg-title { font-size: 13px; font-weight: 600; color: #e8e8e8; margin-bottom: 6px; }
+  .reg-body { font-size: 13px; color: #666; line-height: 1.65; }
+  .reg-body strong { color: #aaa; font-weight: 600; }
+  .new { display: inline-block; font-size: 9px; padding: 2px 6px; border-radius: 6px; font-weight: 700; margin-left: 6px; vertical-align: middle; background: #3a1a0a; color: #e07040; border: 1px solid #5a2a0a; text-transform: uppercase; }
+
+  /* Driver contracts tab */
+  .contract-block { border-bottom: 1px solid #1e1e1e; padding-bottom: 18px; margin-bottom: 18px; }
+  .contract-block:last-child { border-bottom: none; margin-bottom: 0; }
+  .contract-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  .contract-name { font-size: 14px; font-weight: 600; flex: 1; min-width: 120px; }
+  .contract-team { font-size: 11px; color: #555; font-weight: 400; margin-left: 4px; }
+  .contract-expiry { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 6px; white-space: nowrap; }
+  .exp-secure { background: #0e2a0e; color: #4caf50; border: 1px solid #1a4a1a; }
+  .exp-near   { background: #1a1400; color: #cc9900; border: 1px solid #3a2e00; }
+  .exp-this   { background: #3a0e00; color: #ff6633; border: 1px solid #5a1800; }
+  .contract-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+  .contract-meta-item { background: #161616; border-radius: 6px; padding: 8px 10px; }
+  .cmi-label { font-size: 10px; color: #444; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px; font-weight: 600; }
+  .cmi-value { font-size: 12px; color: #aaa; line-height: 1.45; }
+  .contract-talks { background: #1a1400; border: 1px solid #3a2e00; border-radius: 6px; padding: 8px 10px; margin-bottom: 6px; font-size: 12px; color: #cc9900; line-height: 1.5; }
+  .contract-talks strong { color: #e0b840; font-weight: 600; }
+  .contract-history { font-size: 11px; color: #555; line-height: 1.6; }
+  .contract-history span { color: #666; }
+  .tier-divider { font-size: 11px; color: #444; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin: 22px 0 14px; padding-top: 6px; border-top: 1px solid #1e1e1e; }
+  .contracts-note { font-size: 11px; color: #444; font-style: italic; line-height: 1.6; margin-bottom: 16px; }
+  @media (max-width: 600px) {
+    body { padding: 12px; }
+    .alabel { min-width: 120px; font-size: 11px; }
+    .pts-bar-wrap { width: 50px; }
+    .con-bar-wrap { width: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏎 F1 2026 Season Dashboard</h1>
+  <span class="updated">Updated · R13 Italian GP · Sep 6</span>
+</div>
+
+<div class="tab-row">
+  <button class="tb on" onclick="sw('standings',this)">Standings</button>
+  <button class="tb" onclick="sw('pace',this)">Team Pace Profiles</button>
+  <button class="tb" onclick="sw('races',this)">Race by Race</button>
+  <button class="tb" onclick="sw('regs',this)">2026 Reg Changes</button>
+  <button class="tb" onclick="sw('verdict',this)">Form Guide</button>
+  <button class="tb" onclick="sw('contracts',this)">Driver Contracts</button>
+</div>
+
+<!-- ═══ STANDINGS ═══ -->
+<div class="sec on" id="standings">
+  <div class="grid4">
+    <div class="metric"><div class="ml">Rounds completed</div><div class="mv" id="m-completed"></div><div class="ms" id="m-completed-sub"></div></div>
+    <div class="metric"><div class="ml">Driver leader</div><div class="mv" style="color:#c0c0c0;">Antonelli</div><div class="ms">292 pts · +81 over Russell</div></div>
+    <div class="metric"><div class="ml">Constructor leader</div><div class="mv" style="color:#c0c0c0;">Mercedes</div><div class="ms">503 pts · +145 over Ferrari</div></div>
+    <div class="metric"><div class="ml">Remaining rounds</div><div class="mv" id="m-remaining"></div><div class="ms">Max pts left: <span id="max-pts-left"></span></div></div>
+  </div>
+
+  <div class="title-note" id="title-note"></div>
+
+  <div class="section-label">Constructors' Championship</div>
+  <div id="con-list"></div>
+
+  <div class="section-label" style="margin-top:24px;">Drivers' Championship — All 22 Drivers</div>
+  <table class="drv">
+    <thead><tr>
+      <th style="width:28px;">P</th>
+      <th>Driver</th>
+      <th class="r" style="width:48px;">Pts</th>
+      <th style="width:90px;padding-left:10px;">Bar</th>
+      <th class="r" style="width:44px;">Gap</th>
+      <th style="width:80px;text-align:center;">Title?</th>
+    </tr></thead>
+    <tbody id="drv-tbody"></tbody>
+  </table>
+  <p class="note">After R13 Italian GP (Sep 6). Antonelli P1 from P19 grid — historic. Russell P2 in championship (221 pts), overtook Hamilton. Leclerc DNF (crash lap 3). Ferrari 0 constructors’ pts at Monza. Gasly first Alpine pole. Tsunoda first 2026 pt. Monaco Gasly appeal (McLaren/RB) still pending. Season now 23 races (Malaysia R16). Next: Madrid GP · Ifema Circuit · Sep 11–13.<br>
+  🟢 Mathematically alive &nbsp;·&nbsp; 🟡 Alive but very unlikely &nbsp;·&nbsp; ❌ Mathematically eliminated</p>
+  <!-- ── POINTS PROGRESSION CHARTS ── -->
+  <div class="section-label" style="margin-top:28px;">Points Progression — Constructors</div>
+  <p style="font-size:11px;color:#555;margin-bottom:10px;">Cumulative points per round. Top 5 constructors shown.</p>
+  <div style="position:relative;width:100%;height:260px;background:#141414;border-radius:10px;overflow:hidden;padding:16px 12px 28px;box-sizing:border-box;">
+    <canvas id="chart-con" style="width:100%;height:100%;"></canvas>
+  </div>
+
+  <div class="section-label" style="margin-top:28px;">Points Progression — Drivers</div>
+  <p style="font-size:11px;color:#555;margin-bottom:10px;">Cumulative points per round. Top 7 drivers shown.</p>
+  <div style="position:relative;width:100%;height:300px;background:#141414;border-radius:10px;overflow:hidden;padding:16px 12px 28px;box-sizing:border-box;">
+    <canvas id="chart-drv" style="width:100%;height:100%;"></canvas>
+  </div>
+  <p class="note" style="margin-top:8px;">R1=AUS · R2=CHN · R3=JPN · R4=MIA · R5=CAN · R6=MON · R7=ESP · R8=AUT · R9=GBR · R10=BEL · R11=HUN · R12=NED · R13=ITA. Sprint points included.</p>
+</div>
+
+<!-- ═══ PACE PROFILES ═══ -->
+<div class="sec" id="pace">
+  <p style="font-size:13px;color:#666;margin-bottom:6px;">All 11 teams rated across 6 dimensions. <strong style="color:#aaa;">Overall score</strong> = average of all six. Scale: 100 = best on grid. <span class="new">Updated R13</span></p>
+  <p class="note" style="margin-bottom:20px;">Sources: The-Race.com R1–R13, PlanetF1 Monza analysis, F1.com race reports. <strong style="color:#e07040;">R13 shifts:</strong> Mercedes dominant even without upgrades — Antonelli P19→P1 proves raw pace advantage. Ferrari down — Leclerc crash, zero points, car reliability concerns growing. McLaren up — Piastri P4, Norris P5, closing Ferrari in constructors. Red Bull up — Verstappen back-to-back podiums confirms upgrade is genuine. Alpine up — Gasly first-ever pole at Monza.</p>
+  <div class="tier-divider">Top Teams</div>
+  <div id="pace-top"></div>
+  <div class="tier-divider">Midfield</div>
+  <div id="pace-mid"></div>
+  <div class="tier-divider">Lower Midfield & New Entrants</div>
+  <div id="pace-low"></div>
+</div>
+
+<!-- ═══ RACES ═══ -->
+<div class="sec" id="races">
+  <table style="width:100%;border-collapse:collapse;font-size:13px;" id="race-tbl">
+    <thead><tr>
+      <th style="font-size:11px;color:#555;font-weight:500;text-align:left;padding:6px 8px;border-bottom:1px solid #222;text-transform:uppercase;letter-spacing:0.04em;width:28px;">#</th>
+      <th style="font-size:11px;color:#555;font-weight:500;text-align:left;padding:6px 8px;border-bottom:1px solid #222;text-transform:uppercase;letter-spacing:0.04em;">Grand Prix</th>
+      <th style="font-size:11px;color:#555;font-weight:500;text-align:left;padding:6px 8px;border-bottom:1px solid #222;text-transform:uppercase;letter-spacing:0.04em;width:95px;">Pole</th>
+      <th style="font-size:11px;color:#555;font-weight:500;text-align:left;padding:6px 8px;border-bottom:1px solid #222;text-transform:uppercase;letter-spacing:0.04em;width:120px;">Winner</th>
+      <th style="font-size:11px;color:#555;font-weight:500;text-align:left;padding:6px 8px;border-bottom:1px solid #222;text-transform:uppercase;letter-spacing:0.04em;">P2 · P3</th>
+    </tr></thead>
+    <tbody id="race-tbody"></tbody>
+  </table>
+
+  <!-- Season narrative always visible -->
+  <div class="card" style="margin-top:16px;" id="season-narrative">
+    <div class="ct">Season narrative — after 13 rounds · Italy GP</div>
+    <div class="cb">Antonelli leads the championship by <strong>66 points over Russell</strong> and 75 over Hamilton with 10 races remaining — the title is firmly in his hands but not yet mathematically decided. His Monza victory from 19th on the grid was one of the drives of the decade: the first Italian to win his home race since 1966, carving through the field after a back-of-grid power unit penalty and overtaking Russell in the closing laps. <strong>Russell is now P2 in the championship</strong> (221 pts), having jumped Hamilton after a strong Monza P2. Ferrari had a disastrous Italy — Leclerc crashed on lap 3 after a Hamilton clash at the chicane; Ferrari scored zero constructors' points. McLaren are closing on Ferrari in the constructors (289 vs 338) after Piastri P4 and Norris P5 at Monza. Red Bull's Verstappen took P3 — back-to-back podiums confirm the upgrade is real. <strong>Mercedes admitted no budget for further 2026 upgrades</strong> — a seismic revelation that shifts the development narrative for the rest of the season. The Monaco Gasly podium appeal (McLaren &amp; Red Bull vs Alpine) remains pending. <strong>Next: Madrid GP · Ifema Circuit · Sep 11–13</strong> — F1's street circuit debut in the Spanish capital.</div>
+  </div>
+</div>
+
+<!-- ═══ REG CHANGES ═══ -->
+<div class="sec" id="regs">
+  <p style="font-size:13px;color:#666;margin-bottom:16px;">The 2026 regulations are a complete reset. Every 2025 data point is obsolete.</p>
+  <div class="reg-card"><div class="reg-title">Active Aerodynamics — replaces DRS</div><div class="reg-body">Moveable wings open on straights (<strong>"Straight Mode"</strong>) to cut drag, close in corners (<strong>"Corner Mode"</strong>) for downforce. Every driver, every lap. <strong>Straight-line speed and cornering are no longer a simple trade-off.</strong></div></div>
+  <div class="reg-card"><div class="reg-title">50/50 Power Split — Electric vs Combustion</div><div class="reg-body">Equal power from ICE and MGU-K (~550 kW each). Battery depletes fast — cars harvest energy for stretches each lap. <strong>Energy management software is now as decisive as hardware.</strong> Russell's Canada retirement was a direct PU failure.</div></div>
+  <div class="reg-card"><div class="reg-title">Overtake Mode — replaces DRS for racing</div><div class="reg-body">Within 1s of the car ahead: up to <strong>350 kW extra electrical deployment</strong>, works in corners too — overtaking now develops across sequences, not just straights.</div></div>
+  <div class="reg-card"><div class="reg-title">New Power Unit Manufacturers</div><div class="reg-body"><strong>RB Powertrains/Ford</strong> — Red Bull & Racing Bulls. <strong>Audi</strong> — works team. <strong>Honda</strong> — exclusive to Aston Martin. <strong>Alpine</strong> — switched to Mercedes customer. McLaren, Haas, Cadillac on Mercedes or Ferrari units.</div></div>
+  <div class="reg-card"><div class="reg-title">Cadillac — The 11th Team</div><div class="reg-body">GM's first F1 entry since 2016. Ferrari power with <strong>Pérez</strong> and <strong>Bottas</strong>. Still yet to score a point after 13 rounds.</div></div>
+
+  <!-- ADUO SECTION -->
+  <div style="margin-top:24px;padding-top:16px;border-top:1px solid #2a2a2a;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+      <div style="font-size:15px;font-weight:700;color:#fff;">ADUO Tracker</div>
+      <span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;background:#0e2a1a;color:#4caf50;border:1px solid #1a4a2a;text-transform:uppercase;">Live</span>
+    </div>
+    <div style="font-size:12px;color:#555;margin-bottom:16px;">Additional Development and Upgrade Opportunities — the 2026 engine catch-up mechanism</div>
+
+    <!-- What is ADUO -->
+    <div class="reg-card" style="border-color:#2a3a2a;">
+      <div class="reg-title" style="color:#4caf50;">What is ADUO?</div>
+      <div class="reg-body">ADUO allows underperforming power unit manufacturers to make additional upgrades to homologated engines mid-season. The FIA monitors each manufacturer's <strong>ICE Performance Index</strong> — based on engine torque, engine speed, MGU-K power, and lap-time sensitivity to power output — and compares it against the benchmark (fastest) engine. Any manufacturer 2% or more behind the benchmark qualifies. <strong>It is not a Balance of Performance system</strong> — it only targets ICE power gaps, not championship standings. Red Bull are 6th in the constructors but their engine is competitive, so they get nothing; Aston Martin are last but their Honda PU is far off the pace, so they get maximum relief.</div>
+    </div>
+
+    <!-- Thresholds -->
+    <div class="reg-card" style="border-color:#2a3a2a;">
+      <div class="reg-title" style="color:#4caf50;">Upgrade & Financial Thresholds</div>
+      <div class="reg-body" style="padding:0;">
+        <table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:4px;">
+          <thead>
+            <tr style="border-bottom:1px solid #2a2a2a;">
+              <th style="text-align:left;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">ICE Gap to Leader</th>
+              <th style="text-align:center;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">2026 Upgrades</th>
+              <th style="text-align:center;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">2027 Upgrades</th>
+              <th style="text-align:right;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">Extra Budget</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #1e1e1e;">
+              <td style="padding:7px 8px;color:#e8e8e8;">2% – 4%</td>
+              <td style="padding:7px 8px;text-align:center;color:#aaa;">1</td>
+              <td style="padding:7px 8px;text-align:center;color:#aaa;">1</td>
+              <td style="padding:7px 8px;text-align:right;color:#aaa;">$3m</td>
+            </tr>
+            <tr style="border-bottom:1px solid #1e1e1e;">
+              <td style="padding:7px 8px;color:#e8e8e8;">4% – 6%</td>
+              <td style="padding:7px 8px;text-align:center;color:#aaa;">2</td>
+              <td style="padding:7px 8px;text-align:center;color:#aaa;">2</td>
+              <td style="padding:7px 8px;text-align:right;color:#aaa;">$4.65m</td>
+            </tr>
+            <tr style="border-bottom:1px solid #1e1e1e;">
+              <td style="padding:7px 8px;color:#e8e8e8;">6% – 8%</td>
+              <td style="padding:7px 8px;text-align:center;color:#aaa;">2</td>
+              <td style="padding:7px 8px;text-align:center;color:#aaa;">2</td>
+              <td style="padding:7px 8px;text-align:right;color:#aaa;">$6.35m</td>
+            </tr>
+            <tr style="border-bottom:1px solid #1e1e1e;">
+              <td style="padding:7px 8px;color:#e8e8e8;">8% – 10%</td>
+              <td style="padding:7px 8px;text-align:center;color:#aaa;">2</td>
+              <td style="padding:7px 8px;text-align:center;color:#aaa;">2</td>
+              <td style="padding:7px 8px;text-align:right;color:#aaa;">$8m</td>
+            </tr>
+            <tr>
+              <td style="padding:7px 8px;color:#e8e8e8;">10%+ <span style="font-size:10px;color:#555;">(2026 only)</span></td>
+              <td style="padding:7px 8px;text-align:center;color:#aaa;">2</td>
+              <td style="padding:7px 8px;text-align:center;color:#aaa;">2</td>
+              <td style="padding:7px 8px;text-align:right;color:#aaa;">$11m + borrow $8m future</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="font-size:11px;color:#444;padding:8px 8px 2px;font-style:italic;">ADUO is granted only once per period — not cumulative within a season. Unused upgrades are forfeited at season end.</div>
+        <div style="font-size:11px;color:#444;padding:4px 8px 4px;font-style:italic;">Permitted areas: ICE components, turbochargers, wastegates, exhaust systems, MGU-K, ERS cooling, control electronics, hydraulics, fluids, ballast.</div>
+      </div>
+    </div>
+
+    <!-- Review Windows -->
+    <div class="reg-card" style="border-color:#2a3a2a;">
+      <div class="reg-title" style="color:#4caf50;">Review Windows — 2026 Season</div>
+      <div class="reg-body" style="padding:0;">
+        <table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:4px;">
+          <thead>
+            <tr style="border-bottom:1px solid #2a2a2a;">
+              <th style="text-align:left;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">Period</th>
+              <th style="text-align:left;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">Races covered</th>
+              <th style="text-align:left;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">Results due</th>
+              <th style="text-align:center;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #1e1e1e;">
+              <td style="padding:7px 8px;color:#e8e8e8;font-weight:500;">Period 1</td>
+              <td style="padding:7px 8px;color:#aaa;">R1–R5 (AUS · CHN · JPN · MIA · CAN)</td>
+              <td style="padding:7px 8px;color:#aaa;">≤2 weeks after Canada (by ~Jun 7)</td>
+              <td style="padding:7px 8px;text-align:center;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:#0e2a0e;color:#4caf50;border:1px solid #1a4a1a;">Confirmed</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid #1e1e1e;">
+              <td style="padding:7px 8px;color:#e8e8e8;font-weight:500;">Period 2</td>
+              <td style="padding:7px 8px;color:#555;">R6–R11 (Monaco · Barcelona · Austria · Britain · Belgium · Hungary)</td>
+              <td style="padding:7px 8px;color:#aaa;">After Hungary (Jul 28)</td>
+              <td style="padding:7px 8px;text-align:center;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:#0e2a0e;color:#4caf50;border:1px solid #1a4a1a;">Confirmed</span></td>
+            </tr>
+            <tr>
+              <td style="padding:7px 8px;color:#e8e8e8;font-weight:500;">Period 3</td>
+              <td style="padding:7px 8px;color:#555;">R12–R19 (Netherlands · Monza · Madrid · Baku · Malaysia · Singapore · Austin · Mexico)</td>
+              <td style="padding:7px 8px;color:#555;">After Mexico (Nov 1)</td>
+              <td style="padding:7px 8px;text-align:center;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:#1e1e1e;color:#444;border:1px solid #2a2a2a;">Upcoming</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Per-manufacturer tracker -->
+    <div class="reg-card" style="border-color:#2a3a2a;">
+      <div class="reg-title" style="color:#4caf50;">Manufacturer ADUO Status — Period 1 ✓ Confirmed</div>
+      <div style="font-size:11px;color:#4caf50;margin-bottom:12px;font-weight:500;">Period 1 results confirmed post-Monaco. Red Bull Powertrains declared benchmark. Mercedes &amp; Ferrari both qualify for upgrades.</div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead>
+          <tr style="border-bottom:1px solid #2a2a2a;">
+            <th style="text-align:left;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">Manufacturer</th>
+            <th style="text-align:left;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">Teams using it</th>
+            <th style="text-align:center;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">Expected status</th>
+            <th style="text-align:left;padding:7px 8px;color:#666;font-weight:500;text-transform:uppercase;font-size:10px;letter-spacing:0.04em;">Earliest upgrade race</th>
+          </tr>
+        </thead>
+        <tbody id="aduo-tbody"></tbody>
+      </table>
+      <div style="font-size:11px;color:#444;margin-top:10px;font-style:italic;">Period 1 confirmed post-Monaco. Period 2 confirmed Aug 9: Red Bull benchmark, Mercedes 1 upgrade, Ferrari/Honda/Audi 2 upgrades. ADUO debuts expected Monza or Madrid. FIA methodology review ongoing at Red Bull request. Period 3 covers R13–R19 (Monza to Mexico City) — now active. Closes after Mexico City (Nov 1).</div>
+    </div>
+
+    <!-- Key rules -->
+    <div class="reg-card" style="border-color:#2a3a2a;">
+      <div class="reg-title" style="color:#4caf50;">Key Rules & Politics</div>
+      <div class="reg-body">
+        ADUO is granted only once per review period — not each race. An unused upgrade allocation expires at season end.<br><br>
+        <strong>The gamesmanship angle:</strong> Toto Wolff argued ADUO should not become a "leapfrog mechanism" and that only Honda truly needs it. Charles Leclerc publicly claimed Ferrari is even behind Red Bull/Ford in pure ICE power. The FIA has noted these public statements play no role — its decision is data-only.<br><br>
+        <strong>Why Red Bull gets nothing despite being 6th:</strong> Their RB22 chassis is the problem, not the engine. ADUO measures ICE power only. Red Bull Powertrains is reportedly the second-best engine on the grid — their pace deficit is entirely aerodynamic and mechanical.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ VERDICTS ═══ -->
+<div class="sec" id="verdict">
+  <p style="font-size:13px;color:#666;margin-bottom:14px;">Category-by-category form after 13 rounds. <span class="new">Updated R13</span></p>
+  <div class="vgrid" id="verdict-grid"></div>
+  <div class="card">
+    <div class="ct">Antonelli's commanding position</div>
+    <div class="cb">After 14 rounds Antonelli leads by <strong>81 points over Russell</strong> with 9 races left, and a maximum of 265 driver points remaining. He can mathematically eliminate Hamilton with just 1 more point. <strong>8 wins from 14 races</strong> — one of the most dominant title campaigns in recent F1 history.</div>
+  </div>
+  <div class="card">
+    <div class="ct">The constructors' fight</div>
+    <div class="cb">Mercedes leads on 503 points. <strong>Ferrari (358) and McLaren (306)</strong> battle for P2. McLaren closed to 52 behind Ferrari at Madrid. Red Bull (230) are 🟡 Unlikely. From Alpine (86) downward — all 🟡 Unlikely or approaching ❌ Eliminated in the constructors fight. Focus shifts to best-of-the-rest battles.</div>
+  </div>
+</div>
+
+<!-- ═══ CONTRACTS ═══ -->
+<div class="sec" id="contracts">
+  <p class="contracts-note">Sources: Sky Sports F1, The Race, ESPN, Formula1.com, F1 Live Pulse — updated Sep 2026. Contract lengths are often not officially confirmed; where exact dates are unconfirmed, the best-reported estimate from multiple reputable sources is used. "Talks" entries are from credible paddock reporting only — not speculation.</p>
+  <div class="tier-divider" style="margin-top:0;padding-top:0;border-top:none;">Top Teams</div>
+  <div id="contracts-list"></div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+// ══════════════════════════════════════════════════════════════════
+// ██  SEASON CONFIG — UPDATE THIS BLOCK ONLY AFTER EACH RACE  ██
+// ══════════════════════════════════════════════════════════════════
+const SEASON = {
+  roundsDone:    14,                      // completed rounds so far
+  totalRaces:    23,                      // races on 2026 calendar
+  latestRound:   'R14',                   // short label
+  latestRace:    'Spanish GP (Madrid)',   // full race name
+  latestDate:    'Sep 13',               // date string
+  nextRace:      'Azerbaijan GP',         // next race name
+  nextCircuit:   'Baku City Circuit',    // next circuit
+  nextDate:      'Sep 18–20',               // next race dates
+  raceSubtitle:  'AUS–ITA · MAD',         // metric card subtitle
+  // Points leaders
+  driverLeader:  'Antonelli',
+  driverPts:     292,
+  driverGap:     '+81 over Russell',
+  conLeader:     'Mercedes',
+  conPts:        503,
+  conGap:        '+145 over Ferrari',
+  // Championship math (9 remaining: 4 regular + 5 sprint weekends)
+  maxDrvPts:     265, // 4 reg×25 + 5 sprint×33 = 100 + 165
+  maxConPts:     530,
+  // Footnote
+  footnote: 'After R14 Spanish GP Madrid (Sep 13). Antonelli first winner at Madring — VSC gift after Stroll stopped. Norris led but missed pit entry under VSC, slow stop dropped him to P3. Hamilton DNF (brakes, lap 6) — first Ferrari retirement of 2026. Bearman started from pit lane (FP3 crash); Stroll started last (PU penalties). Sainz 3-place grid penalty (impeding Bottas). Monaco Gasly appeal still pending. Next: Azerbaijan GP · Baku · Sep 18–20.',
+  narrative: 'Antonelli leads the championship by <strong>81 points over Russell</strong> with 9 races remaining. The Madring delivered drama from the off — Norris led by 6+ seconds when Stroll stopped at Turn 20, triggering a VSC. Antonelli, Verstappen and Russell all pitted; Norris missed the pit entry by one corner and had to stop under green, suffering a slow 7-second stop that dropped him to 5th. He recovered to P3 but the win was gone. <strong>Hamilton retired on lap 6 with brake failure</strong> — his first DNF of 2026 and a hammer blow to his title hopes; he is now 101 points off the lead. Leclerc a fine P4. <strong>The Madring itself was controversial</strong> — Alonso labelled the racing "not what F1 should be" and multiple drivers criticised the lack of overtaking opportunities. <strong>Next: Azerbaijan GP · Baku City Circuit · Sep 18–20</strong> — long straights, tyre deg, and wall-lined streets.',
+  // Pace tab
+  paceSources: 'Sources: The-Race.com R1–R14, Total Motorsport Madrid analysis, F1.com.',
+  paceShifts: 'R14 shifts: Mercedes dominant as ever — Antonelli wins from P2. Red Bull up — Verstappen P2 from P3. McLaren slightly down — Norris VSC disaster cost a win. Ferrari down — Hamilton DNF, Leclerc P4 only. Alpine up — Colapinto P7, out-qualified Gasly by 5 places.',
+  formRound: 14,
+};
+
+// ── Derived — never edit these manually ───────────────────────────
+const ROUNDS_LEFT = SEASON.totalRaces - SEASON.roundsDone;
+
+// ── Render all round-dependent UI from SEASON config ─────────────
+document.getElementById('m-completed').innerHTML =
+  `${SEASON.roundsDone} <span style="font-size:14px;color:#555;">/ ${SEASON.totalRaces}</span>`;
+document.getElementById('m-completed-sub').textContent = SEASON.raceSubtitle;
+document.getElementById('m-remaining').textContent = ROUNDS_LEFT;
+
+// Driver leader metric
+(function(){
+  const el = document.querySelector('.metric .mv[style*="c0c0c0"]');
+  if (el) el.closest('.metric').querySelector('.ms').textContent =
+    SEASON.driverPts + ' pts · ' + SEASON.driverGap;
+})();
+
+// Header updated badge
+(function(){
+  const badge = document.querySelector('.updated');
+  if (badge) badge.textContent =
+    'Updated · ' + SEASON.latestRound + ' ' + SEASON.latestRace + ' · ' + SEASON.latestDate;
+})();
+
+// Standings footnote
+(function(){
+  const note = document.querySelector('#standings .note');
+  if (note) note.innerHTML = SEASON.footnote + '<br>🟢 Mathematically alive &nbsp;·&nbsp; 🟡 Alive but very unlikely &nbsp;·&nbsp; ❌ Mathematically eliminated';
+})();
+
+// Season narrative card
+(function(){
+  const ct = document.querySelector('#season-narrative .ct');
+  const cb = document.querySelector('#season-narrative .cb');
+  if (ct) ct.textContent = 'Season narrative — after ' + SEASON.roundsDone + ' rounds · ' + SEASON.latestRace;
+  if (cb) cb.innerHTML = SEASON.narrative;
+})();
+
+// Pace tab sources note
+(function(){
+  const note = document.querySelector('#pace .note');
+  if (note) note.innerHTML = SEASON.paceSources +
+    ' <strong style="color:#e07040;">' + SEASON.paceShifts + '</strong>';
+})();
+
+// Pace tab updated badge
+(function(){
+  const badge = document.querySelector('#pace .new');
+  if (badge) badge.textContent = 'Updated ' + SEASON.latestRound;
+})();
+
+// Form Guide round label
+(function(){
+  const p = document.querySelector('#verdict > p');
+  if (p) p.innerHTML = 'Category-by-category form after ' + SEASON.formRound +
+    ' rounds. <span class="new">Updated ' + SEASON.latestRound + '</span>';
+})();
+
+
+
+// Season: 22 races (2 cancelled = 20 actual), 5 done, 17 remaining
+// Sprint weekends: approximately 6 remain (estimated)
+// Fastest lap no longer awards a point in 2026.
+// Regular race weekend max: 25 pts (win only)
+// Sprint weekend max: 25 (race win) + 8 (sprint win) = 33 pts
+// 10 races remaining after R13: 5 regular × 25 = 125, 5 sprint weekends × 33 = 165 = 290 driver pts max
+const RACES_REMAINING = 10;
+const REGULAR_REMAINING = 5;
+const SPRINT_REMAINING = 5;
+const MAX_PTS_PER_RACE = 25;
+const MAX_SPRINT_PTS = 33; // 25 race + 8 sprint
+const MAX_DRV_REMAINING = SEASON.maxDrvPts; // driven from SEASON config
+const MAX_CON_REMAINING = SEASON.maxConPts; // driven from SEASON config
+
+document.getElementById('max-pts-left').textContent = MAX_DRV_REMAINING + ' (drivers) · ' + MAX_CON_REMAINING + ' (constructors)';
+document.getElementById('title-note').innerHTML =
+  `<strong>Title eligibility method:</strong> A driver/constructor is mathematically alive if their current points + all remaining available points ≥ the current leader's points. ` +
+  `${ROUNDS_LEFT} races remain. Max remaining: ` + +
+  `<strong>${MAX_DRV_REMAINING} driver pts</strong> · <strong>${MAX_CON_REMAINING} constructor pts</strong>. No fastest lap point in 2026. ` +
+  `🟢 = can still win &nbsp;·&nbsp; 🟡 = gap exceeds 50% of remaining pts (very unlikely) &nbsp;·&nbsp; ❌ = mathematically eliminated`;
+
+const TC = {
+  'Mercedes':'#888880','Ferrari':'#cc2200','McLaren':'#e8621a',
+  'Red Bull':'#1a5fbb','Alpine':'#e04488','Haas':'#aaaaaa',
+  'Racing Bulls':'#7766ee','Williams':'#1155aa','Audi':'#77aa22',
+  'Cadillac':'#999999','Aston Martin':'#336611'
+};
+
+// pts, leaderPts, maxRemaining → pill HTML
+function titlePill(pts, leaderPts, maxRemaining, isConstructor) {
+  const gap = leaderPts - pts;
+  const canWin = pts + maxRemaining >= leaderPts;
+  // "very unlikely" threshold: gap > 50% of remaining for drivers, 40% for constructors
+  const hardThreshold = isConstructor ? maxRemaining * 0.40 : maxRemaining * 0.50;
+  if (!canWin) return `<span class="title-pill pill-no">Eliminated</span>`;
+  if (gap > hardThreshold) return `<span class="title-pill pill-math">Unlikely</span>`;
+  return `<span class="title-pill pill-yes">In the fight</span>`;
+}
+
+// ── CONSTRUCTORS ──────────────────────────────────────────────────
+const CON_LEADER = 503;
+const constructors = [
+  {name:'Mercedes',     pts:503, note:'14 wins · Antonelli first Madring winner'},
+  {name:'Ferrari',      pts:358, note:'Leclerc P4 · Hamilton DNF lap 6'},
+  {name:'McLaren',      pts:306, note:'Norris P3 (VSC disaster) · Piastri P8'},
+  {name:'Red Bull',     pts:230, note:'Verstappen P2 · Lawson P6'},
+  {name:'Alpine',       pts:86,  note:'Colapinto P7 · Gasly P12'},
+  {name:'Racing Bulls', pts:77,  note:'Lindblad P9 · Tsunoda P14'},
+  {name:'Haas',         pts:22,  note:'Ocon P11 · Bearman P16'},
+  {name:'Audi',         pts:30,  note:'Hülkenberg P10 · Bortoleto P13'},
+  {name:'Williams',     pts:11,  note:'Sainz DNF · Albon P15'},
+  {name:'Aston Martin', pts:3,   note:'Alonso P17 · Stroll DNF'},
+  {name:'Cadillac',     pts:0,   note:'Pérez DNF · Bottas P18'},
+];
+
+const cl = document.getElementById('con-list');
+constructors.forEach((t,i) => {
+  const pct = Math.round((t.pts/CON_LEADER)*100);
+  const col = TC[t.name]||'#888';
+  const badge = t.note ? `<span class="con-badge">${t.note}</span>` : '';
+  const pill = titlePill(t.pts, CON_LEADER, MAX_CON_REMAINING, true);
+  cl.innerHTML += `<div class="con-row">
+    <span class="con-pos">${i+1}</span>
+    <span class="con-name"><span class="pip" style="background:${col};"></span>${t.name}${badge}</span>
+    <div class="con-bar-wrap"><div class="con-bar" style="width:${pct}%;background:${col};"></div></div>
+    <span class="con-pts">${t.pts}</span>
+    ${pill}
+  </div>`;
+});
+
+// ── DRIVERS ───────────────────────────────────────────────────────
+const DRV_LEADER = 292;
+const drivers = [
+  ['Championship fight', 1,'🇮🇹','K. Antonelli','Mercedes',292],
+  [null,                 2,'🇬🇧','L. Hamilton', 'Ferrari',  212],
+  [null,                 3,'🇬🇧','L. Hamilton', 'Ferrari',  159],
+  ['Podium contenders',  4,'🇲🇨','C. Leclerc',  'Ferrari',  175],
+  [null,                 5,'🇬🇧','L. Norris',   'McLaren',  178],
+  [null,                 6,'🇳🇱','M. Verstappen','Red Bull', 139],
+  [null,                 7,'🇦🇺','O. Piastri',  'McLaren',  118],
+  ['Points scorers',     8,'🇫🇷','I. Hadjar',   'Red Bull',  68],
+  [null,                 9,'🇳🇿','L. Lawson',   'Racing Bulls',63],
+  [null,                10,'🇬🇧','A. Lindblad', 'Racing Bulls',52],
+  [null,                11,'🇫🇷','P. Gasly',    'Alpine',    50],
+  [null,                12,'🇦🇷','F. Colapinto','Alpine',    37],
+  [null,                13,'🇬🇧','O. Bearman',  'Haas',      19],
+  [null,                14,'🇧🇷','G. Bortoleto','Audi',      10],
+  ['Lower points',      15,'🇹🇭','A. Albon',    'Williams',   5],
+  [null,                16,'🇩🇪','N. Hülkenberg','Audi',     11],
+  [null,                17,'🇪🇸','C. Sainz',    'Williams',   6],
+  [null,                18,'🇫🇷','E. Ocon',     'Haas',       3],
+  ['Yet to score',      19,'🇪🇸','F. Alonso',   'Aston Martin',3],
+  [null,                20,'🇨🇦','L. Stroll',   'Aston Martin',0],
+  [null,                21,'🇫🇮','V. Bottas',   'Cadillac',   0],
+  [null,                22,'🇲🇽','S. Pérez',    'Cadillac',   0],
+];
+
+const dtb = document.getElementById('drv-tbody');
+drivers.forEach(d => {
+  const [zone,pos,flag,name,team,pts] = d;
+  const col = TC[team]||'#888';
+  const pct = Math.round((pts/DRV_LEADER)*100);
+  const gap = pts===DRV_LEADER ? '—' : `-${DRV_LEADER-pts}`;
+  const pill = titlePill(pts, DRV_LEADER, MAX_DRV_REMAINING, false);
+  if (zone) dtb.innerHTML += `<tr class="drv-zone-hdr"><td colspan="6">${zone}</td></tr>`;
+  dtb.innerHTML += `<tr>
+    <td style="color:#555;font-weight:600;padding-left:10px;">${pos}</td>
+    <td><div style="display:flex;align-items:center;gap:8px;">
+      <span style="font-size:15px;">${flag}</span>
+      <div><div class="drv-name">${name}</div><div class="drv-team"><span class="pip" style="background:${col};"></span>${team}</div></div>
+    </div></td>
+    <td style="text-align:right;font-weight:600;">${pts}</td>
+    <td style="padding-left:10px;"><div class="pts-bar-wrap"><div class="pts-bar" style="width:${pct}%;background:${col};"></div></div></td>
+    <td style="text-align:right;font-size:12px;color:#555;">${gap}</td>
+    <td style="text-align:center;">${pill}</td>
+  </tr>`;
+});
+
+// ── PACE PROFILES ─────────────────────────────────────────────────
+const allTeams = [
+  {name:'Mercedes',color:TC['Mercedes'],tier:'top',pu:'Mercedes',
+   drivers:[
+     {name:'K. Antonelli', penaltyNote:'',
+      components:{ICE:3,TC:3,EXH:3,'MGU-K':1,ES:3,CE:3}},
+     {name:'G. Russell',   penaltyNote:'⚠️ ES & CE at limit — penalty imminent',
+      components:{ICE:3,TC:3,EXH:3,'MGU-K':2,ES:3,CE:3}},
+   ],
+   attrs:[{l:'Straight-line / energy deploy',v:100},{l:'High-speed cornering',v:94},{l:'Slow-speed cornering',v:93},{l:'Race pace',v:100},{l:'Qualifying one-lap',v:100},{l:'Active aero efficiency',v:98}]},
+  {name:'Ferrari',color:TC['Ferrari'],tier:'top',pu:'Ferrari',
+   drivers:[
+     {name:'C. Leclerc',  penaltyNote:'⚠️ MGU-K & ES & CE at limit — penalty imminent',
+      components:{ICE:3,TC:3,EXH:2,'MGU-K':3,ES:3,CE:3}},
+     {name:'L. Hamilton', penaltyNote:'⚠️ MGU-K & ES & CE at limit — penalty imminent',
+      components:{ICE:3,TC:3,EXH:2,'MGU-K':3,ES:3,CE:3}},
+   ],
+   attrs:[{l:'Straight-line / energy deploy',v:89},{l:'High-speed cornering',v:97},{l:'Slow-speed cornering',v:93},{l:'Race pace',v:97},{l:'Qualifying one-lap',v:95},{l:'Active aero efficiency',v:96}]},
+  {name:'McLaren',color:TC['McLaren'],tier:'top',pu:'Mercedes',
+   drivers:[
+     {name:'L. Norris',  penaltyNote:'⚠️ Belgium: −10 grid (CE exceeded — 4th unit)',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:4}},
+     {name:'O. Piastri', penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+   ],
+   attrs:[{l:'Straight-line / energy deploy',v:93},{l:'High-speed cornering',v:93},{l:'Slow-speed cornering',v:91},{l:'Race pace',v:93},{l:'Qualifying one-lap',v:93},{l:'Active aero efficiency',v:93}]},
+  {name:'Red Bull',color:TC['Red Bull'],tier:'top',pu:'RB Powertrains/Ford',
+   drivers:[
+     {name:'M. Verstappen', penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+     {name:'I. Hadjar',     penaltyNote:'⚠️ Belgium: −30 grid (ICE+TC+EXH all exceeded — 5th unit each)',
+      components:{ICE:5,TC:5,EXH:5,'MGU-K':2,ES:4,CE:4}},
+   ],
+   attrs:[{l:'Straight-line / energy deploy',v:89},{l:'High-speed cornering',v:85},{l:'Slow-speed cornering',v:81},{l:'Race pace',v:86},{l:'Qualifying one-lap',v:85},{l:'Active aero efficiency',v:85}]},
+  {name:'Alpine',color:TC['Alpine'],tier:'mid',pu:'Mercedes',
+   drivers:[
+     {name:'P. Gasly',      penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+     {name:'F. Colapinto',  penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+   ],
+   attrs:[{l:'Straight-line / energy deploy',v:82},{l:'High-speed cornering',v:79},{l:'Slow-speed cornering',v:78},{l:'Race pace',v:82},{l:'Qualifying one-lap',v:80},{l:'Active aero efficiency',v:80}]},
+  {name:'Haas',color:TC['Haas'],tier:'mid',pu:'Ferrari',
+   drivers:[
+     {name:'O. Bearman', penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+     {name:'E. Ocon',    penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+   ],
+   attrs:[{l:'Straight-line / energy deploy',v:81},{l:'High-speed cornering',v:78},{l:'Slow-speed cornering',v:79},{l:'Race pace',v:80},{l:'Qualifying one-lap',v:79},{l:'Active aero efficiency',v:79}]},
+  {name:'Racing Bulls',color:TC['Racing Bulls'],tier:'mid',pu:'RB Powertrains/Ford',
+   drivers:[
+     {name:'L. Lawson',    penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+     {name:'A. Lindblad',  penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+   ],
+   attrs:[{l:'Straight-line / energy deploy',v:82},{l:'High-speed cornering',v:79},{l:'Slow-speed cornering',v:75},{l:'Race pace',v:78},{l:'Qualifying one-lap',v:79},{l:'Active aero efficiency',v:80}]},
+  {name:'Audi',color:TC['Audi'],tier:'low',pu:'Audi',
+   drivers:[
+     {name:'N. Hülkenberg', penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+     {name:'G. Bortoleto',  penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+   ],
+   attrs:[{l:'Straight-line / energy deploy',v:76},{l:'High-speed cornering',v:74},{l:'Slow-speed cornering',v:74},{l:'Race pace',v:76},{l:'Qualifying one-lap',v:74},{l:'Active aero efficiency',v:74}]},
+  {name:'Williams',color:TC['Williams'],tier:'low',pu:'Mercedes',
+   drivers:[
+     {name:'C. Sainz', penaltyNote:'⚠️ Belgium: −10 grid (CE exceeded — 4th unit, parc fermé change)',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':1,ES:2,CE:4}},
+     {name:'A. Albon', penaltyNote:'',
+      components:{ICE:3,TC:3,EXH:3,'MGU-K':2,ES:3,CE:3}},
+   ],
+   attrs:[{l:'Straight-line / energy deploy',v:74},{l:'High-speed cornering',v:72},{l:'Slow-speed cornering',v:70},{l:'Race pace',v:72},{l:'Qualifying one-lap',v:71},{l:'Active aero efficiency',v:72}]},
+  {name:'Cadillac',color:TC['Cadillac'],tier:'low',pu:'Ferrari',
+   drivers:[
+     {name:'S. Pérez',   penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+     {name:'V. Bottas',  penaltyNote:'',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:2,CE:2}},
+   ],
+   attrs:[{l:'Straight-line / energy deploy',v:68},{l:'High-speed cornering',v:64},{l:'Slow-speed cornering',v:66},{l:'Race pace',v:65},{l:'Qualifying one-lap',v:65},{l:'Active aero efficiency',v:66}]},
+  {name:'Aston Martin',color:TC['Aston Martin'],tier:'low',pu:'Honda',
+   drivers:[
+     {name:'F. Alonso', penaltyNote:'⚠️ Belgium: back of grid (ES+CE+ANC all exceeded — 20-place cumulative penalty)',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':2,ES:4,CE:4}},
+     {name:'L. Stroll', penaltyNote:'⚠️ GBR: −10 grid (ES+CE exceeded). BEL: −10 grid (MGU-K exceeded — 4th unit)',
+      components:{ICE:2,TC:2,EXH:2,'MGU-K':4,ES:4,CE:4}},
+   ],
+   attrs:[{l:'Straight-line / energy deploy',v:60},{l:'High-speed cornering',v:62},{l:'Slow-speed cornering',v:61},{l:'Race pace',v:59},{l:'Qualifying one-lap',v:60},{l:'Active aero efficiency',v:60}]},
+];
+
+// ── COMPONENT PANEL ───────────────────────────────────────────────
+// 2026 allocations: ICE=4, TC=4, EXH=4, MGU-K=3, ES=3, CE=3
+// Penalty: 1st breach = −10 grid places, each subsequent = −5
+// KEY: allocation counts UNIQUE components introduced. Swapping a used unit back in = no penalty.
+const ALLOC = {ICE:4, TC:4, 'MGU-K':3, ES:3, CE:3, EXH:4};
+let compPanelId = 0;
+
+function buildCompPanel(drivers, color) {
+  const id = 'cp' + (++compPanelId);
+  let html = `
+    <div class="comp-toggle" onclick="toggleComp('${id}')">
+      <span class="comp-toggle-label">Component usage</span>
+      <span class="comp-toggle-arrow" id="arr${id}">▼</span>
+    </div>
+    <div class="comp-panel" id="${id}">
+      <div class="comp-note" style="border-bottom:1px solid #1e1e1e;margin-bottom:4px;padding-bottom:8px;line-height:1.6;">
+        <strong style="color:#aaa;">Two separate systems:</strong> (1) <strong style="color:#aaa;">Season allocation</strong> tracks unique components introduced so far. (2) <strong style="color:#aaa;">Penalty threshold</strong> — exceed the limit and take a grid penalty (−10 first offence, −5 each after). Swapping a previously-used unit <em>back in</em> does not trigger a penalty — only newly introduced units above the limit count.<br>
+        <span style="color:#555;margin-top:4px;display:block;">Allocations: ICE 4 · TC 4 · EXH 4 · MGU-K 3 · ES 3 · CE 3 &nbsp;·&nbsp; Gearbox penalties abolished from 2025 &nbsp;·&nbsp; 🔴 = over limit (penalty taken)</span>
+      </div>`;
+
+  drivers.forEach(d => {
+    const hasWarning = d.penaltyNote && d.penaltyNote.length > 0;
+    html += `<div style="padding:7px 12px 3px;border-top:1px solid #1e1e1e;display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;">
+      <span style="font-size:11px;font-weight:600;color:#888;min-width:100px;">${d.name}</span>
+      ${hasWarning ? `<span style="font-size:10px;background:#3a0e00;color:#ff6633;border:1px solid #5a1800;border-radius:4px;padding:2px 7px;font-weight:600;line-height:1.5;">${d.penaltyNote}</span>` : ''}
+    </div>
+    <div class="comp-header-row"><span>Component</span><span>Used</span><span>Limit</span><span>Left</span><span>Visual</span></div>`;
+    const comps = ['ICE','TC','MGU-K','ES','CE','EXH'];
+    comps.forEach(c => {
+      const used = d.components[c] || 0;
+      const alloc = ALLOC[c];
+      const over = Math.max(0, used - alloc);
+      const left = Math.max(0, alloc - used);
+      const overLimit = used > alloc;
+      const atLimit = used === alloc;
+      const usedColor = overLimit ? '#ff4411' : atLimit ? '#cc8800' : color;
+      const leftColor = overLimit ? '#ff4411' : left === 0 ? '#cc8800' : left === 1 ? '#cc9900' : '#4caf50';
+      const leftDisplay = overLimit ? '+' + over + ' ⚠️' : left;
+      let pips = '';
+      const totalPips = Math.max(alloc, used);
+      for (let i = 0; i < totalPips; i++) {
+        if (i >= alloc) pips += `<div style="width:10px;height:10px;border-radius:2px;background:#ff4411;"></div>`;
+        else if (i < used) pips += `<div class="comp-pip-used" style="background:${usedColor};"></div>`;
+        else if (left <= 1) pips += `<div class="comp-pip-warn"></div>`;
+        else pips += `<div class="comp-pip-left"></div>`;
+      }
+      html += `<div class="comp-row">
+        <div class="comp-name">${c}</div>
+        <div class="comp-used" style="color:${usedColor};">${used}</div>
+        <div class="comp-alloc">${alloc}</div>
+        <div class="comp-left" style="color:${leftColor};font-size:11px;">${leftDisplay}</div>
+        <div class="comp-pips">${pips}</div>
+      </div>`;
+    });
+  });
+  html += '</div>';
+  return html;
+}
+
+function toggleComp(id) {
+  const panel = document.getElementById(id);
+  const arrow = document.getElementById('arr' + id);
+  panel.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+function renderPace(teams, cid) {
+  const el = document.getElementById(cid);
+  teams.forEach(t => {
+    const avg = Math.round(t.attrs.reduce((s,a)=>s+a.v,0)/t.attrs.length);
+    const rows = t.attrs.map(a=>`<div class="arow">
+      <div class="alabel">${a.l}</div>
+      <div class="btrack"><div class="bfill" style="width:${a.v}%;background:${t.color};opacity:0.75;"></div></div>
+      <div class="aval">${a.v}</div>
+    </div>`).join('');
+    const compHtml = buildCompPanel(t.drivers, t.color);
+    el.innerHTML += `<div class="team-block">
+      <div class="team-head">
+        <div class="tdot" style="background:${t.color};"></div>
+        <div class="tname">${t.name}<span class="tpu">${t.pu} PU</span></div>
+        <div class="overall-chip" style="background:${t.color}22;color:${t.color};">${avg}</div>
+      </div>${rows}${compHtml}
+    </div>`;
+  });
+}
+renderPace(allTeams.filter(t=>t.tier==='top'),'pace-top');
+renderPace(allTeams.filter(t=>t.tier==='mid'),'pace-mid');
+renderPace(allTeams.filter(t=>t.tier==='low'),'pace-low');
+
+// ── RACES ─────────────────────────────────────────────────────────
+const races = [
+  {
+    n:'1', gp:'Australia', circuit:'Albert Park, Melbourne', date:'Mar 6–8',
+    pole:'Russell', winner:'Russell', wteam:'Mercedes', p23:'Antonelli · Leclerc',
+    cancelled:false, isLatest:false,
+    sprint:false,
+    bullets:[
+      '<strong>Russell</strong> took pole and converted it to a dominant win — his first for Mercedes in 2026.',
+      '<strong>Antonelli</strong> finished 2nd on debut, showing immediate pace despite being a rookie.',
+      '<strong>Leclerc (Ferrari)</strong> took P3, giving Ferrari an early constructors\' foothold.',
+      'McLaren struggled — both Norris and Piastri finished outside the top 5, raising early alarm bells.',
+      'Red Bull were off the pace throughout, signalling the RB22\'s troubled start to the new era.',
+    ]
+  },
+  {
+    n:'2', gp:'China', circuit:'Shanghai International Circuit', date:'Mar 13–15',
+    pole:'Antonelli', winner:'Antonelli', wteam:'Mercedes', p23:'Russell · Hamilton',
+    cancelled:false, isLatest:false,
+    sprint:false,
+    bullets:[
+      '<strong>Antonelli</strong> took his first career pole and converted it to his first race win in dominant fashion.',
+      '<strong>Russell</strong> finished P2, keeping Mercedes in a comfortable 1-2 formation.',
+      '<strong>Hamilton</strong> scored his first Ferrari podium — P3 — providing early encouragement for Maranello.',
+      'McLaren again struggled — pace deficit confirmed as a structural issue, not a one-race anomaly.',
+      'Verstappen finished outside the points; Red Bull described the car as undriveable in slow corners.',
+    ]
+  },
+  {
+    n:'✕', gp:'Bahrain', circuit:'Bahrain International Circuit', date:'Apr 10–12',
+    pole:'—', winner:'CANCELLED', wteam:null, p23:'—',
+    cancelled:true, isLatest:false, sprint:false,
+    bullets:['<strong>Cancelled</strong> due to Middle East conflict (US/Israel strikes on Iran and retaliatory strikes). No replacement announced.']
+  },
+  {
+    n:'✕', gp:'Saudi Arabia', circuit:'Jeddah Corniche Circuit', date:'Apr 17–19',
+    pole:'—', winner:'CANCELLED', wteam:null, p23:'—',
+    cancelled:true, isLatest:false, sprint:false,
+    bullets:['<strong>Cancelled</strong> due to ongoing Middle East conflict. Season reduced from 24 to 22 races.']
+  },
+  {
+    n:'3', gp:'Japan', circuit:'Suzuka Circuit', date:'Mar 27–29',
+    pole:'Antonelli', winner:'Antonelli', wteam:'Mercedes', p23:'Piastri · Leclerc',
+    cancelled:false, isLatest:false,
+    sprint:false,
+    bullets:[
+      '<strong>Antonelli</strong> took a second consecutive pole-to-win, extending his championship lead.',
+      'A timely safety car (debris incident) reset the race and fell perfectly for Antonelli\'s strategy.',
+      '<strong>Piastri (McLaren)</strong> took P2 — the first sign McLaren\'s upgrade trajectory was working.',
+      '<strong>Leclerc</strong> took P3 for Ferrari, but the team admitted Suzuka\'s high-speed layout masked their weaknesses.',
+      'Verstappen finished outside the points again — Red Bull\'s slow-corner deficit was starkly exposed at Suzuka\'s S-bends.',
+    ]
+  },
+  {
+    n:'4', gp:'Miami', circuit:'Miami International Autodrome', date:'May 1–3',
+    pole:'Antonelli', winner:'Antonelli', wteam:'Mercedes', p23:'Norris · Piastri',
+    cancelled:false, isLatest:false,
+    sprint:true,
+    bullets:[
+      '<strong>McLaren\'s major upgrade package</strong> arrived — Norris won Saturday\'s sprint, signalling a genuine performance step.',
+      '<strong>Antonelli</strong> made history: first driver ever to win their first four grands prix from pole position.',
+      'Early safety car (Hadjar-Gasly crash) reshuffled strategy; multiple lead changes throughout.',
+      '<strong>Leclerc spun and hit the barrier</strong> on the final lap fighting Piastri — earned a 20-second penalty, dropped from P3 to P8.',
+      '<strong>Verstappen</strong> spun from P2 on lap 1 but recovered to P5; Red Bull\'s upgrade showed improvement.',
+      'Wolff forced to intervene over team radio — first public hint of Mercedes internal tension.',
+    ]
+  },
+  {
+    n:'5', gp:'Canada', circuit:'Circuit Gilles Villeneuve, Montreal', date:'May 22–24',
+    pole:'Russell', winner:'Antonelli', wteam:'Mercedes', p23:'Hamilton · Verstappen',
+    cancelled:false, isLatest:false,
+    sprint:true,
+    bullets:[
+      '<strong>Russell</strong> won Saturday\'s sprint from pole, cutting Antonelli\'s lead to 18 points and setting up a title fight narrative.',
+      '<strong>McLaren gambled on intermediates</strong> on a drying track at race start — catastrophic error. Piastri finished P11 two laps down; Norris DNF. "We looked like idiots" — Piastri.',
+      '<strong>Russell vs Antonelli</strong> produced a brilliant duel for the lead through the opening laps — multiple position swaps.',
+      '<strong>Russell\'s power unit failed on lap 30</strong> while leading — gifting Antonelli a clear run to victory.',
+      '<strong>Hamilton</strong> passed Verstappen into Turn 1 for P2 — his best Ferrari result of the season.',
+      '<strong>Verstappen</strong> took P3 — Red Bull\'s first podium of 2026.',
+      '6 retirements total: Russell (PU), Norris, Alonso, Albon, Pérez, Lindblad (DNS).',
+      '<strong>Mercedes conceded</strong> post-race they may need team orders to protect Antonelli\'s title lead — Wolff intervened on radio.',
+    ]
+  },
+  {
+    n:'6', gp:'Monaco', circuit:'Circuit de Monaco, Monte Carlo', date:'Jun 5–7',
+    pole:'Antonelli', winner:'Antonelli', wteam:'Mercedes', p23:'Hamilton · Gasly (amended)',
+    cancelled:false, isLatest:false,
+    sprint:false,
+    bullets:[
+      '<strong>Antonelli</strong> took his 5th pole and 5th win of the season — dominant from lights to flag, crossing the line 6.3 seconds clear of Hamilton.',
+      '<strong>Two standing restarts</strong> — Lance Stroll crashed at Antony Noghes on lap 68, triggering a red flag. Track surface broke up at the site, requiring inspection before resuming.',
+      '<strong>Verstappen retired on lap 1</strong> with a power unit failure — his fourth DNF or points-less result of the season, continuing Red Bull\'s miserable chassis story despite having the best engine.',
+      '<strong>Racing Bulls were sensational</strong> — Hadjar P3 (2nd consecutive podium), Lawson P5, Lindblad P6. All three cars ahead of both Ferraris in the final classification.',
+      '<strong>Gasly (Alpine)</strong> crossed the line P3 but received two 5-second penalties for pitlane speeding — dropped to P7. Alpine have filed a Right of Review, claiming a pitlane lane-marking error caused drivers to inadvertently cut the lane.',
+      '<strong>Russell P13</strong> after two stewards\' penalties — "a complete disaster I am struggling to comprehend." Now 68 points behind Antonelli.',
+      '<strong>Leclerc DNF</strong> — brake failure mid-race; described the SF-26 as "borderline dangerous" with 3 of 4 brakes not working. Ferrari furious.',
+      '<strong>Cadillac denied their first point</strong> — Pérez received a 10-second post-race penalty for being out of position at the restart, dropping from P10 to P15. <strong>Alonso (Aston Martin) inherited P10</strong> — their first point of 2026.',
+      '<strong>ADUO confirmed:</strong> Red Bull Powertrains/Ford declared the benchmark ICE — <strong>Mercedes HPP and Ferrari now qualify for in-season upgrade opportunities</strong>. Honda and Audi remain in 4%+ band.',
+      '<strong>Result amended post-race:</strong> Alpine\'s Right of Review was successful on Friday in Barcelona — FOM data showed the timing distance was inaccurate and overestimated Gasly\'s speed. <strong>Gasly restored to P3</strong>, Hadjar drops to P4, Piastri to P5. McLaren and Red Bull filed appeals against the reinstatement.',
+    ]
+  },
+  {
+    n:'7', gp:'Spain', circuit:'Circuit de Barcelona-Catalunya', date:'Jun 12–14',
+    pole:'Russell', winner:'Hamilton', wteam:'Ferrari', p23:'Russell · Norris',
+    cancelled:false, isLatest:false,
+    sprint:false,
+    bullets:[
+      '<strong>Hamilton</strong> claimed his 106th career win — first for Ferrari, first since the 2024 Belgian GP (686 days). Ferrari used an aggressive 3-stop strategy, exploiting a well-timed VSC caused by Alonso stopping at Turn 9.',
+      '<strong>Russell</strong> started from pole and led the early laps but was undercut by Hamilton at the second stop. He settled for P2, 19.5 seconds behind at the flag.',
+      '<strong>First all-British podium since 1968</strong> — Hamilton, Russell, Norris on the podium together for the first time ever.',
+      '<strong>Antonelli retired on lap 62 of 66</strong> with a Mercedes power unit failure, just after passing Russell for P2. Also given a post-race 5-second penalty for track limit violations — did not affect his retirement.',
+      '<strong>Leclerc DNF</strong> late in the race with a steering issue while running inside the top 5 — another missed points opportunity.',
+      '<strong>Colapinto (Alpine)</strong> crossed the line P8 but received a 10-second penalty for not slowing under yellow flags, dropping to P10. Lawson and Lindblad (Racing Bulls) elevated to P8 and P9.',
+      '<strong>Alonso</strong> started from pit lane (Aston Martin replaced ESME and MGU-K overnight) and finished outside the points.',
+      'Hamilton becomes the 7th oldest race-winner in F1 history at 41 years old.',
+    ]
+  },
+  {
+    n:'8', gp:'Austria', circuit:'Red Bull Ring, Spielberg', date:'Jun 26–28',
+    pole:'Russell', winner:'Russell', wteam:'Mercedes', p23:'Verstappen · Antonelli',
+    cancelled:false, isLatest:false,
+    sprint:false,
+    bullets:[
+      '<strong>Russell</strong> took pole despite Verstappen crashing in Q3 under yellow flags, then converted it to a controlled victory — his 7th career win, 2nd of 2026.',
+      '<strong>Verstappen P2</strong> — Red Bull\'s major upgrade package delivered its strongest showing of the season. Led from P5 on the grid after wheel-to-wheel battles with Hamilton in the opening laps.',
+      '<strong>Antonelli P3</strong> — a solid damage-limitation result after a messy opening phase where he ran wide multiple times. Chased Verstappen hard in the final lap but couldn\'t make Overtake Mode stick.',
+      'A VSC for <strong>Sainz stopping on the main straight</strong> (Williams electrical failure) caught Antonelli at the wrong moment — he had already pitted, missing the free stop.',
+      '<strong>Hamilton P5</strong> behind Piastri — Ferrari faded badly on tyre life. Leclerc P8 after struggling with deg throughout.',
+      '<strong>Both Cadillacs retired early</strong> (brake overheating) — Pérez and Bottas again failing to score despite Cadillac bringing their largest upgrade package yet.',
+      '<strong>Alonso</strong> given a 5-second penalty for pit lane speeding — finishing P18 classified.',
+      'Russell\'s championship deficit to Antonelli cut from 66 to <strong>40 points</strong> — the title fight is alive again.',
+      '<strong>Led into summer break with Antonelli 50 pts clear of Hamilton. Post-break: Dutch GP won by Norris; Italian GP won by Antonelli from P19.</strong>',
+    ]
+  },
+  {
+    n:'9', gp:'Britain', circuit:'Silverstone Circuit, Northamptonshire', date:'Jul 3–5',
+    pole:'Antonelli', winner:'Leclerc', wteam:'Ferrari', p23:'Russell · Hamilton',
+    cancelled:false, isLatest:false,
+    sprint:true,
+    bullets:[
+      '<strong>Sprint (Saturday):</strong> Antonelli won his first-ever sprint race — youngest sprint winner in F1 history. Hamilton P2, Norris P3. Russell P4, Leclerc P5, Verstappen P6. Lawson took the final sprint point in P8.',
+      '<strong>Race start drama:</strong> Leclerc and Hamilton jumped Antonelli at the lights. Piastri and Lawson clashed on lap 1 — Piastri pitted with front wing damage and spent the rest of the race recovering. Albon tagged Bearman (10-second penalty) and later retired.',
+      '<strong>Antonelli wheel shield failure (lap 41):</strong> Leading after a long first stint, the Italian suffered a left-front wheel shield failure. Steering became compromised, leading to repeated track limit violations and a 5-second penalty. He finished P16 with zero points.',
+      '<strong>Verstappen crashed at Stowe (lap 48)</strong> while running P4 in contention for a podium, triggering the Safety Car. Race finished under the SC — Leclerc took his first 2026 victory without a restart.',
+      '<strong>Russell pitted under the SC</strong> from a slow puncture suffered earlier, leapfrogging Hamilton who stayed out. Race ended before a restart, costing Hamilton P2.',
+      '<strong>Hamilton investigated post-race</strong> for passing under yellow flags — stewards issued only a reprimand, P3 retained.',
+      '<strong>Hadjar P5, Lawson P6, Lindblad P7</strong> — Racing Bulls scored 14 points, one of their strongest team hauls of the season.',
+      '<strong>Bortoleto P8</strong> — Audi best result of 2026. Colapinto P9, Gasly P10 for Alpine.',
+      '<strong>Championship impact:</strong> Antonelli\'s lead cut from 40 to 25 points. Ferrari gained 51 points on Mercedes in a single weekend — the biggest constructors swing of 2026 so far.',
+    ]
+  },
+  {
+    n:'10', gp:'Belgium', circuit:'Circuit de Spa-Francorchamps, Stavelot', date:'Jul 17–19',
+    pole:'Antonelli', winner:'Antonelli', wteam:'Mercedes', p23:'Leclerc · Verstappen',
+    cancelled:false, isLatest:false,
+    sprint:false,
+    bullets:[
+      '<strong>Antonelli from pole</strong> — his 6th win of 2026, winning by 1.952 seconds over Leclerc.',
+      '<strong>Verstappen stormed past through Eau Rouge on lap 1</strong> using slipstream + Overtake Mode, briefly leading before Antonelli retook the position.',
+      '<strong>Leclerc pitted under a VSC and briefly held the lead</strong> — Antonelli closed and swept past at the Kemmel Straight on lap 34.',
+      '<strong>Russell retired on lap 1</strong> after contact with Hamilton at Raidillon — Mercedes accepted 100% blame. Second retirement in four races, now 50 pts behind Antonelli.',
+      '<strong>Hamilton penalised 5 seconds</strong> for the Russell collision, dropping from P3 to P4. Ferrari also fined €30k for unsafe pit release striking a mechanic.',
+      '<strong>Norris, Hadjar, Alonso and Stroll all took grid penalties</strong> for PU component changes, reshaping the grid dramatically.',
+      '<strong>Piastri P5</strong> from P9 on grid. <strong>Lindblad P7</strong>. Racing Bulls and Alpine now level on 80 constructor points.',
+      '<strong>Colapinto P8</strong> for Alpine. Bortoleto P17.',
+      '<strong>Championship: Antonelli +45 over Hamilton, +50 over Russell.</strong> Summer break after Hungary — title drifting toward Antonelli.',
+    ]
+  },
+  {
+    n:'11', gp:'Hungary', circuit:'Hungaroring, Mogyóród, Budapest', date:'Jul 24–26',
+    pole:'Norris', winner:'Norris', wteam:'McLaren', p23:'Verstappen · Antonelli',
+    cancelled:false, isLatest:false,
+    sprint:false,
+    bullets:[
+      '<strong>Norris from pole</strong> — first 2026 win, 15 seconds clear of Verstappen. McLaren become the third constructor to win in 2026.',
+      '<strong>Piastri led early</strong> after jumping Norris off the line, McLaren resisting team orders. DNF on lap 60 with gearbox failure handed Norris a free run.',
+      '<strong>Both Hamilton and Antonelli penalised 3 places in qualifying</strong> — Hamilton for impeding Piastri, Antonelli for a yellow flag infringement. Grid reshuffled.',
+      '<strong>Russell anti-stall failure off the start</strong> dropped him from P6 to P19 on lap 1. Recovered to P7 but lost crucial title points. Now 59 behind Antonelli.',
+      '<strong>Verstappen P2</strong> — Red Bull second consecutive podium. Trademark late dive on Hamilton at Turn 1, lap 16.',
+      '<strong>Antonelli P3</strong> starting from P7 — charged through the field on a long opening stint, brilliant tyre management.',
+      '<strong>Hamilton P5 after pit lane speeding penalty</strong> — his fourth penalty in three races. Dropped from P4 behind Leclerc.',
+      '<strong>Sainz-Piastri collision lap 39</strong>: Piastri rejoined into Sainz at Turn 1. Sainz took 10-second penalty. Piastri\'s gearbox failure 20 laps later was unrelated.',
+      '<strong>Hülkenberg P9</strong> — Audi first double-points finish (Bortoleto P11). Lawson P8, Lindblad P10.',
+      '<strong>Aston Martin B-spec showed promise</strong>: Stroll P13, Alonso P14 — Newey upgrade beginning to work.',
+      '<strong>Malaysia (Sepang) confirmed as R16</strong> (Oct 2–4), hosting the Bahrain GP. Season extended from 22 to 23 races.',
+    ]
+  },
+  {
+    n:'12', gp:'Netherlands', circuit:'Circuit Zandvoort — final F1 race', date:'Aug 21–23',
+    pole:'Norris', winner:'Norris', wteam:'McLaren', p23:'Antonelli · Russell',
+    cancelled:false, isLatest:false,
+    sprint:true,
+    bullets:[
+      '<strong>Sprint (Saturday):</strong> Russell won from pole, Hamilton P2, Norris P3. Antonelli P7 — a rare sprint off-day.',
+      '<strong>Verstappen crashed heavily at the end of lap 1</strong> in slippery conditions, losing the rear into Turn 12. Red-flagged. Verstappen unhurt, standing ovation from the home crowd.',
+      '<strong>At the restart Antonelli made a lightning launch</strong>, overtook Norris for P1 and stretched an 8-second lead through the middle stint on the hard tyre.',
+      '<strong>Norris undercut with fresh mediums</strong> and closed 1.5 seconds per lap. Retook the lead on lap 55 of 72 and pulled away to win by 11.536 seconds.',
+      '<strong>Mercedes team orders late in the race</strong> — Russell was asked to let Antonelli past for P2 to protect championship points. Russell complied but post-race: "I didn\'t have much choice."',
+      '<strong>Hamilton P4, Leclerc P5</strong> — Ferrari brought new front wing but couldn\'t challenge top 3.',
+      '<strong>Lawson P7 for Red Bull</strong> (after 10-second yellow flag penalty), deputising for the injured Hadjar. Tsunoda P11 for Racing Bulls in his one-off return.',
+      '<strong>Penalty chaos:</strong> Colapinto received a drive-through AND post-race 10 seconds. Sainz 10 seconds for collision with Albon. Lawson penalised. Lindblad drive-through — fell to P12.',
+      '<strong>Hülkenberg P8, Alonso P9, Gasly P10</strong> — Audi, Aston Martin and Alpine all scoring.',
+      '<strong>Zandvoort confirmed removed from 2027 calendar</strong> during the race weekend — this was the final Dutch GP.',
+      '<strong>Mercedes admitted no upgrade budget</strong> for rest of 2026. McLaren\'s development rate now impossible to match.',
+      '<strong>Championship: Antonelli +49 over Hamilton, +68 over Russell, +100 over Norris.</strong>',
+    ]
+  },
+  {
+    n:'13', gp:'Italy', circuit:'Autodromo Nazionale di Monza', date:'Sep 4–6',
+    pole:'Gasly', winner:'Antonelli', wteam:'Mercedes', p23:'Russell · Verstappen',
+    cancelled:false, isLatest:false,
+    sprint:false,
+    bullets:[
+      '<strong>Gasly takes Alpine\'s first-ever pole position</strong> — historic moment for the team, their first pole since the Renault era.',
+      '<strong>Antonelli started 19th</strong> after taking a back-of-grid penalty for a new power unit — a strategic gamble by Mercedes given Monza\'s low-drag characteristics.',
+      '<strong>Hamilton–Leclerc opening chicane battle</strong>: Leclerc ran Hamilton off onto the gravel at the first chicane, sending him to 10th. Leclerc then crashed heavily at the exit of Parabolica on lap 3, red-flagging the race. Leclerc admitted it “went too far.”',
+      '<strong>Standing restart</strong>: Russell led from Gasly and Colapinto. Antonelli had climbed to P6 at the red flag and restarted P6.',
+      '<strong>Antonelli\'s charge</strong>: On fresher rubber and with superior energy deployment, Antonelli picked off cars lap by lap — Verstappen, Norris, Piastri, Gasly, then finally Russell on lap 47 with a decisive move into the first chicane.',
+      '<strong>Antonelli wins from 19th</strong> — first driver since John Watson at the 1983 US Grand Prix West to win from 19th or below. First Italian to win the Italian Grand Prix since Ludovico Scarfiotti in 1966.',
+      '<strong>Russell P2</strong> nursed aging tyres but couldn\'t hold Antonelli. <strong>Verstappen P3</strong> from P7 on the grid — back-to-back podiums for Red Bull.',
+      '<strong>Norris P5, Piastri P4</strong> — McLaren scored 22 points. Hamilton P6 after starting battle damage. <strong>Ferrari scored zero constructors\' points</strong> — their worst day of 2026.',
+      '<strong>Gasly P7</strong> after leading early. Lindblad P8, Colapinto P9, Tsunoda P10 — first point of 2026 for the Racing Bulls substitute.',
+      '<strong>Championship: Antonelli +66 over Russell, +75 over Hamilton.</strong> Russell now P2 in the championship, having overtaken Hamilton.',
+    ]
+  },
+  {
+    n:'14', gp:'Spain (Madrid) 🆕', circuit:'Circuito IFEMA Madrid \u2014 Madring, Madrid', date:'Sep 11–13',
+    pole:'Norris', winner:'Antonelli', wteam:'Mercedes', p23:'Verstappen · Norris',
+    cancelled:false, isLatest:true,
+    sprint:false,
+    bullets:[
+      '<strong>Norris on pole</strong> at F1\'s inaugural Madring race — the first Spanish GP in Madrid since 1981. Colapinto P9 on the grid — the surprise of qualifying, out-qualifying Gasly by 5 places.',
+      '<strong>Norris led from lights</strong> and built a 6+ second gap over Antonelli in the opening stint. Looking dominant.',
+      '<strong>VSC triggered on lap 16</strong> when Stroll stopped at Turn 20 with brake issues. Antonelli, Verstappen and Russell all dived into the pits. Norris passed the pit entry one corner too late — unable to stop under VSC.',
+      '<strong>Disaster for Norris:</strong> forced to pit under green, suffered a sticky front-right — 7-second stop — and rejoined 5th behind all three VSC stoppers. He recovered to P3 but the win was gone. McLaren boss described it as \'cruel\'.',
+      '<strong>Antonelli won</strong> from P2 on the grid, managing a car that felt \'unusual\' late on and briefly touching the wall at Turn 7. First-ever F1 winner at the Madring.',
+      '<strong>Verstappen P2</strong> (+4.351s). <strong>Norris P3</strong> (+5.089s) — Red Bull and McLaren both ahead of Ferrari at a new circuit.',
+      '<strong>Hamilton retired on lap 6</strong> with a brake failure — his first DNF of the 2026 season. A devastating points loss. He is now 101 points behind Antonelli.',
+      '<strong>Leclerc P4</strong> after running long on the hard tyre and hoping for another safety car. Russell P5 despite two stops.',
+      '<strong>Lawson P6, Colapinto P7, Piastri P8, Lindblad P9, Hülkenberg P10</strong>. Racing Bulls scored a point in both cars. Audi now on 30 constructor points.',
+      '<strong>DNFs:</strong> Hamilton (lap 6, brakes), Stroll (lap 12, brakes), Pérez (lap 31), Sainz (lap 43). Sainz had also taken a 3-place grid penalty for impeding Bottas in qualifying — home heartbreak for the Madrid-born driver.',
+      '<strong>The Madring circuit itself drew mixed reviews</strong> — Fernando Alonso said \'it cannot continue this way\'. Multiple drivers and teams criticised the lack of overtaking. F1 will need to evaluate future races at the venue.',
+      '<strong>Championship: Antonelli +81 over Russell, +101 over Hamilton.</strong> With 9 races left, Antonelli needs just 1 point to mathematically eliminate Hamilton.',
+    ]
+  },
+];
+
+const rtb = document.getElementById('race-tbody');
+
+// Points lookup by finishing position
+const PTS = {1:25,2:18,3:15,4:12,5:10,6:8,7:6,8:4,9:2,10:1};
+const SPRINT_PTS = {1:8,2:7,3:6,4:5,5:4,6:3,7:2,8:1};
+
+function buildResultsTable(results, label, ptsMap, teamColors) {
+  let rows = '';
+  results.forEach(d => {
+    const pts = d.dnf ? 0 : (ptsMap[d.pos] || 0);
+    const delta = d.dnf ? '—' : (d.grid === 'PIT' ? 'PIT' : d.grid - d.pos);
+    let deltaHtml;
+    if (d.dnf) deltaHtml = `<td class="delta-eq">DNF</td>`;
+    else if (typeof delta === 'string') deltaHtml = `<td class="delta-eq">${delta}</td>`;
+    else if (delta > 0) deltaHtml = `<td class="delta-up">+${delta}</td>`;
+    else if (delta < 0) deltaHtml = `<td class="delta-dn">${delta}</td>`;
+    else deltaHtml = `<td class="delta-eq">—</td>`;
+    const posLabel = d.dnf ? 'DNF' : (d.dns ? 'DNS' : d.pos);
+    const posColor = d.pos===1?'#FFD700':d.pos===2?'#C0C0C0':d.pos===3?'#CD7F32':'#aaa';
+    const col = teamColors[d.team] || '#888';
+    const ptsLabel = pts > 0 ? `<span style="color:${col};font-weight:700;">${pts}</span>` : `<span style="color:#333;">0</span>`;
+    rows += `<tr class="${d.dnf||d.dns?'dnf-row':''}">
+      <td class="res-pos" style="color:${posColor};">${posLabel}</td>
+      <td><div class="res-driver">${d.driver}</div><div class="res-team"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${col};margin-right:4px;vertical-align:middle;"></span>${d.team}</div></td>
+      <td class="res-grid">${d.grid}</td>
+      ${deltaHtml}
+      <td class="res-pts">${ptsLabel}</td>
+    </tr>`;
+  });
+  return `<div class="res-section-label">${label}</div>
+    <table class="res-tbl">
+      <thead><tr>
+        <th style="width:28px;">Pos</th><th>Driver</th>
+        <th class="rc" style="width:36px;">Grid</th>
+        <th class="rc" style="width:36px;">Δ</th>
+        <th class="rr" style="width:32px;">Pts</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+// ── RACE DATA WITH FULL RESULTS ───────────────────────────────────
+const raceResults = {
+  aus: {
+    race: [
+      {pos:1,driver:'G. Russell',   team:'Mercedes',      grid:1,  dnf:false},
+      {pos:2,driver:'K. Antonelli', team:'Mercedes',      grid:2,  dnf:false},
+      {pos:3,driver:'C. Leclerc',   team:'Ferrari',       grid:4,  dnf:false},
+      {pos:4,driver:'L. Hamilton',  team:'Ferrari',       grid:5,  dnf:false},
+      {pos:5,driver:'L. Norris',    team:'McLaren',       grid:6,  dnf:false},
+      {pos:6,driver:'M. Verstappen',team:'Red Bull',      grid:20, dnf:false},
+      {pos:7,driver:'O. Bearman',   team:'Haas',          grid:11, dnf:false},
+      {pos:8,driver:'A. Lindblad',  team:'Racing Bulls',  grid:9,  dnf:false},
+      {pos:9,driver:'G. Bortoleto', team:'Audi',          grid:10, dnf:false},
+      {pos:10,driver:'P. Gasly',    team:'Alpine',        grid:12, dnf:false},
+      {pos:11,driver:'E. Ocon',     team:'Haas',          grid:13, dnf:false},
+      {pos:12,driver:'A. Albon',    team:'Williams',      grid:14, dnf:false},
+      {pos:13,driver:'L. Lawson',   team:'Racing Bulls',  grid:8,  dnf:false},
+      {pos:14,driver:'F. Colapinto',team:'Alpine',        grid:16, dnf:false},
+      {pos:15,driver:'C. Sainz',    team:'Williams',      grid:21, dnf:false},
+      {pos:16,driver:'S. Pérez',    team:'Cadillac',      grid:17, dnf:false},
+      {pos:17,driver:'L. Stroll',   team:'Aston Martin',  grid:22, dnf:false},
+      {pos:18,driver:'F. Alonso',   team:'Aston Martin',  grid:18, dnf:true},
+      {pos:19,driver:'V. Bottas',   team:'Cadillac',      grid:19, dnf:true},
+      {pos:20,driver:'I. Hadjar',   team:'Red Bull',      grid:3,  dnf:false, dns:true},
+      {pos:21,driver:'O. Piastri',  team:'McLaren',       grid:5,  dnf:false, dns:true},
+      {pos:22,driver:'N. Hülkenberg',team:'Audi',         grid:15, dnf:false, dns:true},
+    ]
+  },
+  chn: {
+    sprint: [
+      {pos:1,driver:'G. Russell',   team:'Mercedes',      grid:1,  dnf:false},
+      {pos:2,driver:'C. Leclerc',   team:'Ferrari',       grid:6,  dnf:false},
+      {pos:3,driver:'L. Hamilton',  team:'Ferrari',       grid:4,  dnf:false},
+      {pos:4,driver:'L. Norris',    team:'McLaren',       grid:3,  dnf:false},
+      {pos:5,driver:'K. Antonelli', team:'Mercedes',      grid:2,  dnf:false},
+      {pos:6,driver:'O. Piastri',   team:'McLaren',       grid:5,  dnf:false},
+      {pos:7,driver:'P. Gasly',     team:'Alpine',        grid:7,  dnf:false},
+      {pos:8,driver:'I. Hadjar',    team:'Red Bull',      grid:10, dnf:false},
+      {pos:9,driver:'M. Verstappen',team:'Red Bull',      grid:8,  dnf:false},
+      {pos:10,driver:'O. Bearman',  team:'Haas',          grid:9,  dnf:false},
+    ],
+    race: [
+      {pos:1,driver:'K. Antonelli', team:'Mercedes',      grid:1,  dnf:false},
+      {pos:2,driver:'G. Russell',   team:'Mercedes',      grid:3,  dnf:false},
+      {pos:3,driver:'L. Hamilton',  team:'Ferrari',       grid:4,  dnf:false},
+      {pos:4,driver:'C. Leclerc',   team:'Ferrari',       grid:2,  dnf:false},
+      {pos:5,driver:'O. Bearman',   team:'Haas',          grid:9,  dnf:false},
+      {pos:6,driver:'P. Gasly',     team:'Alpine',        grid:7,  dnf:false},
+      {pos:7,driver:'L. Lawson',    team:'Racing Bulls',  grid:13, dnf:false},
+      {pos:8,driver:'I. Hadjar',    team:'Red Bull',      grid:10, dnf:false},
+      {pos:9,driver:'C. Sainz',     team:'Williams',      grid:17, dnf:false},
+      {pos:10,driver:'A. Albon',    team:'Williams',      grid:'PIT',dnf:false},
+      {pos:11,driver:'F. Colapinto',team:'Alpine',        grid:16, dnf:false},
+      {pos:12,driver:'A. Lindblad', team:'Racing Bulls',  grid:15, dnf:false},
+      {pos:13,driver:'O. Piastri',  team:'McLaren',       grid:5,  dnf:false},
+      {pos:14,driver:'L. Norris',   team:'McLaren',       grid:3,  dnf:true},
+      {pos:15,driver:'M. Verstappen',team:'Red Bull',     grid:8,  dnf:true},
+      {pos:16,driver:'G. Bortoleto',team:'Audi',          grid:14, dnf:true},
+      {pos:17,driver:'L. Stroll',   team:'Aston Martin',  grid:19, dnf:true},
+    ]
+  },
+  jpn: {
+    race: [
+      {pos:1,driver:'K. Antonelli', team:'Mercedes',      grid:1,  dnf:false},
+      {pos:2,driver:'O. Piastri',   team:'McLaren',       grid:5,  dnf:false},
+      {pos:3,driver:'C. Leclerc',   team:'Ferrari',       grid:4,  dnf:false},
+      {pos:4,driver:'L. Hamilton',  team:'Ferrari',       grid:3,  dnf:false},
+      {pos:5,driver:'G. Russell',   team:'Mercedes',      grid:2,  dnf:false},
+      {pos:6,driver:'L. Norris',    team:'McLaren',       grid:6,  dnf:false},
+      {pos:7,driver:'P. Gasly',     team:'Alpine',        grid:10, dnf:false},
+      {pos:8,driver:'I. Hadjar',    team:'Red Bull',      grid:8,  dnf:false},
+      {pos:9,driver:'L. Lawson',    team:'Racing Bulls',  grid:11, dnf:false},
+      {pos:10,driver:'F. Colapinto',team:'Alpine',        grid:13, dnf:false},
+      {pos:11,driver:'A. Lindblad', team:'Racing Bulls',  grid:14, dnf:false},
+      {pos:12,driver:'C. Sainz',    team:'Williams',      grid:16, dnf:false},
+      {pos:13,driver:'A. Albon',    team:'Williams',      grid:17, dnf:false},
+      {pos:14,driver:'O. Bearman',  team:'Haas',          grid:12, dnf:false},
+      {pos:15,driver:'S. Pérez',    team:'Cadillac',      grid:20, dnf:false},
+      {pos:16,driver:'E. Ocon',     team:'Haas',          grid:15, dnf:false},
+      {pos:17,driver:'M. Verstappen',team:'Red Bull',     grid:7,  dnf:true},
+      {pos:18,driver:'G. Bortoleto',team:'Audi',          grid:18, dnf:true},
+    ]
+  },
+  mia: {
+    sprint: [
+      {pos:1,driver:'L. Norris',    team:'McLaren',       grid:1,  dnf:false},
+      {pos:2,driver:'K. Antonelli', team:'Mercedes',      grid:2,  dnf:false},
+      {pos:3,driver:'O. Piastri',   team:'McLaren',       grid:3,  dnf:false},
+      {pos:4,driver:'C. Leclerc',   team:'Ferrari',       grid:4,  dnf:false},
+      {pos:5,driver:'G. Russell',   team:'Mercedes',      grid:6,  dnf:false},
+      {pos:6,driver:'M. Verstappen',team:'Red Bull',      grid:5,  dnf:false},
+      {pos:7,driver:'L. Hamilton',  team:'Ferrari',       grid:7,  dnf:false},
+      {pos:8,driver:'I. Hadjar',    team:'Red Bull',      grid:9,  dnf:false},
+    ],
+    race: [
+      {pos:1,driver:'K. Antonelli', team:'Mercedes',      grid:1,  dnf:false},
+      {pos:2,driver:'L. Norris',    team:'McLaren',       grid:5,  dnf:false},
+      {pos:3,driver:'O. Piastri',   team:'McLaren',       grid:3,  dnf:false},
+      {pos:4,driver:'G. Russell',   team:'Mercedes',      grid:6,  dnf:false},
+      {pos:5,driver:'M. Verstappen',team:'Red Bull',      grid:2,  dnf:false},
+      {pos:6,driver:'L. Hamilton',  team:'Ferrari',       grid:7,  dnf:false},
+      {pos:7,driver:'F. Colapinto', team:'Alpine',        grid:11, dnf:false},
+      {pos:8,driver:'C. Leclerc',   team:'Ferrari',       grid:4,  dnf:false}, // penalised from P3
+      {pos:9,driver:'C. Sainz',     team:'Williams',      grid:14, dnf:false},
+      {pos:10,driver:'A. Albon',    team:'Williams',      grid:16, dnf:false},
+      {pos:11,driver:'E. Ocon',     team:'Haas',          grid:17, dnf:false},
+      {pos:12,driver:'G. Bortoleto',team:'Audi',          grid:21, dnf:false},
+      {pos:13,driver:'L. Lawson',   team:'Racing Bulls',  grid:10, dnf:false},
+      {pos:14,driver:'A. Lindblad', team:'Racing Bulls',  grid:12, dnf:false},
+      {pos:15,driver:'O. Bearman',  team:'Haas',          grid:8,  dnf:true},
+      {pos:16,driver:'I. Hadjar',   team:'Red Bull',      grid:9,  dnf:true},
+      {pos:17,driver:'P. Gasly',    team:'Alpine',        grid:13, dnf:true},
+    ]
+  },
+  can: {
+    sprint: [
+      {pos:1,driver:'G. Russell',   team:'Mercedes',      grid:1,  dnf:false},
+      {pos:2,driver:'K. Antonelli', team:'Mercedes',      grid:2,  dnf:false},
+      {pos:3,driver:'L. Hamilton',  team:'Ferrari',       grid:3,  dnf:false},
+      {pos:4,driver:'C. Leclerc',   team:'Ferrari',       grid:4,  dnf:false},
+      {pos:5,driver:'L. Norris',    team:'McLaren',       grid:5,  dnf:false},
+      {pos:6,driver:'M. Verstappen',team:'Red Bull',      grid:6,  dnf:false},
+      {pos:7,driver:'O. Piastri',   team:'McLaren',       grid:7,  dnf:false},
+      {pos:8,driver:'I. Hadjar',    team:'Red Bull',      grid:9,  dnf:false},
+    ],
+    race: [
+      {pos:1,driver:'K. Antonelli', team:'Mercedes',      grid:2,  dnf:false},
+      {pos:2,driver:'L. Hamilton',  team:'Ferrari',       grid:3,  dnf:false},
+      {pos:3,driver:'M. Verstappen',team:'Red Bull',      grid:6,  dnf:false},
+      {pos:4,driver:'C. Leclerc',   team:'Ferrari',       grid:4,  dnf:false},
+      {pos:5,driver:'I. Hadjar',    team:'Red Bull',      grid:9,  dnf:false},
+      {pos:6,driver:'P. Gasly',     team:'Alpine',        grid:10, dnf:false},
+      {pos:7,driver:'F. Colapinto', team:'Alpine',        grid:12, dnf:false},
+      {pos:8,driver:'O. Bearman',   team:'Haas',          grid:14, dnf:false},
+      {pos:9,driver:'L. Lawson',    team:'Racing Bulls',  grid:11, dnf:false},
+      {pos:10,driver:'A. Lindblad', team:'Racing Bulls',  grid:15, dnf:false},
+      {pos:11,driver:'O. Piastri',  team:'McLaren',       grid:7,  dnf:false},
+      {pos:12,driver:'C. Sainz',    team:'Williams',      grid:13, dnf:false},
+      {pos:13,driver:'A. Albon',    team:'Williams',      grid:16, dnf:false},
+      {pos:14,driver:'E. Ocon',     team:'Haas',          grid:17, dnf:false},
+      {pos:15,driver:'G. Bortoleto',team:'Audi',          grid:18, dnf:false},
+      {pos:16,driver:'S. Pérez',    team:'Cadillac',      grid:20, dnf:true},
+      {pos:17,driver:'G. Russell',  team:'Mercedes',      grid:1,  dnf:true},
+      {pos:18,driver:'L. Norris',   team:'McLaren',       grid:5,  dnf:true},
+      {pos:19,driver:'F. Alonso',   team:'Aston Martin',  grid:21, dnf:true},
+      {pos:20,driver:'A. Albon',    team:'Williams',      grid:16, dnf:true},
+    ]
+  },
+  esp: {
+    race: [
+      {pos:1, driver:'L. Hamilton',  team:'Ferrari',       grid:2,  dnf:false},
+      {pos:2, driver:'G. Russell',   team:'Mercedes',      grid:1,  dnf:false},
+      {pos:3, driver:'L. Norris',    team:'McLaren',       grid:4,  dnf:false},
+      {pos:4, driver:'M. Verstappen',team:'Red Bull',      grid:5,  dnf:false},
+      {pos:5, driver:'O. Piastri',   team:'McLaren',       grid:7,  dnf:false},
+      {pos:6, driver:'I. Hadjar',    team:'Red Bull',      grid:6,  dnf:false},
+      {pos:7, driver:'P. Gasly',     team:'Alpine',        grid:14, dnf:false},
+      {pos:8, driver:'L. Lawson',    team:'Racing Bulls',  grid:8,  dnf:false},
+      {pos:9, driver:'A. Lindblad',  team:'Racing Bulls',  grid:11, dnf:false},
+      {pos:10,driver:'F. Colapinto', team:'Alpine',        grid:12, dnf:false},
+      {pos:11,driver:'G. Bortoleto', team:'Audi',          grid:16, dnf:false},
+      {pos:12,driver:'C. Sainz',     team:'Williams',      grid:17, dnf:false},
+      {pos:13,driver:'E. Ocon',      team:'Haas',          grid:15, dnf:false},
+      {pos:14,driver:'S. Pérez',     team:'Cadillac',      grid:20, dnf:false},
+      {pos:15,driver:'K. Antonelli', team:'Mercedes',      grid:3,  dnf:true},
+      {pos:16,driver:'C. Leclerc',   team:'Ferrari',       grid:9,  dnf:true},
+      {pos:17,driver:'O. Bearman',   team:'Haas',          grid:13, dnf:true},
+      {pos:18,driver:'F. Alonso',    team:'Aston Martin',  grid:'PIT', dnf:true},
+      {pos:19,driver:'N. Hülkenberg',team:'Audi',          grid:10, dnf:true},
+      {pos:20,driver:'V. Bottas',    team:'Cadillac',      grid:21, dnf:true},
+      {pos:21,driver:'L. Stroll',    team:'Aston Martin',  grid:22, dnf:true},
+    ]
+  },
+  mad: {
+    race: [
+      {pos:1, driver:'K. Antonelli', team:'Mercedes',      grid:2,  dnf:false},
+      {pos:2, driver:'M. Verstappen',team:'Red Bull',      grid:3,  dnf:false},
+      {pos:3, driver:'L. Norris',    team:'McLaren',       grid:1,  dnf:false},
+      {pos:4, driver:'C. Leclerc',   team:'Ferrari',       grid:5,  dnf:false},
+      {pos:5, driver:'G. Russell',   team:'Mercedes',      grid:6,  dnf:false},
+      {pos:6, driver:'L. Lawson',    team:'Red Bull',      grid:8,  dnf:false},
+      {pos:7, driver:'F. Colapinto', team:'Alpine',        grid:9,  dnf:false},
+      {pos:8, driver:'O. Piastri',   team:'McLaren',       grid:7,  dnf:false},
+      {pos:9, driver:'A. Lindblad',  team:'Racing Bulls',  grid:10, dnf:false},
+      {pos:10,driver:'N. Hulkenberg',team:'Audi',          grid:11, dnf:false},
+      {pos:11,driver:'E. Ocon',      team:'Haas',          grid:13, dnf:false},
+      {pos:12,driver:'P. Gasly',     team:'Alpine',        grid:14, dnf:false},
+      {pos:13,driver:'G. Bortoleto', team:'Audi',          grid:12, dnf:false},
+      {pos:14,driver:'Y. Tsunoda',   team:'Racing Bulls',  grid:15, dnf:false},
+      {pos:15,driver:'A. Albon',     team:'Williams',      grid:16, dnf:false},
+      {pos:16,driver:'O. Bearman',   team:'Haas',          grid:'PIT',dnf:false},
+      {pos:17,driver:'F. Alonso',    team:'Aston Martin',  grid:18, dnf:false},
+      {pos:18,driver:'V. Bottas',    team:'Cadillac',      grid:20, dnf:false},
+      {pos:19,driver:'C. Sainz',     team:'Williams',      grid:20, dnf:true},
+      {pos:20,driver:'S. Perez',     team:'Cadillac',      grid:19, dnf:true},
+      {pos:21,driver:'L. Stroll',    team:'Aston Martin',  grid:22, dnf:true},
+      {pos:22,driver:'L. Hamilton',  team:'Ferrari',       grid:4,  dnf:true},
+    ]
+  },
+  ita: {
+    race: [
+      {pos:1, driver:'K. Antonelli', team:'Mercedes',      grid:19, dnf:false},
+      {pos:2, driver:'G. Russell',   team:'Mercedes',      grid:2,  dnf:false},
+      {pos:3, driver:'M. Verstappen',team:'Red Bull',      grid:7,  dnf:false},
+      {pos:4, driver:'O. Piastri',   team:'McLaren',       grid:4,  dnf:false},
+      {pos:5, driver:'L. Norris',    team:'McLaren',       grid:3,  dnf:false},
+      {pos:6, driver:'L. Hamilton',  team:'Ferrari',       grid:5,  dnf:false},
+      {pos:7, driver:'P. Gasly',     team:'Alpine',        grid:1,  dnf:false},
+      {pos:8, driver:'A. Lindblad',  team:'Racing Bulls',  grid:10, dnf:false},
+      {pos:9, driver:'F. Colapinto', team:'Alpine',        grid:6,  dnf:false},
+      {pos:10,driver:'Y. Tsunoda',   team:'Racing Bulls',  grid:12, dnf:false},
+      {pos:11,driver:'G. Bortoleto', team:'Audi',          grid:11, dnf:false},
+      {pos:12,driver:'L. Lawson',    team:'Red Bull',      grid:8,  dnf:false},
+      {pos:13,driver:'F. Alonso',    team:'Aston Martin',  grid:21, dnf:false},
+      {pos:14,driver:'E. Ocon',      team:'Haas',          grid:15, dnf:false},
+      {pos:15,driver:'L. Stroll',    team:'Aston Martin',  grid:22, dnf:false},
+      {pos:16,driver:'O. Bearman',   team:'Haas',          grid:14, dnf:false},
+      {pos:17,driver:'N. Hulkenberg',team:'Audi',          grid:13, dnf:false},
+      {pos:18,driver:'C. Sainz',     team:'Williams',      grid:17, dnf:false},
+      {pos:19,driver:'A. Albon',     team:'Williams',      grid:18, dnf:false},
+      {pos:20,driver:'S. Perez',     team:'Cadillac',      grid:20, dnf:false},
+      {pos:21,driver:'V. Bottas',    team:'Cadillac',      grid:21, dnf:false},
+      {pos:22,driver:'C. Leclerc',   team:'Ferrari',       grid:6,  dnf:true},
+    ]
+  },
+  ned: {
+    sprint: [
+      {pos:1, driver:'G. Russell',   team:'Mercedes',      grid:1,  dnf:false},
+      {pos:2, driver:'L. Hamilton',  team:'Ferrari',       grid:5,  dnf:false},
+      {pos:3, driver:'L. Norris',    team:'McLaren',       grid:2,  dnf:false},
+      {pos:4, driver:'C. Leclerc',   team:'Ferrari',       grid:6,  dnf:false},
+      {pos:5, driver:'O. Piastri',   team:'McLaren',       grid:4,  dnf:false},
+      {pos:6, driver:'M. Verstappen',team:'Red Bull',      grid:7,  dnf:false},
+      {pos:7, driver:'K. Antonelli', team:'Mercedes',      grid:3,  dnf:false},
+      {pos:8, driver:'L. Lawson',    team:'Red Bull',      grid:8,  dnf:false},
+    ],
+    race: [
+      {pos:1, driver:'L. Norris',    team:'McLaren',       grid:1,  dnf:false},
+      {pos:2, driver:'K. Antonelli', team:'Mercedes',      grid:3,  dnf:false},
+      {pos:3, driver:'G. Russell',   team:'Mercedes',      grid:2,  dnf:false},
+      {pos:4, driver:'L. Hamilton',  team:'Ferrari',       grid:5,  dnf:false},
+      {pos:5, driver:'C. Leclerc',   team:'Ferrari',       grid:6,  dnf:false},
+      {pos:6, driver:'O. Piastri',   team:'McLaren',       grid:4,  dnf:false},
+      {pos:7, driver:'L. Lawson',    team:'Red Bull',      grid:8,  dnf:false},
+      {pos:8, driver:'N. Hulkenberg',team:'Audi',          grid:13, dnf:false},
+      {pos:9, driver:'F. Alonso',    team:'Aston Martin',  grid:18, dnf:false},
+      {pos:10,driver:'P. Gasly',     team:'Alpine',        grid:11, dnf:false},
+      {pos:11,driver:'Y. Tsunoda',   team:'Racing Bulls',  grid:12, dnf:false},
+      {pos:12,driver:'A. Lindblad',  team:'Racing Bulls',  grid:10, dnf:false},
+      {pos:13,driver:'G. Bortoleto', team:'Audi',          grid:9,  dnf:false},
+      {pos:14,driver:'F. Colapinto', team:'Alpine',        grid:14, dnf:false},
+      {pos:15,driver:'S. Perez',     team:'Cadillac',      grid:22, dnf:false},
+      {pos:16,driver:'C. Sainz',     team:'Williams',      grid:17, dnf:false},
+      {pos:17,driver:'A. Albon',     team:'Williams',      grid:16, dnf:true},
+      {pos:18,driver:'V. Bottas',    team:'Cadillac',      grid:21, dnf:true},
+      {pos:19,driver:'E. Ocon',      team:'Haas',          grid:15, dnf:true},
+      {pos:20,driver:'L. Stroll',    team:'Aston Martin',  grid:19, dnf:true},
+      {pos:21,driver:'O. Bearman',   team:'Haas',          grid:20, dnf:true},
+      {pos:22,driver:'M. Verstappen',team:'Red Bull',      grid:7,  dnf:true},
+    ]
+  },
+  hun: {
+    race: [
+      {pos:1, driver:'L. Norris',    team:'McLaren',       grid:1,  dnf:false},
+      {pos:2, driver:'M. Verstappen',team:'Red Bull',      grid:4,  dnf:false},
+      {pos:3, driver:'K. Antonelli', team:'Mercedes',      grid:7,  dnf:false},
+      {pos:4, driver:'C. Leclerc',   team:'Ferrari',       grid:2,  dnf:false},
+      {pos:5, driver:'L. Hamilton',  team:'Ferrari',       grid:5,  dnf:false},
+      {pos:6, driver:'I. Hadjar',    team:'Red Bull',      grid:8,  dnf:false},
+      {pos:7, driver:'G. Russell',   team:'Mercedes',      grid:6,  dnf:false},
+      {pos:8, driver:'L. Lawson',    team:'Racing Bulls',  grid:9,  dnf:false},
+      {pos:9, driver:'N. Hulkenberg',team:'Audi',          grid:16, dnf:false},
+      {pos:10,driver:'A. Lindblad',  team:'Racing Bulls',  grid:10, dnf:false},
+      {pos:11,driver:'G. Bortoleto', team:'Audi',          grid:11, dnf:false},
+      {pos:12,driver:'P. Gasly',     team:'Alpine',        grid:12, dnf:false},
+      {pos:13,driver:'L. Stroll',    team:'Aston Martin',  grid:20, dnf:false},
+      {pos:14,driver:'F. Alonso',    team:'Aston Martin',  grid:21, dnf:false},
+      {pos:15,driver:'F. Colapinto', team:'Alpine',        grid:15, dnf:false},
+      {pos:16,driver:'E. Ocon',      team:'Haas',          grid:17, dnf:false},
+      {pos:17,driver:'A. Albon',     team:'Williams',      grid:18, dnf:false},
+      {pos:18,driver:'C. Sainz',     team:'Williams',      grid:13, dnf:false},
+      {pos:19,driver:'O. Bearman',   team:'Haas',          grid:14, dnf:false},
+      {pos:20,driver:'O. Piastri',   team:'McLaren',       grid:3,  dnf:true},
+      {pos:21,driver:'S. Perez',     team:'Cadillac',      grid:19, dnf:true},
+      {pos:22,driver:'V. Bottas',    team:'Cadillac',      grid:22, dnf:true},
+    ]
+  },
+  bel: {
+    race: [
+      {pos:1, driver:'K. Antonelli', team:'Mercedes',      grid:1,  dnf:false},
+      {pos:2, driver:'C. Leclerc',   team:'Ferrari',       grid:2,  dnf:false},
+      {pos:3, driver:'M. Verstappen',team:'Red Bull',      grid:3,  dnf:false},
+      {pos:4, driver:'L. Hamilton',  team:'Ferrari',       grid:4,  dnf:false},
+      {pos:5, driver:'O. Piastri',   team:'McLaren',       grid:9,  dnf:false},
+      {pos:6, driver:'I. Hadjar',    team:'Red Bull',      grid:5,  dnf:false},
+      {pos:7, driver:'A. Lindblad',  team:'Racing Bulls',  grid:7,  dnf:false},
+      {pos:8, driver:'F. Colapinto', team:'Alpine',        grid:8,  dnf:false},
+      {pos:9, driver:'L. Lawson',    team:'Racing Bulls',  grid:10, dnf:false},
+      {pos:10,driver:'L. Norris',    team:'McLaren',       grid:17, dnf:false},
+      {pos:11,driver:'P. Gasly',     team:'Alpine',        grid:11, dnf:false},
+      {pos:12,driver:'C. Sainz',     team:'Williams',      grid:12, dnf:false},
+      {pos:13,driver:'N. Hulkenberg',team:'Audi',          grid:18, dnf:false},
+      {pos:14,driver:'O. Bearman',   team:'Haas',          grid:14, dnf:false},
+      {pos:15,driver:'A. Albon',     team:'Williams',      grid:15, dnf:false},
+      {pos:16,driver:'E. Ocon',      team:'Haas',          grid:16, dnf:false},
+      {pos:17,driver:'G. Bortoleto', team:'Audi',          grid:13, dnf:false},
+      {pos:18,driver:'V. Bottas',    team:'Cadillac',      grid:21, dnf:false},
+      {pos:19,driver:'F. Alonso',    team:'Aston Martin',  grid:19, dnf:false},
+      {pos:20,driver:'L. Stroll',    team:'Aston Martin',  grid:22, dnf:true},
+      {pos:21,driver:'S. Perez',     team:'Cadillac',      grid:20, dnf:true},
+      {pos:22,driver:'G. Russell',   team:'Mercedes',      grid:6,  dnf:true},
+    ]
+  },
+  gbr: {
+    sprint: [
+      {pos:1, driver:'K. Antonelli', team:'Mercedes',      grid:1,  dnf:false},
+      {pos:2, driver:'L. Hamilton',  team:'Ferrari',       grid:2,  dnf:false},
+      {pos:3, driver:'L. Norris',    team:'McLaren',       grid:4,  dnf:false},
+      {pos:4, driver:'G. Russell',   team:'Mercedes',      grid:5,  dnf:false},
+      {pos:5, driver:'C. Leclerc',   team:'Ferrari',       grid:3,  dnf:false},
+      {pos:6, driver:'M. Verstappen',team:'Red Bull',      grid:6,  dnf:false},
+      {pos:7, driver:'O. Piastri',   team:'McLaren',       grid:7,  dnf:false},
+      {pos:8, driver:'L. Lawson',    team:'Racing Bulls',  grid:9,  dnf:false},
+    ],
+    race: [
+      {pos:1, driver:'C. Leclerc',   team:'Ferrari',       grid:2,  dnf:false},
+      {pos:2, driver:'G. Russell',   team:'Mercedes',      grid:4,  dnf:false},
+      {pos:3, driver:'L. Hamilton',  team:'Ferrari',       grid:3,  dnf:false},
+      {pos:4, driver:'L. Norris',    team:'McLaren',       grid:10, dnf:false},
+      {pos:5, driver:'I. Hadjar',    team:'Red Bull',      grid:6,  dnf:false},
+      {pos:6, driver:'L. Lawson',    team:'Racing Bulls',  grid:9,  dnf:false},
+      {pos:7, driver:'A. Lindblad',  team:'Racing Bulls',  grid:10, dnf:false},
+      {pos:8, driver:'G. Bortoleto', team:'Audi',          grid:13, dnf:false},
+      {pos:9, driver:'F. Colapinto', team:'Alpine',        grid:14, dnf:false},
+      {pos:10,driver:'P. Gasly',     team:'Alpine',        grid:11, dnf:false},
+      {pos:11,driver:'O. Piastri',   team:'McLaren',       grid:7,  dnf:false},
+      {pos:12,driver:'F. Alonso',    team:'Aston Martin',  grid:21, dnf:false},
+      {pos:13,driver:'L. Stroll',    team:'Aston Martin',  grid:22, dnf:false},
+      {pos:14,driver:'S. Pérez',     team:'Cadillac',      grid:20, dnf:false},
+      {pos:15,driver:'V. Bottas',    team:'Cadillac',      grid:19, dnf:false},
+      {pos:16,driver:'K. Antonelli', team:'Mercedes',      grid:1,  dnf:false},
+      {pos:17,driver:'E. Ocon',      team:'Haas',          grid:16, dnf:false},
+      {pos:18,driver:'C. Sainz',     team:'Williams',      grid:17, dnf:false},
+      {pos:19,driver:'O. Bearman',   team:'Haas',          grid:15, dnf:true},
+      {pos:20,driver:'N. Hulkenberg',team:'Audi',          grid:12, dnf:true},
+      {pos:21,driver:'A. Albon',     team:'Williams',      grid:18, dnf:true},
+      {pos:22,driver:'M. Verstappen',team:'Red Bull',      grid:5,  dnf:true},
+    ]
+  },
+  aut: {
+    race: [
+      {pos:1, driver:'G. Russell',   team:'Mercedes',      grid:1,  dnf:false},
+      {pos:2, driver:'M. Verstappen',team:'Red Bull',      grid:5,  dnf:false},
+      {pos:3, driver:'K. Antonelli', team:'Mercedes',      grid:4,  dnf:false},
+      {pos:4, driver:'O. Piastri',   team:'McLaren',       grid:7,  dnf:false},
+      {pos:5, driver:'L. Hamilton',  team:'Ferrari',       grid:3,  dnf:false},
+      {pos:6, driver:'I. Hadjar',    team:'Red Bull',      grid:6,  dnf:false},
+      {pos:7, driver:'L. Norris',    team:'McLaren',       grid:4,  dnf:false},
+      {pos:8, driver:'C. Leclerc',   team:'Ferrari',       grid:2,  dnf:false},
+      {pos:9, driver:'L. Lawson',    team:'Racing Bulls',  grid:9,  dnf:false},
+      {pos:10,driver:'A. Lindblad',  team:'Racing Bulls',  grid:10, dnf:false},
+      {pos:11,driver:'G. Bortoleto', team:'Audi',          grid:11, dnf:false},
+      {pos:12,driver:'N. Hülkenberg',team:'Audi',          grid:12, dnf:false},
+      {pos:13,driver:'P. Gasly',     team:'Alpine',        grid:13, dnf:false},
+      {pos:14,driver:'O. Bearman',   team:'Haas',          grid:14, dnf:false},
+      {pos:15,driver:'F. Colapinto', team:'Alpine',        grid:16, dnf:false},
+      {pos:16,driver:'E. Ocon',      team:'Haas',          grid:15, dnf:false},
+      {pos:17,driver:'A. Albon',     team:'Williams',      grid:18, dnf:false},
+      {pos:18,driver:'F. Alonso',    team:'Aston Martin',  grid:21, dnf:false},
+      {pos:19,driver:'L. Stroll',    team:'Aston Martin',  grid:22, dnf:true},
+      {pos:20,driver:'C. Sainz',     team:'Williams',      grid:17, dnf:true},
+      {pos:21,driver:'V. Bottas',    team:'Cadillac',      grid:20, dnf:true},
+      {pos:22,driver:'S. Pérez',     team:'Cadillac',      grid:19, dnf:true},
+    ]
+  },
+  mon: {
+    race: [
+      {pos:1,driver:'K. Antonelli', team:'Mercedes',      grid:1,  dnf:false},
+      {pos:2,driver:'L. Hamilton',  team:'Ferrari',       grid:3,  dnf:false},
+      {pos:3,driver:'P. Gasly',     team:'Alpine',        grid:9,  dnf:false}, // RESTORED — Right of Review
+      {pos:4,driver:'I. Hadjar',    team:'Red Bull',      grid:5,  dnf:false}, // demoted from P3
+      {pos:5,driver:'O. Piastri',   team:'McLaren',       grid:7,  dnf:false},
+      {pos:6,driver:'L. Lawson',    team:'Racing Bulls',  grid:10, dnf:false},
+      {pos:7,driver:'A. Lindblad',  team:'Racing Bulls',  grid:11, dnf:false},
+      {pos:8,driver:'A. Albon',     team:'Williams',      grid:14, dnf:false},
+      {pos:9,driver:'N. Hülkenberg',team:'Audi',          grid:13, dnf:false},
+      {pos:10,driver:'F. Alonso',   team:'Aston Martin',  grid:21, dnf:false},
+      {pos:11,driver:'E. Ocon',     team:'Haas',          grid:15, dnf:false},
+      {pos:12,driver:'F. Colapinto',team:'Alpine',        grid:12, dnf:false},
+      {pos:13,driver:'G. Russell',  team:'Mercedes',      grid:6,  dnf:false},
+      {pos:14,driver:'G. Bortoleto',team:'Audi',          grid:18, dnf:false},
+      {pos:15,driver:'S. Pérez',    team:'Cadillac',      grid:17, dnf:false}, // penalised
+      {pos:16,driver:'C. Leclerc',  team:'Ferrari',       grid:4,  dnf:true},
+      {pos:17,driver:'L. Stroll',   team:'Aston Martin',  grid:22, dnf:true},
+      {pos:18,driver:'L. Norris',   team:'McLaren',       grid:8,  dnf:true},
+      {pos:19,driver:'O. Bearman',  team:'Haas',          grid:16, dnf:true},
+      {pos:20,driver:'V. Bottas',   team:'Cadillac',      grid:19, dnf:true},
+      {pos:21,driver:'M. Verstappen',team:'Red Bull',     grid:2,  dnf:true},
+    ]
+  }
+};
+
+const raceKeys = ['aus','chn','jpn','mia','can','mon'];
+
+function toggleRace(id) {
+  const inner = document.getElementById('ri-' + id);
+  const icon = document.getElementById('ico-' + id);
+  const isOpen = inner.classList.contains('open');
+  document.querySelectorAll('.race-detail-inner').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.race-expand-icon').forEach(el => el.classList.remove('open'));
+  if (!isOpen) { inner.classList.add('open'); icon.classList.add('open'); }
+}
+
+races.forEach((r, idx) => {
+  const col = r.wteam ? TC[r.wteam] : '#555';
+  const sprintTag = r.sprint ? `<span style="font-size:9px;padding:1px 5px;border-radius:4px;background:#1a1400;color:#cc9900;border:1px solid #3a2e00;font-weight:700;margin-left:5px;vertical-align:middle;">S</span>` : '';
+  const latestTag = r.isLatest ? `<span style="font-size:9px;padding:1px 5px;border-radius:4px;background:#3a1a0a;color:#e07040;border:1px solid #5a2a0a;font-weight:700;margin-left:5px;vertical-align:middle;">NEW</span>` : '';
+  const rid = 'race-' + idx;
+
+  if (r.cancelled) {
+    rtb.innerHTML += `<tr class="race-summary-row cancelled-row">
+      <td style="color:#444;font-weight:600;padding:9px 8px;">${r.n}</td>
+      <td style="font-weight:500;color:#444;padding:9px 8px;">${r.gp}</td>
+      <td style="color:#444;font-size:12px;padding:9px 8px;">—</td>
+      <td style="color:#555;font-weight:600;font-size:12px;padding:9px 8px;">CANCELLED</td>
+      <td style="color:#444;font-size:12px;padding:9px 8px;">Middle East conflict</td>
+    </tr>`;
+    return;
+  }
+
+  const bulletHtml = r.bullets.map(b => `<li>${b}</li>`).join('');
+
+  // Build results tables for this race
+  const keyMap = ['aus','chn',null,null,'jpn','mia','can','mon','esp','aut','gbr','bel','hun','ned','ita','mad'];
+  const key = keyMap[idx];
+  const rr = key ? raceResults[key] : null;
+  let resultTablesHtml = '';
+  if (rr) {
+    if (rr.sprint) resultTablesHtml += buildResultsTable(rr.sprint, '🏃 Sprint Race Results', SPRINT_PTS, TC);
+    if (rr.race)   resultTablesHtml += buildResultsTable(rr.race, '🏁 Grand Prix Results', PTS, TC);
+  }
+
+  rtb.innerHTML += `
+    <tr class="race-summary-row" onclick="toggleRace('${rid}')">
+      <td style="color:#555;font-weight:600;padding:9px 8px;">${r.n}</td>
+      <td style="font-weight:500;padding:9px 8px;">${r.gp}${sprintTag}${latestTag}<span class="race-expand-icon" id="ico-${rid}">▼</span></td>
+      <td style="color:#777;font-size:12px;padding:9px 8px;">${r.pole}</td>
+      <td style="color:${col};font-weight:600;padding:9px 8px;">${r.winner}</td>
+      <td style="color:#666;font-size:12px;padding:9px 8px;">${r.p23}</td>
+    </tr>
+    <tr class="race-detail-row">
+      <td colspan="5">
+        <div class="race-detail-inner" id="ri-${rid}">
+          <div class="race-detail-body">
+            <div class="race-detail-title">
+              <span>${r.gp} · ${r.circuit} · ${r.date}</span>
+              ${r.sprint ? '<span style="font-size:11px;color:#cc9900;">Sprint weekend</span>' : ''}
+            </div>
+            <ul class="race-bullet-list">${bulletHtml}</ul>
+            ${resultTablesHtml}
+          </div>
+        </div>
+      </td>
+    </tr>`;
+});
+
+// Map cancelled races to correct keys
+// Races array order: AUS(0), CHN(1), BAH(2-cancelled), SAU(3-cancelled), JPN(4), MIA(5), CAN(6), MON(7)
+// raceKeys index: aus=0, chn=1, jpn=2, mia=3, can=4, mon=5
+// The races.forEach idx matches position in the races array, so we need a direct map
+const keyMap = {0:'aus',1:'chn',4:'jpn',5:'mia',6:'can',7:'mon'};
+
+// Auto-open latest
+window.addEventListener('DOMContentLoaded', () => {
+  const latest = races.findIndex(r => r.isLatest);
+  if (latest >= 0) {
+    const rid = 'race-' + latest;
+    const inner = document.getElementById('ri-' + rid);
+    const icon  = document.getElementById('ico-' + rid);
+    if (inner) { inner.classList.add('open'); icon.classList.add('open'); }
+  }
+});
+
+// ── VERDICTS ──────────────────────────────────────────────────────
+const verdicts = [
+  {label:'Fastest overall',    team:'Mercedes',   sub:'14 wins · 503 pts · dominant',         bg:'#1a1a1a',tc:'#c0c0c0'},
+  {label:'Antonelli — 8 wins', team:'Antonelli', sub:'First Madring winner · +81 over Russell',  bg:'#141414',tc:'#aaaaaa'},
+  {label:'Hamilton DNF',        team:'Ferrari',   sub:'First Ferrari DNF of 2026 · lap 6 brakes', bg:'#1e0a0a',tc:'#cc4422'},
+  {label:'Norris VSC disaster', team:'McLaren',   sub:'Led by 6s, missed pit entry · P3',        bg:'#1e0e07',tc:'#e8621a'},
+  {label:'Midfield fight',      team:'Alpine',    sub:'Alpine 80 vs Racing Bulls 66 · close',     bg:'#1e0812',tc:'#e04488'},
+  {label:'Russell gap widens',  team:'Russell',   sub:'P5 Madrid · 231 pts · +81 behind Ant',  bg:'#1a1a1a',tc:'#aaaaaa'},
+  {label:'Pending appeals',    team:'McLaren/RB', sub:'Monaco Gasly appeal still ongoing',    bg:'#1a1520',tc:'#555555'},
+  {label:'Next race',          team:'Dutch GP',    sub:'Zandvoort · Aug 21–23 · sprint',           bg:'#0a1a08',tc:'#55aa33'},
+];
+const vg = document.getElementById('verdict-grid');
+verdicts.forEach(v => {
+  vg.innerHTML += `<div class="vcard" style="background:${v.bg};border-color:#2a2a2a;">
+    <div class="vlabel">${v.label}</div>
+    <div class="vteam" style="color:${v.tc};">${v.team}</div>
+    <div class="vsub">${v.sub}</div>
+  </div>`;
+});
+
+// ── TAB SWITCH ────────────────────────────────────────────────────
+// ── ADUO MANUFACTURER DATA ────────────────────────────────────────
+const aduoManufacturers = [
+  {
+    name: 'Mercedes HPP',
+    color: '#888880',
+    teams: 'Mercedes · McLaren · Alpine · Haas',
+    status: 'confirmed',
+    statusLabel: 'Qualifies (2–4%)',
+    statusStyle: 'background:#1a2a00;color:#99cc33;border:1px solid #2a4a00;',
+    band: '2–4%',
+    upgrades2026: 1,
+    upgrades2027: 1,
+    upgradeUsed: 'Not yet',
+    targetRace: 'Barcelona or Austria (R7–R8)',
+    note: 'CONFIRMED: With Red Bull Powertrains declared the benchmark, Mercedes HPP now qualifies for ADUO. Estimated gap of 2–4% to RB engine. Entitled to 1 in-season upgrade in 2026 and 1 in 2027, plus $3m budget relief. Target introduction: Spain or Austria.'
+  },
+  {
+    name: 'Honda RA26H',
+    color: '#336611',
+    teams: 'Aston Martin',
+    status: 'confirmed',
+    statusLabel: '4%+ confirmed',
+    statusStyle: 'background:#0e2a0e;color:#4caf50;border:1px solid #1a4a1a;',
+    band: '4%+',
+    upgrades2026: 2,
+    upgrades2027: 2,
+    upgradeUsed: 'Not yet',
+    targetRace: 'Monaco or Barcelona (R6–R7)',
+    note: 'Worst PU on the grid. Zero points for Aston Martin. Battery vibration & energy recovery issues. Qualifies for maximum relief including extra test bench hours and $11m budget.'
+  },
+  {
+    name: 'Audi',
+    color: '#77aa22',
+    teams: 'Audi (Sauber)',
+    status: 'expected',
+    statusLabel: 'Expected 4%+',
+    statusStyle: 'background:#1a2a00;color:#99cc33;border:1px solid #2a4a00;',
+    band: '4%+',
+    upgrades2026: 2,
+    upgrades2027: 2,
+    upgradeUsed: 'Not yet',
+    targetRace: 'Barcelona or Austria (R7–R8)',
+    note: 'New manufacturer, 2 pts scored so far. Paddock sources place Audi alongside Honda as furthest from the benchmark. Engine described as losing over 1 second of lap time vs Mercedes.'
+  },
+  {
+    name: 'Ferrari',
+    color: '#cc2200',
+    teams: 'Ferrari · Haas',
+    status: 'borderline',
+    statusLabel: 'Borderline ~2%',
+    statusStyle: 'background:#1a1000;color:#cc9900;border:1px solid #3a2800;',
+    band: '2–4%',
+    upgrades2026: 1,
+    upgrades2027: 1,
+    upgradeUsed: 'Not yet',
+    targetRace: 'Austria or Belgian GP (R8–R10)',
+    note: 'CONFIRMED: Ferrari qualifies under ADUO with Red Bull as benchmark. Estimated 2–4% gap. 1 upgrade in 2026 + 1 in 2027 + $3m budget relief. Ferrari targeting Engine 2 introduction at Austria (R8) or Belgium (R10). Leclerc\'s Monaco brake failure unrelated to ICE — chassis/braking system issue.'
+  },
+  {
+    name: 'RB Powertrains / Ford',
+    color: '#1a5fbb',
+    teams: 'Red Bull · Racing Bulls',
+    status: 'benchmark',
+    statusLabel: 'BENCHMARK ✓',
+    statusStyle: 'background:#0a0f1e;color:#4488ee;border:1px solid #1a2a4a;',
+    band: 'Fastest',
+    upgrades2026: 0,
+    upgrades2027: 0,
+    upgradeUsed: '—',
+    targetRace: 'N/A — declared benchmark',
+    note: 'CONFIRMED after Monaco: The Race reports FIA has declared Red Bull Powertrains/Ford the benchmark ICE under the new ADUO system — meaning Mercedes and Ferrari now qualify for upgrade opportunities. Despite Red Bull chassis being 4th in the constructors, their engine is officially the best on the grid.'
+  },
+];
+
+const aduoTbody = document.getElementById('aduo-tbody');
+aduoManufacturers.forEach(m => {
+  const u26 = m.upgrades2026 > 0 ? `<strong style="color:#e8e8e8;">${m.upgrades2026}</strong>` : '<span style="color:#444;">0</span>';
+  aduoTbody.innerHTML += `
+    <tr style="border-bottom:1px solid #1e1e1e;">
+      <td style="padding:8px 8px;">
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${m.color};flex-shrink:0;"></span>
+          <div>
+            <div style="font-weight:500;color:#e8e8e8;font-size:12px;">${m.name}</div>
+          </div>
+        </div>
+      </td>
+      <td style="padding:8px 8px;color:#666;font-size:11px;">${m.teams}</td>
+      <td style="padding:8px 8px;text-align:center;">
+        <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;${m.statusStyle}">${m.statusLabel}</span>
+      </td>
+      <td style="padding:8px 8px;">
+        <div style="font-size:12px;color:#aaa;">${m.targetRace}</div>
+        ${m.upgrades2026 > 0 ? `<div style="font-size:10px;color:#555;margin-top:2px;">${m.upgrades2026} upgrade${m.upgrades2026>1?'s':''} in 2026 · ${m.upgrades2027} in 2027</div>` : ''}
+      </td>
+    </tr>
+    <tr style="border-bottom:1px solid #222;">
+      <td colspan="4" style="padding:4px 8px 10px 23px;font-size:11px;color:#555;font-style:italic;">${m.note}</td>
+    </tr>`;
+});
+
+// ── DRIVER CONTRACTS ──────────────────────────────────────────────
+const contractData = [
+  // TOP TEAMS
+  {flag:'🇮🇹', name:'K. Antonelli', team:'Mercedes', color:TC['Mercedes'], tier:'top',
+   expiry:'2027', expiryClass:'exp-near',
+   status:'Signed through 2027 (Sky Sports). Multi-year deal signed Oct 2025 alongside Russell. Believed to include a 2028 option for Mercedes.',
+   talks:'No reported talks with other teams. Mercedes priority #1 — Wolff has called Antonelli "the future of the team." Any renewal discussion expected post-season.',
+   history:[
+     {period:'2026–2027', team:'Mercedes', note:'Multi-year deal, announced Oct 2025'},
+     {period:'2025', team:'Mercedes', note:'Promoted from junior driver programme for debut season'},
+     {period:'2022–2024', team:'Mercedes junior', note:'Formula 2 and reserve driver role'},
+   ]},
+  {flag:'🇬🇧', name:'G. Russell', team:'Mercedes', color:TC['Mercedes'], tier:'top',
+   expiry:'2027', expiryClass:'exp-near',
+   status:'Signed through 2027 (Sky Sports, The Race). Finalised late in the 2025 off-season after Verstappen speculation complicated negotiations.',
+   talks:'Russell has publicly acknowledged uncertainty around his own future beyond 2027, especially if Antonelli continues to outperform him. No confirmed external talks.',
+   history:[
+     {period:'2026–2027', team:'Mercedes', note:'Multi-year renewal — announced Oct 2025'},
+     {period:'2022–2025', team:'Mercedes', note:'First contracted with Mercedes; won first championship in 2025'},
+     {period:'2019–2021', team:'Williams', note:'Three-season stint, developed under Mercedes patronage'},
+   ]},
+  {flag:'🇲🇨', name:'C. Leclerc', team:'Ferrari', color:TC['Ferrari'], tier:'top',
+   expiry:'2030+', expiryClass:'exp-secure',
+   status:'Extended ahead of 2026 Monaco GP (Formula1.com, F1 Live Pulse). New deal understood to run to 2030 and potentially beyond — Ferrari\'s longest modern-era contract.',
+   talks:'No external talks. Leclerc is deeply embedded at Ferrari and has committed his career to the team. Renewal removes him from the market entirely.',
+   history:[
+     {period:'2026–2030+', team:'Ferrari', note:'Extension signed May 2026 — longest Ferrari deal in modern era'},
+     {period:'2024–2025', team:'Ferrari', note:'Previous multi-year deal'},
+     {period:'2019–2023', team:'Ferrari', note:'Initial Ferrari contract; multiple extensions'},
+     {period:'2018', team:'Sauber', note:'First F1 season on Ferrari-backed deal'},
+   ]},
+  {flag:'🇬🇧', name:'L. Hamilton', team:'Ferrari', color:TC['Ferrari'], tier:'top',
+   expiry:'2027+', expiryClass:'exp-near',
+   status:'Ferrari multi-year deal (2025–2027). Hamilton confirmed at Canada 2026 he holds a 2027 contract. Sky Sports reports he also holds a unilateral 2028 option.',
+   talks:'Retirement speculation has intensified after a difficult 2026 season (multiple penalties, car issues). Hamilton has not publicly addressed 2028 option. Ferrari would retain him if performing.',
+   history:[
+     {period:'2025–2027+', team:'Ferrari', note:'Announced Feb 2024 — one of the biggest moves in F1 history'},
+     {period:'2021–2024', team:'Mercedes', note:'Final Mercedes chapter; 6 WDCs with team'},
+     {period:'2013–2020', team:'Mercedes', note:'Dominant Mercedes era — record-tying 7 titles'},
+     {period:'2007–2012', team:'McLaren', note:'Career began; first title 2008'},
+   ]},
+  {flag:'🇬🇧', name:'L. Norris', team:'McLaren', color:TC['McLaren'], tier:'top',
+   expiry:'2030', expiryClass:'exp-secure',
+   status:'Extended Aug 2026 until at least 2030 (Formula1.com). Announced during Dutch GP weekend alongside a championship-winning car as a gift. Option for multi-year extension beyond 2030.',
+   talks:'None. Norris is fully committed to McLaren after 8 seasons. Extension removes him from silly season entirely.',
+   history:[
+     {period:'2026–2030+', team:'McLaren', note:'Long-term renewal Aug 2026'},
+     {period:'2024–2025', team:'McLaren', note:'Previous extension — through 2026 with long-term language'},
+     {period:'2019–2023', team:'McLaren', note:'Original deal — grew from rookie to title contender'},
+   ]},
+  {flag:'🇦🇺', name:'O. Piastri', team:'McLaren', color:TC['McLaren'], tier:'top',
+   expiry:'2028', expiryClass:'exp-secure',
+   status:'Signed March 2025 multi-year extension (Sky Sports, ESPN). Runs to at least 2028; long-term language suggests 2029 option. Ongoing speculation about his long-term future given McLaren\'s internal dynamics.',
+   talks:'The Race reported in mid-2026 that Piastri\'s camp had held preliminary conversations with Ferrari about a 2029 or 2030 seat. Both sides deny active talks. Ferrari were understood to be monitoring the situation.',
+   history:[
+     {period:'2025–2028', team:'McLaren', note:'Multi-year extension signed Mar 2025'},
+     {period:'2023–2024', team:'McLaren', note:'Debut deal — replaced Ricciardo mid-negotiation'},
+     {period:'2022', team:'Alpine (disputed)', note:'Signed Alpine deal but rejected via statement — McLaren legal battle'},
+   ]},
+  {flag:'🇳🇱', name:'M. Verstappen', team:'Red Bull', color:TC['Red Bull'], tier:'top',
+   expiry:'2030', expiryClass:'exp-secure',
+   status:'Extended to 2030 ahead of Dutch GP (ESPN, The Race). Previous deal ran to 2028. New contract includes championship-winning car gift. Performance clauses reportedly removed in new deal.',
+   talks:'Verstappen publicly ended Mercedes speculation with Dutch GP extension. Hinted at retirement post-2030. No current external talks.',
+   history:[
+     {period:'2026–2030', team:'Red Bull', note:'Extension announced Aug 2026 Dutch GP weekend'},
+     {period:'2022–2025', team:'Red Bull', note:'Previous deal — originally to 2028'},
+     {period:'2016–2021', team:'Red Bull', note:'Promoted from Racing Bulls; dominant era'},
+     {period:'2015', team:'Racing Bulls', note:'F1 debut aged 17 — youngest ever at the time'},
+   ]},
+  // MIDFIELD
+  {flag:'🇫🇷', name:'I. Hadjar', team:'Red Bull', color:TC['Red Bull'], tier:'mid',
+   expiry:'2026', expiryClass:'exp-this',
+   status:'Believed to be a single-season deal for 2026 (The Race, Fervogear). Red Bull have not confirmed renewal. Currently sidelined with injury sustained at Dutch GP.',
+   talks:'Red Bull expected to decide on Hadjar vs Lawson for 2027 Red Bull seat before season end. Lawson\'s strong stand-in performances at Zandvoort and Monza have complicated Hadjar\'s position despite Hadjar\'s earlier pace.',
+   history:[
+     {period:'2026', team:'Red Bull', note:'Promoted from Racing Bulls — debut Red Bull seat'},
+     {period:'2025', team:'Racing Bulls', note:'Rookie season alongside Lawson'},
+     {period:'2024', team:'Racing Bulls', note:'F2 champion — joined as reserve driver'},
+   ]},
+  {flag:'🇳🇿', name:'L. Lawson', team:'Racing Bulls', color:TC['Racing Bulls'], tier:'mid',
+   expiry:'2026', expiryClass:'exp-this',
+   status:'One-year Racing Bulls deal for 2026 (The Race). Currently subbing at Red Bull for injured Hadjar. His form is putting pressure on Hadjar\'s seat for 2027.',
+   talks:'Paddock sources indicate Red Bull are weighing whether Lawson or Hadjar takes the 2027 Red Bull seat alongside Verstappen. Lawson\'s P7 (Dutch, with penalty) and P12 (Italy) as Red Bull sub are being evaluated. Racing Bulls seat for 2027 also unclear.',
+   history:[
+     {period:'2026', team:'Racing Bulls', note:'Retained after strong Monza showing in 2025'},
+     {period:'2025', team:'Racing Bulls', note:'Stepped in for Ricciardo; signed full season'},
+     {period:'2024 (partial)', team:'Racing Bulls', note:'Mid-season call-up; replaced Ricciardo'},
+     {period:'2023 (partial)', team:'AlphaTauri', note:'Stood in for injured De Vries'},
+   ]},
+  {flag:'🇬🇧', name:'A. Lindblad', team:'Racing Bulls', color:TC['Racing Bulls'], tier:'mid',
+   expiry:'2026', expiryClass:'exp-this',
+   status:'One-year deal for 2026 (The Race). Red Bull junior driver on evaluation season.',
+   talks:'Red Bull will assess Lindblad\'s 2026 performance — multiple points finishes and strong racecraft have impressed the team. A confirmed 2027 Racing Bulls seat or promotion is possible. No external team links.',
+   history:[
+     {period:'2026', team:'Racing Bulls', note:'Debut F1 season as Red Bull junior'},
+     {period:'2025', team:'Campos (F2)', note:'F2 season — won rookie class'},
+     {period:'2024', team:'Prema (F2)', note:'F2 debut season'},
+   ]},
+  {flag:'🇫🇷', name:'P. Gasly', team:'Alpine', color:TC['Alpine'], tier:'mid',
+   expiry:'2027', expiryClass:'exp-near',
+   status:'Extended in 2025 H2 into 2027 (The Race). Has been Alpine\'s cornerstone since 2023. First career pole at Monza 2026.',
+   talks:'No reported external interest. Alpine\'s 2027 plans depend on whether Colapinto is retained. Gasly\'s pole at Monza strengthened his position considerably.',
+   history:[
+     {period:'2023–2027', team:'Alpine', note:'Initial multi-year deal, extended in 2025'},
+     {period:'2021–2022', team:'AlphaTauri', note:'Returned to Red Bull junior team after Ferrari links fell through'},
+     {period:'2019 (partial)', team:'Red Bull', note:'Promoted mid-season; demoted after difficult spell'},
+     {period:'2017–2020', team:'AlphaTauri/Toro Rosso', note:'Developed as Red Bull junior'},
+   ]},
+  {flag:'🇦🇷', name:'F. Colapinto', team:'Alpine', color:TC['Alpine'], tier:'mid',
+   expiry:'2027', expiryClass:'exp-near',
+   status:'Retained for 2027 (The Race). Briatore held out before confirming Colapinto\'s second full F1 season.',
+   talks:'Alpine are committed to Colapinto through 2027. Beyond that, his trajectory will determine whether a top team comes calling — his pace has drawn attention from several paddock figures.',
+   history:[
+     {period:'2026–2027', team:'Alpine', note:'Full-season deal after strong debut'},
+     {period:'2025 (partial)', team:'Williams', note:'Mid-season promotion — replaced Sargeant'},
+     {period:'2022–2024', team:'Williams junior', note:'F2 and junior programme'},
+   ]},
+  {flag:'🇬🇧', name:'O. Bearman', team:'Haas', color:TC['Haas'], tier:'mid',
+   expiry:'2026', expiryClass:'exp-this',
+   status:'Contract status for 2027 unconfirmed (GPFans). Haas have not announced 2027 driver lineup. Ferrari backing may influence his future.',
+   talks:'Bearman has Ferrari backing and has impressed in his first full Haas season. Ferrari are evaluating whether to loan him to a higher-profile seat or keep him at Haas for development. No confirmed external interest.',
+   history:[
+     {period:'2026', team:'Haas', note:'First full F1 season with Ferrari backing'},
+     {period:'2024 (GP substitute)', team:'Ferrari', note:'One-race substitute at Saudi Arabia for ill Sainz'},
+     {period:'2024 (partial)', team:'Haas', note:'Mid-season promotion replacing Magnussen'},
+   ]},
+  {flag:'🇫🇷', name:'E. Ocon', team:'Haas', color:TC['Haas'], tier:'mid',
+   expiry:'2026', expiryClass:'exp-this',
+   status:'Contract status unconfirmed for 2027. Haas signed Ocon for 2026 but have not confirmed renewal.',
+   talks:'Ocon\'s 2026 season has been underwhelming relative to Bearman. Haas may look at other options for 2027 if a competitive replacement is available. No confirmed talks elsewhere.',
+   history:[
+     {period:'2026', team:'Haas', note:'Signed after Alpine did not renew'},
+     {period:'2020–2025', team:'Alpine/Renault', note:'Five seasons with Alpine including 2021 Hungaroring win'},
+     {period:'2017–2019', team:'Force India / Racing Point', note:'Established as a race driver'},
+   ]},
+  // LOWER / NEW
+  {flag:'🇩🇪', name:'N. Hülkenberg', team:'Audi', color:TC['Audi'], tier:'low',
+   expiry:'2027', expiryClass:'exp-near',
+   status:'2025–2026 deal with option for 2027 (The Race). Reports suggest 2027 is likely to be exercised given Audi\'s need for stability.',
+   talks:'Hülkenberg is committed to Audi\'s project long-term. No external interest reported. His priority is to develop the Audi PU into a competitive force.',
+   history:[
+     {period:'2025–2027', team:'Audi (Sauber)', note:'Signed as lead driver for Audi\'s F1 entry'},
+     {period:'2023–2024', team:'Haas', note:'Two-season stint — best result P4 in 2023'},
+     {period:'2022', team:'Aston Martin', note:'Covered for Vettel early-season'},
+     {period:'2013–2019', team:'Force India / Racing Point', note:'Multiple seasons — never scored podium'},
+   ]},
+  {flag:'🇧🇷', name:'G. Bortoleto', team:'Audi', color:TC['Audi'], tier:'low',
+   expiry:'2027', expiryClass:'exp-near',
+   status:'Multi-year Audi deal (The Race). Exact length unconfirmed but understood to run to at least 2027.',
+   talks:'No external talks. Bortoleto is central to Audi\'s future plans as the team builds toward 2029 GM engine.',
+   history:[
+     {period:'2026–2027+', team:'Audi (Sauber)', note:'Promoted from McLaren junior programme'},
+     {period:'2025', team:'Invicta (F2)', note:'F2 champion — won title in 2024'},
+     {period:'2024', team:'Invicta (F2)', note:'F2 debut — won feature race at Monza from P22'},
+   ]},
+  {flag:'🇪🇸', name:'C. Sainz', team:'Williams', color:TC['Williams'], tier:'low',
+   expiry:'2026', expiryClass:'exp-this',
+   status:'Signed Williams for 2026 after Ferrari replaced him with Hamilton. Contract length unconfirmed but widely reported as a one-year deal.',
+   talks:'Sainz has openly stated he wants a top-team seat for 2027. Linked to Aston Martin (if Alonso retires) and potentially Red Bull (if Hadjar\'s situation remains unclear). Multiple reputable sources (The Race, Sky) confirm conversations with Aston Martin.',
+   history:[
+     {period:'2026', team:'Williams', note:'Signed after Ferrari seat lost to Hamilton'},
+     {period:'2023–2025', team:'Ferrari', note:'Three strong seasons; won multiple races'},
+     {period:'2021–2022', team:'Ferrari', note:'First Ferrari contract'},
+     {period:'2019–2020', team:'McLaren', note:'Two seasons before Ferrari switch'},
+   ]},
+  {flag:'🇹🇭', name:'A. Albon', team:'Williams', color:TC['Williams'], tier:'low',
+   expiry:'2026', expiryClass:'exp-this',
+   status:'Williams deal believed to run to end of 2026 (GPFans). No renewal confirmed.',
+   talks:'Albon\'s 2026 season has been difficult — DNF at Zandvoort, points-less at Monza. Williams are reportedly evaluating their 2027 lineup. Albon has no confirmed external offers.',
+   history:[
+     {period:'2022–2026', team:'Williams', note:'Revived career at Williams after Red Bull exit'},
+     {period:'2020', team:'Red Bull', note:'Promoted from Racing Bulls; lost seat after poor form'},
+     {period:'2019 (partial)', team:'Red Bull', note:'Mid-season promotion from AlphaTauri'},
+     {period:'2019 (start)', team:'AlphaTauri', note:'F1 debut'},
+   ]},
+  {flag:'🇪🇸', name:'F. Alonso', team:'Aston Martin', color:TC['Aston Martin'], tier:'low',
+   expiry:'2026', expiryClass:'exp-this',
+   status:'Contract expires end of 2026 (GPFans). Alonso has told media he will not renew unless the car is competitive. With Newey\'s B-spec showing promise, his decision is pending.',
+   talks:'Alonso has confirmed he is evaluating whether the Newey-led Aston Martin can compete at the front in 2027. No other teams have been linked credibly. A decision is expected before the end of the season.',
+   history:[
+     {period:'2023–2026', team:'Aston Martin', note:'Joined from Alpine in blockbuster move'},
+     {period:'2021–2022', team:'Alpine/Renault', note:'Return to the team that launched his career'},
+     {period:'2018–2020', team:'McLaren (IndyCar/WEC)', note:'Sabbatical from F1, pursued other championships'},
+     {period:'2015–2017', team:'McLaren-Honda', note:'Difficult years; multiple DNS/DNFs'},
+   ]},
+  {flag:'🇨🇦', name:'L. Stroll', team:'Aston Martin', color:TC['Aston Martin'], tier:'low',
+   expiry:'2026', expiryClass:'exp-this',
+   status:'Contract expires end of 2026 (GPFans). His renewal is entirely linked to his father Lawrence Stroll\'s continued ownership of Aston Martin.',
+   talks:'No external interest. Renewal at Aston Martin assumed unless a commercial change in team ownership occurs.',
+   history:[
+     {period:'2019–2026', team:'Aston Martin / Racing Point / Force India', note:'Has raced for the same entity throughout career'},
+     {period:'2017–2018', team:'Williams', note:'First two F1 seasons'},
+   ]},
+  {flag:'🇲🇽', name:'S. Pérez', team:'Cadillac', color:TC['Cadillac'], tier:'low',
+   expiry:'2027+', expiryClass:'exp-near',
+   status:'Multi-year Cadillac deal (GPFans). Exact length unconfirmed — reported as 2–3 years.',
+   talks:'No external interest. Pérez is one of Cadillac\'s founding drivers for their F1 project.',
+   history:[
+     {period:'2026–2027+', team:'Cadillac', note:'Founding driver for new constructor'},
+     {period:'2021–2025', team:'Red Bull', note:'Five seasons alongside Verstappen; won 2023 Monaco GP and others'},
+     {period:'2014–2020', team:'Force India / Racing Point', note:'Established as a consistent points scorer'},
+   ]},
+  {flag:'🇫🇮', name:'V. Bottas', team:'Cadillac', color:TC['Cadillac'], tier:'low',
+   expiry:'2027+', expiryClass:'exp-near',
+   status:'Multi-year Cadillac deal (GPFans). Widely understood to be a 2-year deal.',
+   talks:'No external interest. Bottas bringing extensive F1 experience to help Cadillac develop the car.',
+   history:[
+     {period:'2026–2027+', team:'Cadillac', note:'Returned to F1 after one year away'},
+     {period:'2022–2025', team:'Sauber / Alfa Romeo', note:'Four seasons as team leader'},
+     {period:'2017–2021', team:'Mercedes', note:'Won multiple races alongside Hamilton'},
+     {period:'2013–2016', team:'Williams', note:'Early career — consistent points scorer'},
+   ]},
+];
+
+function renderContracts() {
+  const el = document.getElementById('contracts-list');
+  if (!el) return;
+  let lastTier = '';
+  contractData.forEach(d => {
+    if (d.tier !== lastTier) {
+      if (lastTier !== '') el.innerHTML += `<div class="tier-divider">${d.tier === 'mid' ? 'Midfield' : 'Lower Midfield & New Teams'}</div>`;
+      lastTier = d.tier;
+    }
+    const historyHtml = d.history.map(h =>
+      `<span style="color:#888;">${h.period}</span> — <span style="color:#666;">${h.team}</span>: ${h.note}`
+    ).join('<br>');
+    const talksHtml = d.talks
+      ? `<div class="contract-talks"><strong>Paddock talks:</strong> ${d.talks}</div>`
+      : '';
+    el.innerHTML += `<div class="contract-block">
+      <div class="contract-head">
+        <span style="font-size:18px;">${d.flag}</span>
+        <div class="contract-name">${d.name}<span class="contract-team">${d.team}</span></div>
+        <span class="contract-expiry ${d.expiryClass}">Until ${d.expiry}</span>
+      </div>
+      <div class="contract-meta">
+        <div class="contract-meta-item"><div class="cmi-label">Contract status</div><div class="cmi-value">${d.status}</div></div>
+        <div class="contract-meta-item"><div class="cmi-label">Contract history (last 5 yrs)</div><div class="contract-history">${historyHtml}</div></div>
+      </div>
+      ${talksHtml}
+    </div>`;
+  });
+}
+renderContracts();
+
+// ── POINTS PROGRESSION CHARTS ─────────────────────────────────────
+// Cumulative points per completed round (R1–R13)
+// Cancelled rounds (Bahrain R2.5, Saudi R2.6) skipped — not numbered
+// Sprint points included in round totals
+// UPDATE: add a new entry to each array after every race weekend
+
+const ROUND_LABELS = ['R1\nAUS','R2\nCHN','R3\nJPN','R4\nMIA','R5\nCAN','R6\nMON','R7\nESP','R8\nAUT','R9\nGBR','R10\nBEL','R11\nHUN','R12\nNED','R13\nITA','R14\nMAD'];
+
+// ── CONSTRUCTOR cumulative points ──────────────────────────────────
+const conChartData = [
+  { label:'Mercedes',    color:'#888880', pts:[43,81,99,135,153,194,213,240,251,269,294,320,358,503] },
+  { label:'Ferrari',     color:'#cc2200', pts:[28,56,74,90,110,141,156,175,190,198,221,236,255,358] },
+  { label:'McLaren',     color:'#e8621a', pts:[5,13,31,52,80,88,106,130,148,157,186,207,226,306] },
+  { label:'Red Bull',    color:'#1a5fbb', pts:[6,14,30,46,60,66,88,108,124,134,153,168,186,230] },
+  { label:'Alpine',      color:'#e04488', pts:[8,14,20,27,35,47,55,63,71,77,80,81,92,86] },
+];
+
+// ── DRIVER cumulative points ───────────────────────────────────────
+const drvChartData = [
+  { label:'Antonelli',  color:'#888880', pts:[18,43,50,75,100,125,132,150,150,175,190,209,234,292] },
+  { label:'Russell',    color:'#aaaaaa', pts:[25,43,56,75,88,101,119,145,163,163,170,185,203,231] },
+  { label:'Hamilton',   color:'#cc2200', pts:[15,33,48,56,72,90,108,120,135,143,148,163,171,191] },
+  { label:'Leclerc',    color:'#ff4422', pts:[13,23,31,38,59,75,88,100,115,119,138,148,148,175] },
+  { label:'Norris',     color:'#e8621a', pts:[0,7,13,28,33,33,45,62,66,70,85,96,106,178] },
+  { label:'Verstappen', color:'#1a5fbb', pts:[8,8,14,24,38,44,70,85,85,100,115,115,130,139] },
+  { label:'Piastri',    color:'#cc6611', pts:[5,6,18,24,24,28,35,48,56,63,71,82,94,118] },
+];
+
+function makeChart(canvasId, labels, datasets, title) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: datasets.map(d => ({
+        label: d.label,
+        data: d.pts,
+        borderColor: d.color,
+        backgroundColor: d.color + '18',
+        borderWidth: 2,
+        pointRadius: 3,
+        pointHoverRadius: 5,
+        tension: 0.3,
+        fill: false,
+      }))
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: {
+            color: '#888',
+            font: { size: 11, family: '-apple-system, BlinkMacSystemFont, sans-serif' },
+            boxWidth: 12,
+            padding: 10,
+            usePointStyle: true,
+          }
+        },
+        tooltip: {
+          backgroundColor: '#1a1a1a',
+          borderColor: '#333',
+          borderWidth: 1,
+          titleColor: '#ccc',
+          bodyColor: '#aaa',
+          padding: 10,
+          callbacks: {
+            label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y} pts`
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: '#555',
+            font: { size: 10 },
+            maxRotation: 0,
+          },
+          grid: { color: '#1e1e1e' }
+        },
+        y: {
+          ticks: { color: '#555', font: { size: 10 } },
+          grid: { color: '#1e1e1e' },
+          beginAtZero: true,
+        }
+      }
+    }
+  });
+}
+
+// Charts render after DOM is ready — use setTimeout to ensure canvas is visible
+setTimeout(() => {
+  makeChart('chart-con', ROUND_LABELS, conChartData, 'Constructors');
+  makeChart('chart-drv', ROUND_LABELS, drvChartData, 'Drivers');
+}, 100);
+
+function sw(id,btn) {
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

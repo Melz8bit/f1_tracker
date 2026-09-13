@@ -7,6 +7,15 @@ A Formula 1 season dashboard web app. Displays live standings, team pace analysi
 race-by-race results, and editorial team verdicts. Primary season: 2026. Past seasons supported.
 The Home page is a 5-tab dashboard (Standings / Pace Profile / Speed Trap / Race by Race / Verdicts).
 
+## Design Reference
+`design/f1-2026-dashboard-target.html` is a static HTML mockup showing the visual target for the
+final dashboard (layout, density, tab styling, table treatments, title-math pills, points progression
+charts). Treat it as a look-and-feel reference only — its data (standings, race results, driver
+contracts, ADUO tracker, reg-change writeups) is hardcoded sample content, not something to copy
+verbatim. Anything derivable from OpenF1/Jolpica should be computed live per the Data Rules below;
+its two extra tabs (Reg Changes/ADUO, Driver Contracts) are not yet part of the Build Order — scope
+them explicitly before building.
+
 ## Tech Stack
 - React 18 + Vite + TypeScript
 - Tailwind CSS v3
