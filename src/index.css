@@ -131,8 +131,26 @@
   .delta-dn { color: #cc4422; font-weight: 700; text-align: center; }
   .delta-eq { color: #555; text-align: center; }
 
+  /* Pace profiles */
+  .team-block { border-bottom: 1px solid #1e1e1e; padding-bottom: 18px; margin-bottom: 18px; }
+  .team-block:last-child { border-bottom: none; margin-bottom: 0; }
+  .team-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .tdot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .tname { font-size: 14px; font-weight: 600; flex: 1; }
+  .tpu { font-size: 11px; color: #555; font-weight: 400; margin-left: 6px; }
+  .overall-chip { font-size: 20px; font-weight: 700; padding: 3px 12px; border-radius: 8px; }
+  .arow { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .alabel { font-size: 12px; color: #666; min-width: 190px; }
+  .btrack { flex: 1; height: 6px; background: #1e1e1e; border-radius: 3px; overflow: hidden; }
+  .bfill { height: 100%; border-radius: 3px; }
+  .aval { font-size: 12px; font-weight: 600; min-width: 28px; text-align: right; color: #888; }
+  .est { font-size: 9px; color: #555; border: 1px solid #333; border-radius: 4px; padding: 0 4px; margin-left: 6px; vertical-align: middle; }
+  .tier-divider { font-size: 11px; color: #444; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin: 22px 0 14px; padding-top: 6px; border-top: 1px solid #1e1e1e; }
+  .new { display: inline-block; font-size: 9px; padding: 2px 6px; border-radius: 6px; font-weight: 700; margin-left: 6px; vertical-align: middle; background: #3a1a0a; color: #e07040; border: 1px solid #5a2a0a; text-transform: uppercase; }
+
   @media (max-width: 600px) {
     .pts-bar-wrap { width: 50px; }
     .con-bar-wrap { width: 60px; }
+    .alabel { min-width: 120px; font-size: 11px; }
   }
 }

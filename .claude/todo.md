@@ -19,19 +19,29 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 - [ ] Correct hand-written notes in raceNotes.json to match the API (API wins) — e.g. R14 "VSC lap 16" → laps 14–15, "Audi 30 constructor pts" → 17
 - [ ] Pit stop times: OpenF1 `stop_duration` is always null in 2026 and `lane_duration` has outliers — revisit if the feed improves
 
-## Decision pending (user)
-- [ ] Source for race notes + season/Form Guide summaries: facts only / hand-written / post-weekend script drafting / scraping sources / Wikipedia link-out (Jolpica race URL). User will decide.
+## Phase 2b — News pipeline (`scripts/news`) — decided 2026-09-23: scrape + summarize
+- [ ] Collect: RSS (The Race, RacingNews365 Atom, GPFans, PlanetF1, Crash.net) for new weekends; sitemaps with dates (The Race, RN365, PlanetF1) to backfill R1–R14
+- [ ] Respect robots.txt; Crash.net blocks GPTBot → headline links only, never fed to the summarizer
+- [ ] Match articles to a race weekend (published FP1 → race+3 days, F1 keywords), fetch pages, extract article text
+- [ ] Summarize offline with Claude (never at runtime): race storylines, quotes, off-track context — grounded in the articles + our API facts, API wins on numbers
+- [ ] Output generated notes with source links per bullet; replace hand-written raceNotes.json content (keep `cancelled` reasons)
+- [ ] Season narrative + Form Guide summary text from the same pipeline (Phase 5 consumes it)
+- [ ] UI: "From the press" section with source links in Race by Race
+- [ ] Needs ANTHROPIC_API_KEY (local .env.local; GitHub secret in Phase 6)
 
-## Phase 3 — Pace pipeline (`scripts/pace`)
-- [ ] Qualifying one-lap: team best lap, % gap to pole per round
-- [ ] Race pace: median clean-lap gap (exclude in/out laps, SC/VSC laps from race_control)
-- [ ] Straight-line: speed trap / intermediate speeds
-- [ ] Cornering (approx): fastest quali lap per team → car_data speed trace by distance, detect corners as speed minima, match across teams, classify apex speed slow/medium/high, score per class
-- [ ] Active aero efficiency (approx proxy): top speed vs high-speed-corner performance, labelled "estimated"
-- [ ] Normalise to 100 = best, average over filter range; tiers from overall score
-- [ ] Rate-limit-safe throttling; write `src/data/paceRatings.json`
+## Phase 3 — Pace pipeline (`scripts/pace`) ✅ (2026-09-23)
+- [x] Qualifying one-lap: team best lap, % gap to pole per round
+- [x] Race pace: median clean-lap gap (exclude in/out laps, SC/VSC laps from race_control)
+- [x] Straight-line: speed trap / intermediate speeds
+- [x] Cornering (approx): fastest quali lap per team → car_data speed trace by distance, detect corners as speed minima, match across teams, classify apex speed slow/medium/high, score per class
+- [x] Active aero efficiency (approx proxy): top speed vs high-speed-corner performance, labelled "estimated"
+- [x] Normalise to 100 = best, average over filter range; tiers from overall score
+- [x] Rate-limit-safe throttling; write `src/data/paceRatings.json`
+
+- [ ] Pace tuning ideas: weight rounds by corner count; medium-speed corners are detected but unused; aero proxy could use speed gain on straights once more data exists
 
 ## Phase 4 — FIA PU pipeline (`scripts/fia-pu`)
+- [ ] Never seed from the mockup — its component counts were estimates, frozen since R10
 - [ ] Crawl event pages → find `pu_elements_used_per_driver_up_to_now.pdf` + `infringement_-_car_NN_-_pu_elements*.pdf`
 - [ ] Parse PDFs in Node (pdfjs-dist, x/y coordinates — pdftotext merges digits in layout mode)
 - [ ] Output `src/data/powerUnits.json`: per-driver per-round element counts (7 elements incl. PU-ANC) + penalties (elements, grid drop / pit-lane)
