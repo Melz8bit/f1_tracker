@@ -1,16 +1,6 @@
-import React from "react";
 import { BarChart, Bar, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
 import { useFilterStore } from "../../store/filterStore";
 import paceRatings from "../../data/paceRatings.json"
-
-interface CustomBarProps {
-    x: number
-    y: number
-    width: number
-    height: number
-    team: string
-    payload: { team: string, avg: number }
-}
 
 export default function PaceProfileTab() {
     const TEAM_COLORS: Record<string, string> = {

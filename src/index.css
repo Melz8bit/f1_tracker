@@ -2,114 +2,137 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+/* Visual language ported from f1_2026_dashboard.html (the design reference). */
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+@layer base {
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0f0f0f;
+    color: #e8e8e8;
+    min-height: 100vh;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  @media (max-width: 600px) {
+    body { padding: 12px; }
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+@layer components {
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #2a2a2a; flex-wrap: wrap; gap: 8px; }
+  .header h1 { font-size: 18px; font-weight: 600; letter-spacing: 0.05em; color: #fff; }
+  .updated { font-size: 11px; color: #666; background: #1a1a1a; padding: 3px 10px; border-radius: 20px; border: 1px solid #2a2a2a; }
+
+  /* Tabs */
+  .tab-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+  .tb { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; padding: 7px 16px; font-size: 13px; cursor: pointer; color: #888; transition: all 0.15s; }
+  .tb:hover { color: #ccc; border-color: #444; }
+  .tb.on { background: #222; border-color: #555; color: #fff; font-weight: 500; }
+
+  /* Filter bar */
+  .filter-bar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #666; }
+  .filter-bar select { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; color: #ccc; padding: 4px 8px; font-size: 12px; }
+  .filter-bar input[type='range'] { accent-color: #888; width: 140px; }
+
+  /* Metric cards */
+  .grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 20px; }
+  .metric { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 10px; padding: 14px; }
+  .ml { font-size: 11px; color: #666; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .mv { font-size: 22px; font-weight: 600; }
+  .ms { font-size: 11px; color: #555; margin-top: 4px; }
+  .section-label { font-size: 12px; font-weight: 600; color: #555; margin: 20px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #1e1e1e; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* Constructor rows */
+  .con-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid #1a1a1a; }
+  .con-row:last-child { border-bottom: none; }
+  .con-pos { font-size: 12px; color: #555; min-width: 20px; font-weight: 600; }
+  .con-name { font-size: 13px; font-weight: 500; flex: 1; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .con-badge { font-size: 10px; padding: 2px 7px; border-radius: 8px; background: #222; color: #777; border: 1px solid #333; }
+  .con-bar-wrap { width: 90px; height: 5px; background: #222; border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+  .con-bar { height: 100%; border-radius: 3px; }
+  .con-pts { font-size: 13px; font-weight: 600; min-width: 36px; text-align: right; }
+
+  /* Title pill */
+  .title-pill { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; white-space: nowrap; min-width: 60px; text-align: center; display: inline-block; }
+  .pill-yes  { background: #0e2a0e; color: #4caf50; border: 1px solid #1e4a1e; }
+  .pill-no   { background: #3a0800; color: #ff4422; border: 1px solid #661100; }
+  .pill-math { background: #1a1400; color: #cc9900; border: 1px solid #3a2e00; }
+
+  /* Driver table */
+  table.drv { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.drv th { font-size: 11px; color: #555; font-weight: 500; text-align: left; padding: 6px 8px; border-bottom: 1px solid #222; text-transform: uppercase; letter-spacing: 0.04em; }
+  table.drv th.r { text-align: right; }
+  table.drv td { padding: 8px; border-bottom: 1px solid #181818; vertical-align: middle; }
+  table.drv tr:last-child td { border-bottom: none; }
+  table.drv tr:hover td { background: #161616; }
+  .drv-zone-hdr td { background: #141414; font-size: 11px; color: #444; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 5px 8px; }
+  .pip { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; flex-shrink: 0; }
+  .drv-name { font-weight: 500; color: #e8e8e8; }
+  .drv-team { font-size: 11px; color: #555; margin-top: 1px; }
+  .pts-bar-wrap { width: 80px; height: 4px; background: #222; border-radius: 2px; overflow: hidden; }
+  .pts-bar { height: 100%; border-radius: 2px; }
+
+  /* Notes */
+  .title-note { background: #141414; border: 1px solid #222; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 12px; color: #666; line-height: 1.6; }
+  .title-note strong { color: #999; }
+  .note { font-size: 11px; color: #444; margin-top: 12px; font-style: italic; line-height: 1.5; }
+
+  /* Cards */
+  .card { background: #1a1a1a; border: 1px solid #242424; border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; }
+  .ct { font-size: 13px; font-weight: 600; color: #ddd; margin-bottom: 6px; }
+  .cb { font-size: 13px; color: #777; line-height: 1.65; }
+  .cb strong { color: #bbb; font-weight: 600; }
+
+  /* Chart panel */
+  .chart-panel { position: relative; width: 100%; background: #141414; border-radius: 10px; overflow: hidden; padding: 16px 12px 8px; }
+  .chart-caption { font-size: 11px; color: #555; margin-bottom: 10px; }
+
+  /* Race by Race */
+  table.race-tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.race-tbl th { font-size: 11px; color: #555; font-weight: 500; text-align: left; padding: 6px 8px; border-bottom: 1px solid #222; text-transform: uppercase; letter-spacing: 0.04em; }
+  table.race-tbl td { padding: 9px 8px; border-bottom: 1px solid #181818; vertical-align: middle; }
+  .race-summary-row { cursor: pointer; transition: background 0.12s; }
+  .race-summary-row:hover td { background: #1a1a1a; }
+  .race-summary-row.cancelled-row { opacity: 0.35; cursor: default; }
+  .race-summary-row.cancelled-row:hover td { background: none; }
+  table.race-tbl tr.race-detail-row > td { padding: 0; border-bottom: 1px solid #222; }
+  .race-detail-body { padding: 12px 14px 14px; background: #141414; }
+  .race-detail-title { font-size: 13px; font-weight: 600; color: #ddd; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .race-bullet-list { list-style: none; padding: 0; margin: 0 0 14px 0; }
+  .race-bullet-list li { font-size: 12px; color: #777; line-height: 1.6; padding: 3px 0 3px 14px; position: relative; border-bottom: 1px solid #1a1a1a; }
+  .race-bullet-list li:last-child { border-bottom: none; }
+  .race-bullet-list li::before { content: '—'; position: absolute; left: 0; color: #444; }
+  .race-bullet-list li strong { color: #bbb; font-weight: 600; }
+  .race-expand-icon { font-size: 10px; color: #444; transition: transform 0.2s; display: inline-block; margin-left: 8px; }
+  .race-expand-icon.open { transform: rotate(180deg); }
+  .race-tag { font-size: 9px; padding: 1px 5px; border-radius: 4px; font-weight: 700; margin-left: 5px; vertical-align: middle; }
+  .race-tag-sprint { background: #1a1400; color: #cc9900; border: 1px solid #3a2e00; }
+  .race-tag-new { background: #3a1a0a; color: #e07040; border: 1px solid #5a2a0a; }
+
+  /* Race results tables */
+  .res-section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #555; padding: 8px 0 4px; margin-top: 4px; border-top: 1px solid #1e1e1e; }
+  .res-section-label:first-child { border-top: none; margin-top: 0; }
+  .res-section-hint { font-weight: 400; text-transform: none; letter-spacing: 0; color: #444; margin-left: 6px; }
+  table.res-tbl { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 4px; }
+  table.res-tbl th { font-size: 10px; color: #444; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 6px; border-bottom: 1px solid #1e1e1e; text-align: left; }
+  table.res-tbl th.rc { text-align: center; }
+  table.res-tbl th.rr { text-align: right; }
+  table.res-tbl td { padding: 5px 6px; border-bottom: 1px solid #181818; vertical-align: middle; }
+  table.res-tbl tr:last-child td { border-bottom: none; }
+  table.res-tbl tr.dnf-row td { opacity: 0.5; }
+  .res-pos { font-weight: 700; color: #aaa; min-width: 20px; }
+  .res-driver { font-weight: 500; color: #ddd; }
+  .res-team { font-size: 10px; color: #555; }
+  .res-grid { color: #555; text-align: center; }
+  .res-pts { font-weight: 700; text-align: right; }
+  .delta-up { color: #4caf50; font-weight: 700; text-align: center; }
+  .delta-dn { color: #cc4422; font-weight: 700; text-align: center; }
+  .delta-eq { color: #555; text-align: center; }
+
+  @media (max-width: 600px) {
+    .pts-bar-wrap { width: 50px; }
+    .con-bar-wrap { width: 60px; }
   }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
 }

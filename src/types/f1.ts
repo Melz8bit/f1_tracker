@@ -32,6 +32,7 @@ export interface ConstructorStanding {
 // Driver's result in a race
 export interface RaceResult {
     position: number; // Finishing position
+    positionText: string; // "1".."22", or R (retired), D (disqualified), W (withdrawn / did not start), N (not classified)
     points: number;
     driver: Driver;
     constructor: Constructor;
@@ -52,30 +53,22 @@ export interface Race {
     results: RaceResult[]; // Array of RaceResult interface
 }
 
-export type TeamId =
-  | "mercedes"
-  | "red_bull"
-  | "ferrari"
-  | "mclaren"
-  | "aston_martin"
-  | "alpine"
-  | "williams"
-  | "haas"
-  | "audi"
-  | "racing_bulls"
-  | "cadillac"
-
-export const TEAM_COLORS: Record<TeamId, string> = { 
-    mercedes: "#00D2BE",
-    red_bull: "#3671C6",
-    ferrari: "#E8002D",
-    mclaren: "#FF8000",
-    aston_martin: "#358C75",
-    alpine: "#FF87BC",
-    williams: "#64C4FF",
-    haas: "#B6BABD",
-    audi: "#C0C0C0",
-    racing_bulls: "#6692FF",
-    cadillac: "#FFFFFF",
+// One round of the season calendar (no results)
+export interface ScheduleRace {
+    season: number;
+    round: number;
+    raceName: string;
+    circuitId: string;
+    circuitName: string;
+    locality: string;
+    country: string;
+    date: string; // Race day, YYYY-MM-DD
+    firstPracticeDate?: string; // Weekend start, YYYY-MM-DD
+    sprintDate?: string; // Present only on sprint weekends
 }
 
+export interface Pole {
+    round: number;
+    driver: Driver;
+    constructor: Constructor;
+}

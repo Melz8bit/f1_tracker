@@ -1,5 +1,8 @@
 import { create } from 'zustand'
 
+// roundMax at or beyond the last completed round means "latest"
+export const LATEST_ROUND = 99
+
 interface FilterState {
     season: number;
     roundMin: number;
@@ -11,8 +14,8 @@ interface FilterState {
 export const useFilterStore = create<FilterState>((set) => ({
     season: 2026,
     roundMin: 1,
-    roundMax: 24,
-    setSeason: (season) => set({ season }),
+    roundMax: LATEST_ROUND,
+    // A new season starts from its full range
+    setSeason: (season) => set({ season, roundMin: 1, roundMax: LATEST_ROUND }),
     setRoundRange: (min, max) => set({ roundMin: min, roundMax: max })
 }))
-
