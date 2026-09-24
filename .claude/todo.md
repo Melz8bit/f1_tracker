@@ -24,12 +24,14 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 - [x] Respect robots.txt; Crash.net blocks GPTBot → headline links only, never fed to the summarizer
 - [x] Match articles to a race weekend (published FP1 → race+3 days, F1 keywords), fetch pages, extract article text
 - [x] Summarize offline with Claude (never at runtime): race storylines, quotes, off-track context — grounded in the articles + our API facts, API wins on numbers
-- [ ] Output generated notes with source links per bullet; replace hand-written raceNotes.json content (keep `cancelled` reasons)
+- [x] Output generated notes with source links per bullet (raceNews.json + Vercel Blob)
 - [ ] Season narrative + Form Guide summary text from the same pipeline (Phase 5 consumes it)
 - [x] UI: "From the press" section with source links in Race by Race
-- [ ] Add ANTHROPIC_API_KEY to .env.local, then `npm run news -- 2026 --force` to generate R1–R14 (~$3 on claude-opus-5), review output
-- [ ] After review: drop the mockup-ported `rounds` bullets from raceNotes.json (keep `cancelled`)
-- [ ] Backfill depth: only The Race's sitemap reaches past rounds; RN365/GPFans/PlanetF1 feeds cover ~1–10 days, so run `npm run news` within a few days of each race (Phase 6 cron)
+- [x] R14 generated and reviewed (2026-09-24). Decision: no backfill — R1–R13 keep hand-written notes
+- [x] Auto mode: /api/news Vercel function summarizes each new race once on page load (server/news.ts → api/news.js)
+- [ ] Vercel setup (user): log in, link/import project, connect a Blob store, add ANTHROPIC_API_KEY, deploy
+- [ ] After R15 (Azerbaijan, due ~Sep 28): confirm the function summarized it; check logs
+- [ ] Coverage depth: feeds cover ~1–10 days; the function runs on the first page load ≥2 days after a race. If nobody opens the site for a week, only The Race (sitemap) is left — Phase 6 cron could ping /api/news daily
 - [ ] PlanetF1/RN365 archive backfill — RN365 has sitemap_contentItem-recent-news*.xml (racingnews365.com/cache/site/RN365EN/sitemap/); PlanetF1 wp-sitemap-posts-post-N.xml needs page-range discovery
 
 ## Phase 3 — Pace pipeline (`scripts/pace`) ✅ (2026-09-23)
@@ -60,6 +62,7 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 
 ## Phase 6 — Automation & polish
 - [ ] GitHub Action: cron after race weekends → run scripts → commit JSON → Vercel redeploy
+  (news no longer needs this — /api/news handles it; a cron could just ping /api/news as a backstop)
 - [ ] Layout (TopNav, Sidebar, BottomNav, routing)
 - [ ] Remaining pages (Calendar, RaceDetail, DriverProfile, ConstructorProfile)
 - [ ] Mobile polish

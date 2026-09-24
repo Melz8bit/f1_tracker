@@ -1,96 +1,39 @@
-// API access for offline scripts: throttled, retried, and cached on disk so re-runs only
-// fetch what's new. Only finished sessions are requested, so cached responses never go stale.
+// API access for local scripts: the throttled fetchers from http.ts plus an on-disk cache, so re-runs
+// only fetch what's new. Only finished sessions and published articles are cached, so they never go stale.
 import { createHash } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
+import { fetchJson, fetchPage, jolpicaUrl, openF1Url } from './http.ts'
 
 const CACHE_DIR = join(import.meta.dirname, '..', '.cache')
-const MIN_GAP_MS = 400
-const MAX_RETRIES = 8
-const MAX_BACKOFF_MS = 60_000
 
-let nextSlot = 0
-const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
-
-async function takeSlot(): Promise<void> {
-    const now = Date.now()
-    const start = Math.max(now, nextSlot)
-    nextSlot = start + MIN_GAP_MS
-    await wait(start - now)
-}
-
-async function fetchJson<T>(url: string, emptyOn404: boolean): Promise<T> {
-    for (let attempt = 0; ; attempt++) {
-        await takeSlot()
-        const res = await fetch(url)
-        if ((res.status === 429 || res.status >= 500) && attempt < MAX_RETRIES) {
-            // OpenF1 also limits requests per minute, so back off properly (honouring Retry-After)
-            const retryAfter = Number(res.headers.get('retry-after')) * 1000
-            const backoff = Math.min(MAX_BACKOFF_MS, retryAfter || 2000 * 2 ** attempt)
-            console.warn(`  ${res.status} — waiting ${Math.round(backoff / 1000)}s`)
-            await wait(backoff)
-            continue
-        }
-        if (res.status === 404 && emptyOn404) return [] as T
-        if (!res.ok) throw new Error(`${res.status} ${url}`)
-        return res.json() as Promise<T>
-    }
-}
-
-async function cached<T>(url: string, emptyOn404: boolean, useCache: boolean): Promise<T> {
-    const file = join(CACHE_DIR, `${createHash('sha1').update(url).digest('hex')}.json`)
+async function cached<T>(file: string, useCache: boolean, load: () => Promise<T>, encode: (v: T) => string, decode: (s: string) => T): Promise<T> {
     if (useCache) {
         try {
-            return JSON.parse(await readFile(file, 'utf8')) as T
+            return decode(await readFile(file, 'utf8'))
         } catch {
             // Not cached yet
         }
     }
-    const data = await fetchJson<T>(url, emptyOn404)
-    await mkdir(CACHE_DIR, { recursive: true })
-    await writeFile(file, JSON.stringify(data))
+    const data = await load()
+    await mkdir(join(file, '..'), { recursive: true })
+    await writeFile(file, encode(data))
     return data
 }
 
-// OpenF1 answers 404 for an empty result set
+const hash = (s: string) => createHash('sha1').update(s).digest('hex')
+
 export function openF1<T>(path: string, useCache = true): Promise<T> {
-    return cached<T>(`https://api.openf1.org/v1${path}`, true, useCache)
+    const url = openF1Url(path)
+    return cached(join(CACHE_DIR, `${hash(url)}.json`), useCache, () => fetchJson<T>(url, true), JSON.stringify, s => JSON.parse(s) as T)
 }
 
 // Schedules and results change during a season, so Jolpica is never cached
 export function jolpica<T>(path: string): Promise<T> {
-    return fetchJson<T>(`https://api.jolpi.ca/ergast/f1${path}`, false)
-}
-
-// ── news sites ────────────────────────────────────────────────────
-
-// Identify ourselves honestly and go slowly: one page per second across all sites
-const USER_AGENT = 'f1-dashboard-news/1.0 (personal project; offline summaries with source links)'
-const PAGE_GAP_MS = 1000
-let nextPageSlot = 0
-
-async function politeFetch(url: string): Promise<string> {
-    const now = Date.now()
-    const start = Math.max(now, nextPageSlot)
-    nextPageSlot = start + PAGE_GAP_MS
-    await wait(start - now)
-    const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT } })
-    if (!res.ok) throw new Error(`${res.status} ${url}`)
-    return res.text()
+    return fetchJson<T>(jolpicaUrl(path), false)
 }
 
 // Articles don't change once published, so pages are cached; feeds and sitemaps (`useCache` false) aren't
-export async function webPage(url: string, useCache = true): Promise<string> {
-    const file = join(CACHE_DIR, 'pages', `${createHash('sha1').update(url).digest('hex')}.html`)
-    if (useCache) {
-        try {
-            return await readFile(file, 'utf8')
-        } catch {
-            // Not cached yet
-        }
-    }
-    const html = await politeFetch(url)
-    await mkdir(join(CACHE_DIR, 'pages'), { recursive: true })
-    await writeFile(file, html)
-    return html
+export function webPage(url: string, useCache = true): Promise<string> {
+    return cached(join(CACHE_DIR, 'pages', `${hash(url)}.html`), useCache, () => fetchPage(url), s => s, s => s)
 }

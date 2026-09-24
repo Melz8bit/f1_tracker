@@ -14,9 +14,10 @@ import { driverShortName, formatWeekend } from "../../lib/format"
 import type { Pole, Race, RaceResult, ScheduleRace } from "../../types/f1"
 import type { OpenF1Meeting } from "../../lib/openf1"
 import RichText from "../shared/RichText"
+import { SUMMARY_DELAY_DAYS, summaryDue } from "../../lib/news"
 import raceNotesJson from "../../data/raceNotes.json"
-import raceNewsJson from "../../data/raceNews.json"
-import type { NewsFile, RoundNews } from "../../lib/news"
+import { useRaceNews } from "../../hooks/useRaceNews"
+import type { RoundNews } from "../../lib/news"
 
 interface SeasonNotes {
     asOfRound: number;
@@ -24,7 +25,6 @@ interface SeasonNotes {
     cancelled: Record<string, string>;
 }
 const raceNotes = raceNotesJson as Record<string, SeasonNotes | undefined>
-const raceNews = raceNewsJson as NewsFile
 
 type Row =
     | { kind: 'race'; date: string; race: Race; info: ScheduleRace; sprint?: Race; pole?: Pole }
@@ -35,6 +35,7 @@ export default function RaceByRaceTab() {
     const { roundMin } = useFilterStore()
     const { data: poles } = usePoles(season)
     const { meetings } = useOpenF1Season(season)
+    const news = useRaceNews(season)
     // undefined = nothing clicked yet → the latest round starts open
     const [openRound, setOpenRound] = useState<number | null | undefined>(undefined)
 
@@ -77,7 +78,8 @@ export default function RaceByRaceTab() {
                                 open={expanded === row.race.round}
                                 onToggle={() => setOpenRound(expanded === row.race.round ? null : row.race.round)}
                                 notes={notes?.rounds[String(row.race.round)]}
-                                press={raceNews[String(season)]?.[String(row.race.round)]}
+                                press={news.rounds[String(row.race.round)]}
+                                pressPending={pressStatus(row.race, news.generating, news.rounds)}
                             />
                         )
                     )}
@@ -93,6 +95,15 @@ export default function RaceByRaceTab() {
             )}
         </>
     )
+}
+
+// Placeholder for races newer than the last summary: being written now, or coming once analysis is out
+function pressStatus(race: Race, generating: number | null, rounds: Record<string, RoundNews>): string | undefined {
+    if (rounds[race.round]) return undefined
+    const summarized = Object.keys(rounds).map(Number)
+    if (!summarized.length || race.round < Math.max(...summarized)) return undefined
+    if (generating === race.round) return "Summarizing this weekend's coverage — check back in a minute."
+    return summaryDue(race) ? undefined : `Press summary arrives about ${SUMMARY_DELAY_DAYS} days after the race, once the analysis pieces are out.`
 }
 
 // Completed rounds in the filter range, plus cancelled meetings that fall between them, in date order
@@ -145,9 +156,10 @@ interface RaceRowsProps {
     onToggle: () => void;
     notes?: string[];
     press?: RoundNews;
+    pressPending?: string;
 }
 
-function RaceRows({ row, label, isNew, open, onToggle, notes, press }: RaceRowsProps) {
+function RaceRows({ row, label, isNew, open, onToggle, notes, press, pressPending }: RaceRowsProps) {
     const { race, info, sprint, pole } = row
     const [p1, p2, p3] = [1, 2, 3].map(pos => race.results.find(r => r.position === pos))
     return (
@@ -174,6 +186,12 @@ function RaceRows({ row, label, isNew, open, onToggle, notes, press }: RaceRowsP
                             </div>
                             <RaceFacts race={race} pole={pole} />
                             {press && <PressCoverage press={press} />}
+                            {!press && pressPending && (
+                                <>
+                                    <div className="res-section-label">From the press</div>
+                                    <p className="press-headline">{pressPending}</p>
+                                </>
+                            )}
                             {!press && notes && notes.length > 0 && (
                                 <>
                                     <div className="res-section-label">Notes<span className="res-section-hint">hand-written</span></div>

@@ -1,13 +1,12 @@
 // Honour each site's robots.txt rules for all user agents ("User-agent: *")
-import { webPage } from '../lib/api.ts'
 
 const rules = new Map<string, string[]>()
 
-async function disallowed(origin: string): Promise<string[]> {
+async function disallowed(origin: string, fetchText: (url: string) => Promise<string>): Promise<string[]> {
     if (rules.has(origin)) return rules.get(origin)!
     let paths: string[] = []
     try {
-        const txt = await webPage(`${origin}/robots.txt`, false)
+        const txt = await fetchText(`${origin}/robots.txt`)
         let applies = false
         for (const raw of txt.split(/\r?\n/)) {
             const line = raw.split('#')[0].trim()
@@ -23,8 +22,8 @@ async function disallowed(origin: string): Promise<string[]> {
     return paths
 }
 
-export async function allowedByRobots(url: string): Promise<boolean> {
+export async function allowedByRobots(url: string, fetchText: (url: string) => Promise<string>): Promise<boolean> {
     const { origin, pathname } = new URL(url)
-    const blocked = await disallowed(origin)
+    const blocked = await disallowed(origin, fetchText)
     return !blocked.some(prefix => pathname.startsWith(prefix))
 }

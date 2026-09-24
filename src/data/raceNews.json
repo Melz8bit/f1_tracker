@@ -1,1 +1,138 @@
-{}
+{
+  "2026": {
+    "14": {
+      "headline": "Kimi Antonelli turned a well-timed VSC into a fourth-straight-style stroll at F1's processional Madring debut, leaving pole-sitter Lando Norris third and the title all but decided.",
+      "bullets": [
+        {
+          "text": "**Antonelli** never had to make a pass to win: the virtual safety car for Lance Stroll's lap-12 retirement fell at the perfect moment for him and a moment too late for Norris, whose stop a lap later was also slow. He called it his least remarkable victory of the year and said he felt for Norris, who he thought deserved it.",
+          "sources": [
+            6
+          ]
+        },
+        {
+          "text": "**Norris** produced what he rated the best qualifying lap of his career — Andrea Stella called the bulk of it \"a masterpiece\" despite a scruffy final corner — to beat Antonelli to pole by 0.011s, then lost the race purely to VSC timing before clipping the Turn 7 wall.",
+          "sources": [
+            2,
+            6
+          ]
+        },
+        {
+          "text": "**McLaren**'s weekend was doubly poor: Piastri was off the pace all through qualifying, picked up front wing damage in a lap-one clash with Russell, and was then left stuck in a midfield train behind Bortoleto and Colapinto after the team pitted him knowing that was a risk.",
+          "sources": [
+            2,
+            6
+          ]
+        },
+        {
+          "text": "**Hamilton** was ahead of Verstappen off the line and looked a podium contender before a long brake pedal and a brake malfunction ended his race on lap six — after which he publicly conceded the title, saying Antonelli and Mercedes deserved it, with Ferrari's cushion over McLaren for second in the constructors' now 52 points.",
+          "sources": [
+            4,
+            6
+          ]
+        },
+        {
+          "text": "**The Madring** drew praise as a qualifying challenge but delivered almost no on-track passing — Lawson on Colapinto and Russell on Lawson were the notable exceptions — and circuit chiefs have already confirmed revisions to the Turn 5/6 chicane, Turn 13 and Turn 20 for 2027; those changes had been proposed before this year's race but were shelved to avoid homologation and construction delays.",
+          "sources": [
+            4,
+            5
+          ]
+        },
+        {
+          "text": "**Pirelli** defended the C2/C3/C4 allocation after Friday's heavy degradation evaporated into a routine one-stopper — Gasly ran his starting set to the penultimate lap before his mandatory change — arguing softer rubber would only have produced a tyre-management race given the roughly 25-second pitlane loss, one of the longest of the season.",
+          "sources": [
+            3
+          ]
+        },
+        {
+          "text": "**Colapinto** led the midfield home in seventh, holding off a quicker Piastri, and credited his qualifying execution to what he learned from Gasly's Monza pole lap; Alpine's deficit to Racing Bulls in the fight for fifth is down to nine points.",
+          "sources": [
+            4,
+            6
+          ]
+        },
+        {
+          "text": "Away from the track, FIA president Mohammed Ben Sulayem has been discussing extra assistance for **Honda** with Fernando Alonso and Lawrence Stroll, with Mercedes and Red Bull said to be receptive, while Laurent Mekies admitted Red Bull's unexplained in-race car performance degradation is still unsolved and likely to run into next season.",
+          "sources": [
+            4
+          ]
+        }
+      ],
+      "quotes": [
+        {
+          "speaker": "Lewis Hamilton",
+          "quote": "There's no stopping him and Mercedes this year",
+          "source": 4
+        },
+        {
+          "speaker": "Oscar Piastri",
+          "quote": "The medium tyre was just awful. It was good for literally one lap, but then it was terrible.",
+          "source": 3
+        },
+        {
+          "speaker": "Charles Leclerc",
+          "quote": "But in the race, there are some corners and it doesn't require a big change, I think just a small change or two small changes could change significantly the racing that we have.",
+          "source": 5
+        },
+        {
+          "speaker": "Fernando Alonso",
+          "quote": "The engine was very bad today",
+          "source": 6
+        }
+      ],
+      "generatedAt": "2026-09-24T15:09:42.601Z",
+      "model": "claude-opus-5",
+      "sources": [
+        {
+          "id": 1,
+          "site": "The Race",
+          "title": "F1's TV visuals are letting its Madrid track down",
+          "url": "https://www.the-race.com/formula-1/f1-madrid-spanish-gp-tv-coverage-madring/",
+          "published": "2026-09-12"
+        },
+        {
+          "id": 2,
+          "site": "The Race",
+          "title": "Winners and losers from Spanish GP F1 qualifying at the Madring",
+          "url": "https://www.the-race.com/formula-1/f1-2026-spanish-grand-prix-qualifying-winners-losers/",
+          "published": "2026-09-12"
+        },
+        {
+          "id": 3,
+          "site": "The Race",
+          "title": "This 'fix' wouldn't have saved F1's Spanish GP",
+          "url": "https://www.the-race.com/formula-1/suggested-fix-would-not-have-saved-f1-spanish-gp-madring/",
+          "published": "2026-09-15"
+        },
+        {
+          "id": 4,
+          "site": "The Race",
+          "title": "Everything we learned from F1's 2026 Spanish Grand Prix",
+          "url": "https://www.the-race.com/formula-1/everything-we-learned-f1-2026-spanish-grand-prix-madring/",
+          "published": "2026-09-14"
+        },
+        {
+          "id": 5,
+          "site": "The Race",
+          "title": "Three changes Madring will make after terrible F1 debut",
+          "url": "https://www.the-race.com/formula-1/madring-f1-spanish-gp-circuit-three-changes-planned-2027/",
+          "published": "2026-09-14"
+        },
+        {
+          "id": 6,
+          "site": "The Race",
+          "title": "Winners and losers from F1's 2026 Spanish Grand Prix",
+          "url": "https://www.the-race.com/formula-1/winners-losers-from-f1-2026-spanish-grand-prix/",
+          "published": "2026-09-13"
+        },
+        {
+          "id": 7,
+          "site": "The Race",
+          "title": "Winners and losers from F1 Madring practice",
+          "url": "https://www.the-race.com/formula-1/winners-and-losers-from-f1-madring-friday-practice/",
+          "published": "2026-09-11"
+        }
+      ],
+      "links": []
+    }
+  }
+}

@@ -19,3 +19,13 @@ export interface RoundNews {
 }
 
 export type NewsFile = Record<string, Record<string, RoundNews | undefined> | undefined>
+
+const DAY = 24 * 60 * 60 * 1000
+
+// Analysis pieces ("everything we learned", "winners and losers") land a day or two after the race,
+// so a weekend is only summarized once this long after race day. It's never redone afterwards.
+export const SUMMARY_DELAY_DAYS = 2
+
+export function summaryDue(race: { date: string }, now = Date.now()): boolean {
+    return now >= Date.parse(`${race.date}T00:00:00Z`) + SUMMARY_DELAY_DAYS * DAY
+}
