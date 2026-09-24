@@ -31,7 +31,7 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 - [x] Auto mode: /api/news Vercel function summarizes each new race once on page load (server/news.ts → api/news.js)
 - [ ] Vercel setup (user): log in, link/import project, connect a Blob store, add ANTHROPIC_API_KEY, deploy
 - [ ] After R15 (Azerbaijan, due ~Sep 28): confirm the function summarized it; check logs
-- [ ] Coverage depth: feeds cover ~1–10 days; the function runs on the first page load ≥2 days after a race. If nobody opens the site for a week, only The Race (sitemap) is left — Phase 6 cron could ping /api/news daily
+- [x] Coverage depth: daily Vercel cron pings /api/news (09:00 UTC) and /api/power-units (06:00, 18:00 UTC) — 2026-09-24
 - [ ] PlanetF1/RN365 archive backfill — RN365 has sitemap_contentItem-recent-news*.xml (racingnews365.com/cache/site/RN365EN/sitemap/); PlanetF1 wp-sitemap-posts-post-N.xml needs page-range discovery
 
 ## Phase 3 — Pace pipeline (`scripts/pace`) ✅ (2026-09-23)
@@ -69,7 +69,8 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 - [x] "Last reviewed Rn" / "Review due" badges on regulations + contracts
 
 ## Phase 6 — Automation & polish
-- [ ] GitHub Action: cron after race weekends → run scripts → commit JSON → Vercel redeploy
+- [x] Scheduled updates: Vercel cron instead of a GitHub Action (functions store to Blob, no redeploy needed)
+- [ ] Pace ratings are still local-only (`npm run pace`) — could move to a function + cron like PU data
   (news no longer needs this — /api/news handles it; a cron could just ping /api/news as a backstop)
 - [ ] Layout (TopNav, Sidebar, BottomNav, routing)
 - [ ] Remaining pages (Calendar, RaceDetail, DriverProfile, ConstructorProfile)

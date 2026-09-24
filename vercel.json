@@ -6,5 +6,19 @@
     "api/power-units.js": {
       "maxDuration": 300
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/news",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/power-units",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/power-units",
+      "schedule": "0 18 * * *"
+    }
+  ]
 }

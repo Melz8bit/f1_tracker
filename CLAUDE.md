@@ -60,6 +60,9 @@ Press summaries (decided 2026-09-23/24) — automatic via the Vercel function `/
   finished race is due (race day + 2 days) and not yet summarized, scrapes + summarizes it in the
   background (waitUntil) and stores it in Vercel Blob (`race-news/<season>.json`, private). Each race is
   summarized once (~$0.08 on Sonnet 5); max 3 attempts, 10-min lock against duplicates.
+- Vercel cron (vercel.json, Hobby = once/day per job, ±59 min): /api/news 09:00 UTC, /api/power-units
+  06:00 + 18:00 UTC — so summaries and FIA data land even if nobody visits. Same idempotent code paths as
+  page loads (locks, once per race), so duplicate or missed cron runs are harmless.
 - Only races after the newest one in `src/data/raceNews.json` are auto-generated (R15 onward for 2026);
   earlier races keep hand-written notes — never backfill.
 - Sources: The Race, RacingNews365, GPFans, PlanetF1 (Crash.net: links only, it blocks AI crawlers).
