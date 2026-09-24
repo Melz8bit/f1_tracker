@@ -16,8 +16,13 @@ export interface SourceArticle {
     text: string;
 }
 
+export type ContractKind = 'extension' | 'signing' | 'move' | 'departure' | 'retirement'
+
 export interface ContractChange {
     driver: string; // Full name as written in DATA or the article
+    team: string; // Team the announcement is about (the new team for a signing or move)
+    kind: ContractKind;
+    f1RaceSeat: boolean; // False for junior, reserve and test deals — those are dropped
     change: string; // One sentence: what was announced
     expiry: string; // "2027", "2028+", or "" when the article doesn't say
     source: number;
@@ -68,11 +73,14 @@ const SCHEMA = {
                 type: 'object',
                 properties: {
                     driver: { type: 'string', description: 'Driver full name' },
+                    team: { type: 'string', description: 'The Formula 1 team concerned — for a signing or move, the team they are joining' },
+                    kind: { type: 'string', enum: ['extension', 'signing', 'move', 'departure', 'retirement'] },
+                    f1RaceSeat: { type: 'boolean', description: 'True only for a Formula 1 race seat (a current race driver, or someone confirmed as a race driver for a coming season). False for junior programmes, reserve or test roles, and other series.' },
                     change: { type: 'string', description: 'One sentence in your own words: what was announced and by whom' },
                     expiry: { type: 'string', description: 'Final season of the deal as stated in the article, e.g. "2027" or "2028+"; empty string if not stated' },
                     source: { type: 'integer', description: 'Id of the article that reports it' },
                 },
-                required: ['driver', 'change', 'expiry', 'source'],
+                required: ['driver', 'team', 'kind', 'f1RaceSeat', 'change', 'expiry', 'source'],
                 additionalProperties: false,
             },
         },
@@ -94,7 +102,7 @@ Rules:
 - Write in your own words. Don't copy sentences from the articles; the only verbatim text allowed is in "quotes".
 - Quotes must be copied exactly, character for character, from an article, and must be something a driver, team principal or team member said. Skip quotes rather than paraphrase them.
 - Neutral, factual tone. No speculation beyond what the articles report.
-- "contracts" lists only announcements confirmed by the team or driver (extensions, signings, confirmed moves, retirements) — never rumours, talks or "expected" moves. Give the expiry only if the article states it; otherwise leave it empty.`
+- "contracts" lists only announcements confirmed by the team or driver about Formula 1 race seats: extensions, new signings (including drivers new to F1 announced for a coming season), confirmed moves, confirmed departures (a team announcing a driver will leave) and retirements. Never rumours, talks or "expected" moves. Mark junior, reserve and test deals f1RaceSeat=false. Give the expiry only if the article states it; otherwise leave it empty.`
 
 export function formatArticles(articles: SourceArticle[], maxCharsEach: number): string {
     return articles.map(a => `<article id="${a.id}" site="${a.site}" published="${a.published}">
@@ -136,7 +144,7 @@ export async function summarizeWeekend(client: Anthropic, data: string, articles
         }),
         // A contract change must cite a real article, and any expiry year must appear in that article
         contracts: (summary.contracts ?? [])
-            .filter(c => byId.has(c.source))
+            .filter(c => c.f1RaceSeat && byId.has(c.source))
             .map(c => {
                 const year = c.expiry.match(/20\d\d/)?.[0]
                 return year && !byId.get(c.source)!.text.includes(year) ? { ...c, expiry: '' } : c

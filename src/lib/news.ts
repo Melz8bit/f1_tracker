@@ -9,7 +9,10 @@ export interface PressSource {
 }
 
 export interface ContractNews {
-    driverId: string;
+    driverId: string; // Jolpica driverId, or "new:<name-slug>" for a driver with no F1 results yet
+    driver: string; // Full name as reported
+    team: string; // Team the announcement concerns (the new team for a signing or move)
+    kind: 'extension' | 'signing' | 'move' | 'departure' | 'retirement';
     change: string;
     expiry: string; // "2027", "2028+", or "" when not stated
     url: string;

@@ -120,7 +120,11 @@ Event page: /documents/championships/fia-formula-one-world-championship-14/seaso
 - contracts.json — manual, keyed by Jolpica driverId; teams come live from standings. Automatic layer:
   each race summary also returns confirmed contract announcements (same Claude call) from race articles +
   contract stories since the previous race; kept only if the driver is in the results and any expiry year
-  appears in the cited article. Shown as "Latest" on the driver card; a newer one overrides the expiry chip. Both files carry
+  appears in the cited article. Shown as "Latest"/"Moving"/"Leaving" on the driver card; a newer one
+  overrides the expiry chip. Race seats only (junior/reserve/test deals dropped via f1RaceSeat).
+  Cards: only drivers with contract info (manual or automatic) — stand-ins without any are listed in a note.
+  Newcomers (announced, no F1 results yet) get "new:<slug>" ids and a card under "Signed for next season";
+  hand-added newcomers go in contracts.json `incoming` (name, nationality, team constructorId, status…). Both files carry
   `asOfRound`/`reviewedOn`; the tabs show "Review due" once a newer round has been raced.
 - raceNews.json — committed press summaries (R14) that seed /api/news; newer races live in Vercel Blob.
   Per round: headline, bullets citing source ids, verified quotes, source list, link-only headlines.

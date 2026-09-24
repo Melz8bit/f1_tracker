@@ -567,6 +567,24 @@ const SCHEMA = {
 						type: "string",
 						description: "Driver full name"
 					},
+					team: {
+						type: "string",
+						description: "The Formula 1 team concerned — for a signing or move, the team they are joining"
+					},
+					kind: {
+						type: "string",
+						enum: [
+							"extension",
+							"signing",
+							"move",
+							"departure",
+							"retirement"
+						]
+					},
+					f1RaceSeat: {
+						type: "boolean",
+						description: "True only for a Formula 1 race seat (a current race driver, or someone confirmed as a race driver for a coming season). False for junior programmes, reserve or test roles, and other series."
+					},
 					change: {
 						type: "string",
 						description: "One sentence in your own words: what was announced and by whom"
@@ -582,6 +600,9 @@ const SCHEMA = {
 				},
 				required: [
 					"driver",
+					"team",
+					"kind",
+					"f1RaceSeat",
 					"change",
 					"expiry",
 					"source"
@@ -611,7 +632,7 @@ Rules:
 - Write in your own words. Don't copy sentences from the articles; the only verbatim text allowed is in "quotes".
 - Quotes must be copied exactly, character for character, from an article, and must be something a driver, team principal or team member said. Skip quotes rather than paraphrase them.
 - Neutral, factual tone. No speculation beyond what the articles report.
-- "contracts" lists only announcements confirmed by the team or driver (extensions, signings, confirmed moves, retirements) — never rumours, talks or "expected" moves. Give the expiry only if the article states it; otherwise leave it empty.`;
+- "contracts" lists only announcements confirmed by the team or driver about Formula 1 race seats: extensions, new signings (including drivers new to F1 announced for a coming season), confirmed moves, confirmed departures (a team announcing a driver will leave) and retirements. Never rumours, talks or "expected" moves. Mark junior, reserve and test deals f1RaceSeat=false. Give the expiry only if the article states it; otherwise leave it empty.`;
 function formatArticles(articles, maxCharsEach) {
 	return articles.map((a) => `<article id="${a.id}" site="${a.site}" published="${a.published}">
 <title>${a.title}</title>
@@ -648,7 +669,7 @@ async function summarizeWeekend(client, data, articles) {
 			const article = byId.get(q.source);
 			return article !== void 0 && normalise(article.text).includes(normalise(q.quote));
 		}),
-		contracts: (summary.contracts ?? []).filter((c) => byId.has(c.source)).map((c) => {
+		contracts: (summary.contracts ?? []).filter((c) => c.f1RaceSeat && byId.has(c.source)).map((c) => {
 			const year = c.expiry.match(/20\d\d/)?.[0];
 			return year && !byId.get(c.source).text.includes(year) ? {
 				...c,
@@ -871,16 +892,19 @@ async function summarizeRound(client, inputs) {
 	const { contracts, ...summary } = await summarizeWeekend(client, inputs.data, inputs.articles);
 	const byId = new Map(inputs.articles.map((a) => [a.id, a]));
 	const contractNews = contracts.flatMap((c) => {
-		const driver = inputs.drivers.find((d) => plain(c.driver).includes(plain(d.familyName)));
 		const article = byId.get(c.source);
-		return driver && article ? [{
-			driverId: driver.driverId,
+		if (!article) return [];
+		return [{
+			driverId: inputs.drivers.find((d) => plain(c.driver).includes(plain(d.familyName)))?.driverId ?? `new:${plain(c.driver).replace(/[^a-z]+/g, "-").replace(/^-|-$/g, "")}`,
+			driver: c.driver,
+			team: c.team,
+			kind: c.kind,
 			change: c.change,
 			expiry: c.expiry,
 			url: article.url,
 			site: article.site,
 			published: article.published
-		}] : [];
+		}];
 	});
 	return {
 		...summary,

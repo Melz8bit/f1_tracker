@@ -3,7 +3,8 @@ import { useDriverStandings } from "../../hooks/useDriverStandings";
 import { useConstructorStandings } from "../../hooks/useConstructorStandings";
 import { useRaceNews } from "../../hooks/useRaceNews";
 import { applyLineup, useLineup } from "../../hooks/useLineup";
-import { teamColor, teamName } from "../../lib/teams";
+import { teamColor, teamName, teamNameById } from "../../lib/teams";
+import { constructorIdFromEntry } from "../../lib/powerUnits";
 import { driverShortName, formatDay } from "../../lib/format";
 import type { DriverStanding } from "../../types/f1";
 import type { ContractNews, RoundNews } from "../../lib/news";
@@ -19,11 +20,23 @@ interface Contract {
     source?: string; // Link for an individually updated entry
     updated?: string; // YYYY-MM-DD
 }
+// A driver announced for a coming season who has no F1 results yet (added by hand)
+interface Incoming {
+    name: string;
+    nationality?: string;
+    team: string; // Jolpica constructorId they're joining
+    status: string;
+    expiry?: string;
+    source?: string;
+    updated?: string;
+}
+
 interface SeasonContracts {
     asOfRound: number;
     reviewedOn: string;
     source: string;
     drivers: Record<string, Contract | undefined>;
+    incoming?: Record<string, Incoming | undefined>;
 }
 
 const contracts = contractsJson as Record<string, SeasonContracts | undefined>
@@ -80,12 +93,28 @@ export default function DriverContractsTab() {
     if (!data) return <div className="card"><div className="ct">No contract notes for {season}</div></div>
 
     const teamPosition = new Map((constructors.data ?? []).map(c => [c.constructor.constructorId, c.position]))
-    const byTeam = new Map<string, DriverStanding[]>()
-    const current = state?.isLatest ? applyLineup(drivers.data ?? [], lineup) : drivers.data ?? []
-    for (const d of current) byTeam.set(d.constructor.constructorId, [...(byTeam.get(d.constructor.constructorId) ?? []), d])
-    const teams = [...byTeam.keys()].sort((a, b) => (teamPosition.get(a) ?? 99) - (teamPosition.get(b) ?? 99))
     const stale = state && state.roundsDone > data.asOfRound
     const autoUpdates = latestContractNews(news.rounds)
+
+    // Only drivers with contract information get a card — a stand-in with none (e.g. a one-off sub) is left
+    // out until a contract of theirs is reported
+    const current = state?.isLatest ? applyLineup(drivers.data ?? [], lineup) : drivers.data ?? []
+    const hasInfo = (id: string) => !!data.drivers[id] || autoUpdates.has(id)
+    const withoutInfo = current.filter(d => !hasInfo(d.driver.driverId))
+    const byTeam = new Map<string, DriverStanding[]>()
+    for (const d of current.filter(d => hasInfo(d.driver.driverId))) {
+        byTeam.set(d.constructor.constructorId, [...(byTeam.get(d.constructor.constructorId) ?? []), d])
+    }
+    const teams = [...byTeam.keys()].sort((a, b) => (teamPosition.get(a) ?? 99) - (teamPosition.get(b) ?? 99))
+
+    // Newcomers: announced for a coming season with no F1 results yet — from the press automatically, or by hand
+    const newcomers = [
+        ...[...autoUpdates.values()].filter(c => c.driverId.startsWith('new:') && c.kind !== 'departure' && c.kind !== 'retirement')
+            .map(c => ({ key: c.driverId, name: c.driver, teamId: constructorIdFromEntry(c.team), teamLabel: c.team, status: c.change, expiry: c.expiry, source: c.url, site: c.site, updated: c.published, nationality: undefined as string | undefined })),
+        ...Object.entries(data.incoming ?? {}).flatMap(([key, n]) => n ? [{
+            key, name: n.name, teamId: n.team, teamLabel: teamNameById(n.team), status: n.status, expiry: n.expiry ?? '', source: n.source, site: 'source', updated: n.updated, nationality: n.nationality,
+        }] : []),
+    ].filter((n, i, all) => all.findIndex(x => x.name === n.name) === i)
 
     return (
         <>
@@ -114,6 +143,37 @@ export default function DriverContractsTab() {
                     </div>
                 )
             })}
+            {newcomers.length > 0 && (
+                <div>
+                    <div className="tier-divider">Signed for next season</div>
+                    {newcomers.map(n => {
+                        const color = n.teamId ? teamColor(n.teamId) : '#888'
+                        return (
+                            <div key={n.key} className="contract-block">
+                                <div className="contract-head">
+                                    {n.nationality ? <DriverFlag nationality={n.nationality} /> : <span className="inline-block w-5" />}
+                                    <div className="contract-name">
+                                        {n.name}
+                                        <span className="contract-team"><span className="pip" style={{ background: color }} />Joins {n.teamLabel} for {season + 1}</span>
+                                    </div>
+                                    {n.expiry && <span className={`contract-expiry ${expiryClass(n.expiry, season)}`}>Until {n.expiry}</span>}
+                                </div>
+                                <div className="contract-auto">
+                                    <span className="contract-auto-tag">New</span>
+                                    {n.status}
+                                    {n.updated && <span className="text-[#555]"> · {formatDay(n.updated)}</span>}
+                                    {n.source && <> · <a href={n.source} target="_blank" rel="noreferrer" className="underline decoration-[#333] hover:text-[#ccc]">{n.site}</a></>}
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            )}
+            {withoutInfo.length > 0 && (
+                <p className="note">
+                    Not listed (no contract news): {withoutInfo.map(d => driverShortName(d.driver)).join(', ')} — they get a card once a contract of theirs is reported.
+                </p>
+            )}
         </>
     )
 }
@@ -145,7 +205,7 @@ function DriverContract({ standing, contract, auto, reviewedOn, season, news }: 
             </div>
             {auto && (
                 <div className="contract-auto">
-                    <span className="contract-auto-tag">Latest</span>
+                    <span className="contract-auto-tag">{auto.kind === 'departure' || auto.kind === 'retirement' ? 'Leaving' : auto.kind === 'move' ? 'Moving' : 'Latest'}</span>
                     {auto.change}{auto.expiry && ` Runs to ${auto.expiry}.`}
                     <span className="text-[#555]"> · {formatDay(auto.published)} · </span>
                     <a href={auto.url} target="_blank" rel="noreferrer" className="underline decoration-[#333] hover:text-[#ccc]">{auto.site}</a>

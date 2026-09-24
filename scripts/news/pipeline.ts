@@ -232,12 +232,16 @@ const plain = (s: string) => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').t
 export async function summarizeRound(client: Anthropic, inputs: WeekendInputs): Promise<RoundNews> {
     const { contracts, ...summary } = await summarizeWeekend(client, inputs.data, inputs.articles)
     const byId = new Map(inputs.articles.map(a => [a.id, a]))
+    // Drivers already racing map to their driverId; anyone else (an announced newcomer) gets "new:<slug>"
     const contractNews = contracts.flatMap(c => {
-        const driver = inputs.drivers.find(d => plain(c.driver).includes(plain(d.familyName)))
         const article = byId.get(c.source)
-        return driver && article
-            ? [{ driverId: driver.driverId, change: c.change, expiry: c.expiry, url: article.url, site: article.site, published: article.published }]
-            : []
+        if (!article) return []
+        const driver = inputs.drivers.find(d => plain(c.driver).includes(plain(d.familyName)))
+        const driverId = driver?.driverId ?? `new:${plain(c.driver).replace(/[^a-z]+/g, '-').replace(/^-|-$/g, '')}`
+        return [{
+            driverId, driver: c.driver, team: c.team, kind: c.kind, change: c.change, expiry: c.expiry,
+            url: article.url, site: article.site, published: article.published,
+        }]
     })
     return {
         ...summary,

@@ -63,7 +63,8 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md â
 - [x] `contracts.json` (mockup data keyed by driverId) + Driver Contracts tab; teams live; contract news from press summaries
 - [x] Hadjar 2027 extension + Lawson return (2026-09-24, reviewed after R14)
 - [x] Automatic contract updates from the per-race summary (confirmed announcements only, verified expiry)
-- [ ] Contract notes: add Tsunoda (not entered at Baku)
+- [x] Tsunoda: stand-in, no card unless a contract is reported (user, 2026-09-24)
+- [x] Newcomers announced for next season get their own card (automatic + contracts.json `incoming`)
 - [ ] After R15 (~Sep 28): check the Hadjar extension was picked up automatically
 - [x] "Last reviewed Rn" / "Review due" badges on regulations + contracts
 
