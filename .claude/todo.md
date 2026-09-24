@@ -70,7 +70,7 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 
 ## Phase 6 — Automation & polish
 - [x] Scheduled updates: Vercel cron instead of a GitHub Action (functions store to Blob, no redeploy needed)
-- [ ] Pace ratings are still local-only (`npm run pace`) — could move to a function + cron like PU data
+- [x] Pace ratings automatic: /api/pace + daily cron 07:00 UTC (2026-09-24); past seasons backfill one round per call
   (news no longer needs this — /api/news handles it; a cron could just ping /api/news as a backstop)
 - [ ] Layout (TopNav, Sidebar, BottomNav, routing)
 - [ ] Remaining pages (Calendar, RaceDetail, DriverProfile, ConstructorProfile)

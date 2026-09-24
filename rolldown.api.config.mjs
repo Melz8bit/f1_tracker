@@ -8,7 +8,7 @@ import pkg from './package.json' with { type: 'json' }
 const external = Object.keys(pkg.dependencies ?? {})
 
 export default defineConfig({
-    input: { news: 'server/news.ts', 'power-units': 'server/power-units.ts' },
+    input: { news: 'server/news.ts', 'power-units': 'server/power-units.ts', pace: 'server/pace.ts' },
     platform: 'node',
     external: id => external.some(dep => id === dep || id.startsWith(`${dep}/`)),
     output: {

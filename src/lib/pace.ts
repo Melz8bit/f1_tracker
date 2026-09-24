@@ -6,6 +6,7 @@ export interface RoundPace {
     raceName: string;
     gaps: Record<Dimension, Record<string, number>>;
     corners: { slow: number; medium: number; high: number };
+    sessions?: { qualifying: number; race: number }; // OpenF1 session keys used
 }
 
 export interface SeasonPace {
@@ -16,6 +17,9 @@ export interface SeasonPace {
 // Lap-time gaps are small (the whole grid within ~4.5%); speed gaps run about twice as wide because
 // they're measured only where cars differ most. Scale each so the back of the grid lands near 60.
 const POINTS_PER_PERCENT = { time: 10, speed: 5 }
+
+// Telemetry and lap data on OpenF1 settle a few hours after the flag; compute the next day
+export const PACE_DELAY_DAYS = 1
 
 export const DIMENSIONS: Array<{ key: Dimension; label: string; kind: keyof typeof POINTS_PER_PERCENT; estimated?: boolean }> = [
     { key: 'straight', label: 'Straight-line / energy deploy', kind: 'speed' },

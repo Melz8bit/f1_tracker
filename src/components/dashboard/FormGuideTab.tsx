@@ -3,15 +3,13 @@ import { useDriverStandings } from "../../hooks/useDriverStandings";
 import { useConstructorStandings } from "../../hooks/useConstructorStandings";
 import { usePowerUnits } from "../../hooks/usePowerUnits";
 import { useRaceNews } from "../../hooks/useRaceNews";
+import { usePaceRatings } from "../../hooks/usePaceRatings";
 import { useFilterStore } from "../../store/filterStore";
 import { buildFormCards, constructorsTitleText, driversTitleText, type FormInputs } from "../../lib/formGuide";
-import { scoreTeams, type SeasonPace } from "../../lib/pace";
+import { scoreTeams } from "../../lib/pace";
 import { teamColor } from "../../lib/teams";
 import { shortRaceName } from "../../lib/format";
 import RichText from "../shared/RichText";
-import paceRatingsJson from "../../data/paceRatings.json"
-
-const paceRatings = paceRatingsJson as unknown as Record<string, SeasonPace | undefined>
 
 export default function FormGuideTab() {
     const { season, state, schedule, races, sprints, isLoading, error } = useSeason()
@@ -22,6 +20,7 @@ export default function FormGuideTab() {
     const constructors = useConstructorStandings(season, round, enabled)
     const puRounds = usePowerUnits(season)
     const news = useRaceNews(season)
+    const paceData = usePaceRatings(season)
 
     if (isLoading || drivers.isLoading || constructors.isLoading) return <p className="text-sm text-[#666]">Loading form guide…</p>
     if (error || drivers.error || constructors.error) return <p className="text-sm text-[#ff4422]">Failed to load the form guide.</p>
@@ -29,7 +28,7 @@ export default function FormGuideTab() {
 
     const asOf = state.asOfRound
     const fromRound = Math.min(roundMin, asOf)
-    const paceRounds = Object.entries(paceRatings[String(season)]?.rounds ?? {})
+    const paceRounds = Object.entries(paceData)
         .filter(([r]) => Number(r) >= fromRound && Number(r) <= asOf)
         .map(([, p]) => p)
     const puRound = Math.max(0, ...Object.keys(puRounds).map(Number).filter(r => r <= asOf))

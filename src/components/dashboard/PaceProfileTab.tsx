@@ -1,13 +1,12 @@
 import { useFilterStore } from "../../store/filterStore";
 import { useSeason } from "../../hooks/useSeason";
-import { DIMENSIONS, latestMovers, scoreTeams, type SeasonPace, type TeamPace } from "../../lib/pace";
+import { DIMENSIONS, latestMovers, scoreTeams, type TeamPace } from "../../lib/pace";
 import { powerUnit, teamColor, teamNameById } from "../../lib/teams";
 import { usePowerUnits } from "../../hooks/usePowerUnits";
 import { supplierFromEntry, type PUPenalty, type RoundPU } from "../../lib/powerUnits";
 import ComponentUsage from "./ComponentUsage";
-import paceRatingsJson from "../../data/paceRatings.json"
+import { usePaceRatings } from "../../hooks/usePaceRatings";
 
-const paceRatings = paceRatingsJson as unknown as Record<string, SeasonPace | undefined>
 
 // Tiers follow the overall ranking: 4 front-runners, 3 midfield, the rest
 const TIERS = [
@@ -19,26 +18,26 @@ const TIERS = [
 export default function PaceProfileTab() {
     const { season, state } = useSeason()
     const { roundMin } = useFilterStore()
-    const seasonPace = paceRatings[String(season)]
+    const paceRounds = usePaceRatings(season)
     const puRounds = usePowerUnits(season)
 
     if (!state) return <p className="text-sm text-[#666]">Loading…</p>
-    if (!seasonPace || Object.keys(seasonPace.rounds).length === 0) {
+    if (Object.keys(paceRounds).length === 0) {
         return (
             <div className="card">
                 <div className="ct">No pace data for {season}</div>
-                <div className="cb">Pace ratings are generated offline from OpenF1 telemetry. Run <strong>npm run pace -- {season}</strong> to build them.</div>
+                <div className="cb">Pace ratings are computed automatically from OpenF1 telemetry, one race at a time, about a day after each race. Check back shortly.</div>
             </div>
         )
     }
 
     const toRound = state.asOfRound
     const fromRound = Math.min(roundMin, toRound)
-    const inRange = Object.entries(seasonPace.rounds)
+    const inRange = Object.entries(paceRounds)
         .map(([round, pace]) => [Number(round), pace] as const)
         .filter(([round]) => round >= fromRound && round <= toRound)
     const teams = scoreTeams(inRange.map(([, pace]) => pace))
-    const latestInData = Math.max(...Object.keys(seasonPace.rounds).map(Number))
+    const latestInData = Math.max(...Object.keys(paceRounds).map(Number))
     const movers = latestMovers(inRange.map(([r, p]) => [r, p]))
     const corners = inRange.reduce((sum, [, p]) => ({ slow: sum.slow + p.corners.slow, high: sum.high + p.corners.high }), { slow: 0, high: 0 })
     const lastRound = inRange.length ? Math.max(...inRange.map(([r]) => r)) : undefined
@@ -69,7 +68,7 @@ export default function PaceProfileTab() {
                         </strong>
                     </>
                 )}
-                {latestInData < state.roundsDone && ` Pace data runs to R${latestInData}; run npm run pace to add newer rounds.`}
+                {latestInData < state.roundsDone && ` Pace data runs to R${latestInData}; newer rounds are added automatically about a day after each race.`}
             </p>
 
             {TIERS.map(tier => {
