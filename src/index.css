@@ -189,6 +189,13 @@
   .comp-penalty { font-size: 10px; background: #3a0e00; color: #ff6633; border: 1px solid #5a1800; border-radius: 4px; padding: 2px 7px; font-weight: 600; line-height: 1.5; text-decoration: none; }
   .comp-penalty:hover { border-color: #ff6633; }
 
+  /* Form guide */
+  .vgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin: 12px 0 16px; }
+  .vcard { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 10px; padding: 11px 13px; }
+  .vlabel { font-size: 10px; color: #555; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
+  .vteam { font-size: 15px; font-weight: 700; }
+  .vsub { font-size: 11px; color: #666; margin-top: 3px; line-height: 1.4; }
+
   @media (max-width: 600px) {
     .pts-bar-wrap { width: 50px; }
     .con-bar-wrap { width: 60px; }

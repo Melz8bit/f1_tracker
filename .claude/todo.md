@@ -25,7 +25,7 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 - [x] Match articles to a race weekend (published FP1 → race+3 days, F1 keywords), fetch pages, extract article text
 - [x] Summarize offline with Claude (never at runtime): race storylines, quotes, off-track context — grounded in the articles + our API facts, API wins on numbers
 - [x] Output generated notes with source links per bullet (raceNews.json + Vercel Blob)
-- [ ] Season narrative + Form Guide summary text from the same pipeline (Phase 5 consumes it)
+- [ ] Season narrative text (optional — Form Guide now computes its write-ups; press headline shown there)
 - [x] UI: "From the press" section with source links in Race by Race
 - [x] R14 generated and reviewed (2026-09-24). Decision: no backfill — R1–R13 keep hand-written notes
 - [x] Auto mode: /api/news Vercel function summarizes each new race once on page load (server/news.ts → api/news.js)
@@ -58,7 +58,7 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 ## Phase 5 — Manual-data tabs
 - [ ] `regulations.json` + Reg Changes tab (with live-computed claims)
 - [ ] `aduo.json` + ADUO tracker (review-window race lists derived from schedule)
-- [ ] Form Guide: auto cards (leader, wins, next race, closest fight, biggest DNF) + optional manual cards
+- [x] Form Guide (2026-09-24): 8 computed cards (leader, latest winner, hottest form behind the leader, fastest car, closest P2–P7 fight, reliability, PU penalty watch, next race) + drivers'/constructors' title write-ups incl. clinch maths + latest press headline
 - [ ] `contracts.json` + Driver Contracts tab
 - [ ] "Last reviewed Rn" staleness badge for every manual file
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import StandingsTab from "../components/dashboard/StandingsTab";
 import RaceByRaceTab from "../components/dashboard/RaceByRaceTab";
 import PaceProfileTab from "../components/dashboard/PaceProfileTab";
+import FormGuideTab from "../components/dashboard/FormGuideTab";
 import RangeFilter from "../components/dashboard/RangeFilter";
 import { useSeason } from "../hooks/useSeason";
 import { formatDay, shortRaceName } from "../lib/format";
@@ -58,7 +59,7 @@ export default function Home() {
             {tab === 'pace' && <PaceProfileTab />}
             {tab === 'races' && <RaceByRaceTab />}
             {tab === 'regs' && <ComingSoon phase={5} what="Regulation changes and the ADUO tracker" />}
-            {tab === 'form' && <ComingSoon phase={5} what="Form Guide cards, generated from results" />}
+            {tab === 'form' && <FormGuideTab />}
             {tab === 'contracts' && <ComingSoon phase={5} what="Driver contracts" />}
         </div>
     )
