@@ -1,0 +1,5159 @@
+{
+  "2026": {
+    "checkedAt": "2026-09-24T16:02:07.526Z",
+    "rounds": {
+      "2": {
+        "event": "Chinese Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          }
+        ],
+        "penalties": [],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_chinese_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_chinese_grand_prix_-_new_pu_elements_for_this_competition_2.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_chinese_grand_prix_-_new_pu_elements_for_this_competition_1.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_chinese_grand_prix_-_new_pu_elements_for_this_competition_0.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_chinese_grand_prix_-_new_pu_elements_for_this_competition.pdf"
+        ]
+      },
+      "3": {
+        "event": "Japanese Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          }
+        ],
+        "penalties": [],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_japanese_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_japanese_grand_prix_-_new_pu_elements_for_this_competition_0.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_japanese_grand_prix_-_new_pu_elements_for_this_competition.pdf"
+        ]
+      },
+      "4": {
+        "event": "Miami Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 1,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          }
+        ],
+        "penalties": [
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "elements": [
+              {
+                "nth": 4,
+                "element": "ES"
+              },
+              {
+                "nth": 4,
+                "element": "PU-CE"
+              }
+            ],
+            "decision": "Required to start the Race from the pit lane.",
+            "pitLane": true,
+            "url": "https://www.fia.com/system/files/decision-document/2026_miami_grand_prix_-_infringement_-_car_6_-_pu_elements_changed_under_parc_ferme.pdf"
+          }
+        ],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_miami_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_miami_grand_prix_-_new_pu_elements_for_this_competition_1.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_miami_grand_prix_-_new_pu_elements_for_this_competition_0.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_miami_grand_prix_-_new_pu_elements_for_this_competition.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_miami_grand_prix_-_infringement_-_car_6_-_pu_elements_changed_under_parc_ferme.pdf"
+        ]
+      },
+      "5": {
+        "event": "Canadian Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 1
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 1
+            }
+          }
+        ],
+        "penalties": [
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "elements": [
+              {
+                "nth": 4,
+                "element": "ES"
+              },
+              {
+                "nth": 4,
+                "element": "PU-CE"
+              }
+            ],
+            "decision": "Required to start the Race from the pit lane.",
+            "pitLane": true,
+            "url": "https://www.fia.com/system/files/decision-document/2026_canadian_grand_prix_-_infringement_-_car_18_-_pu_elements_changed_under_parc_ferme.pdf"
+          }
+        ],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_canadian_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_canadian_grand_prix_-_new_pu_elements_for_this_competition_1.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_canadian_grand_prix_-_new_pu_elements_for_this_competition_0.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_canadian_grand_prix_-_new_pu_elements_for_this_competition.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_canadian_grand_prix_-_infringement_-_car_18_-_pu_elements_changed_under_parc_ferme.pdf"
+        ]
+      },
+      "6": {
+        "event": "Monaco Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hulkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          }
+        ],
+        "penalties": [],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_monaco_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_monaco_grand_prix_-_new_pu_elements_for_this_competition_1.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_monaco_grand_prix_-_new_pu_elements_for_this_competition_0.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_monaco_grand_prix_-_new_pu_elements_for_this_competition.pdf"
+        ]
+      },
+      "7": {
+        "event": "Barcelona-Catalunya Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 1,
+              "TC": 1,
+              "EXH": 1,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          }
+        ],
+        "penalties": [
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "elements": [
+              {
+                "nth": 4,
+                "element": "ES"
+              },
+              {
+                "nth": 4,
+                "element": "PU-CE"
+              },
+              {
+                "nth": 4,
+                "element": "MGU-K"
+              }
+            ],
+            "decision": "Required to start the Race from the pit lane.",
+            "pitLane": true,
+            "url": "https://www.fia.com/system/files/decision-document/2026_barcelona-catalunya_grand_prix_-_infringement_-_car_14_-_pu_elements_and_changes_used_during_parc_ferme.pdf"
+          }
+        ],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_barcelona-catalunya_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_barcelona-catalunya_grand_prix_-_new_pu_elements_for_this_competition_1.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_barcelona-catalunya_grand_prix_-_new_pu_elements_for_this_competition_0.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_barcelona-catalunya_grand_prix_-_new_pu_elements_for_this_competition.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_barcelona-catalunya_grand_prix_-_infringement_-_car_14_-_pu_elements_and_changes_used_during_parc_ferme.pdf"
+        ]
+      },
+      "8": {
+        "event": "Austrian Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 4,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 6
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          }
+        ],
+        "penalties": [],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_austrian_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_austrian_grand_prix_-_new_pu_elements_for_this_competition.pdf"
+        ]
+      },
+      "9": {
+        "event": "British Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 2,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 2,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 1,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 4,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 6
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 5,
+              "PU-CE": 5,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 2
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          }
+        ],
+        "penalties": [
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "elements": [
+              {
+                "nth": 5,
+                "element": "ES"
+              },
+              {
+                "nth": 5,
+                "element": "PU-CE"
+              }
+            ],
+            "decision": "Drop of 10 grid positions for the next Race in which the driver participates.",
+            "gridDrop": 10,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_british_grand_prix_-_infringement_-_car_18_-_pu_elements_changed.pdf"
+          }
+        ],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_british_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_british_grand_prix_-_new_pu_elements_for_this_competition_0.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_british_grand_prix_-_new_pu_elements_for_this_competition.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_british_grand_prix_-_infringement_-_car_18_-_pu_elements_changed.pdf"
+        ]
+      },
+      "10": {
+        "event": "Belgian Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 2,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 2,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 1,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 4,
+              "ES": 5,
+              "PU-CE": 5,
+              "PU-ANC": 7
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 5,
+              "PU-CE": 5,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          }
+        ],
+        "penalties": [
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "elements": [
+              {
+                "nth": 4,
+                "element": "PU-CE"
+              }
+            ],
+            "decision": "Drop of 10 grid positions for the next Race in which the driver participates.",
+            "gridDrop": 10,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_infringement_-_car_55_-_change_to_pu_elements.pdf"
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "elements": [
+              {
+                "nth": 5,
+                "element": "ES"
+              },
+              {
+                "nth": 5,
+                "element": "PU-CE"
+              },
+              {
+                "nth": 7,
+                "element": "PU-ANC"
+              }
+            ],
+            "decision": "Drop of 20 grid positions for the next Race in which the driver participates.",
+            "gridDrop": 20,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_corrected_infringement_-_car_14_-_change_to_pu_elements.pdf"
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "elements": [
+              {
+                "nth": 5,
+                "element": "ICE"
+              },
+              {
+                "nth": 5,
+                "element": "TC"
+              },
+              {
+                "nth": 5,
+                "element": "EXH"
+              }
+            ],
+            "decision": "Drop of 30 grid positions for the next Race in which the driver participates.",
+            "gridDrop": 30,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_corrected_infringement_-_car_6_-_changes_to_pu_elements.pdf"
+          },
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "elements": [
+              {
+                "nth": 4,
+                "element": "PU-CE"
+              }
+            ],
+            "decision": "Drop of 10 grid positions for the next Race in which the driver participates.",
+            "gridDrop": 10,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_infringement_-_car_1_-_change_to_pu_element.pdf"
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "elements": [
+              {
+                "nth": 4,
+                "element": "MGU-K"
+              }
+            ],
+            "decision": "Drop of 10 grid positions for the next Race in which the driver participates.",
+            "gridDrop": 10,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_infringement_-_car_18_-_change_to_pu_element.pdf"
+          }
+        ],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_new_pu_elements_for_this_competition_1.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_new_pu_elements_for_this_competition_0.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_new_pu_elements_for_this_competition.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_infringement_-_car_55_-_change_to_pu_elements.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_corrected_infringement_-_car_14_-_change_to_pu_elements.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_corrected_infringement_-_car_6_-_changes_to_pu_elements.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_infringement_-_car_1_-_change_to_pu_element.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_belgian_grand_prix_-_infringement_-_car_18_-_change_to_pu_element.pdf"
+        ]
+      },
+      "11": {
+        "event": "Hungarian Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 2,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 5,
+              "TC": 5,
+              "EXH": 5,
+              "MGU-K": 2,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 4,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 4,
+              "ES": 5,
+              "PU-CE": 5,
+              "PU-ANC": 7
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 4,
+              "ES": 5,
+              "PU-CE": 5,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          }
+        ],
+        "penalties": [],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_hungarian_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_hungarian_grand_prix_-_new_pu_elements_for_this_competition.pdf"
+        ]
+      },
+      "12": {
+        "event": "Dutch Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 2,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 6,
+            "driver": "Isack Hadjar",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 5,
+              "TC": 5,
+              "EXH": 5,
+              "MGU-K": 2,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 4,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 4,
+              "ES": 5,
+              "PU-CE": 5,
+              "PU-ANC": 7
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 4,
+              "ES": 5,
+              "PU-CE": 5,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 1,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          }
+        ],
+        "penalties": [],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_dutch_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_dutch_grand_prix_-_new_pu_elements_for_this_competition_0.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_dutch_grand_prix_-_new_pu_elements_for_this_competition.pdf"
+        ]
+      },
+      "13": {
+        "event": "Italian Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 2,
+              "TC": 2,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 2,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 2,
+              "MGU-K": 4,
+              "ES": 5,
+              "PU-CE": 5,
+              "PU-ANC": 7
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 6
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 3,
+              "MGU-K": 4,
+              "ES": 5,
+              "PU-CE": 5,
+              "PU-ANC": 6
+            }
+          },
+          {
+            "car": 22,
+            "driver": "Yuki Tsunoda",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 6,
+              "TC": 6,
+              "EXH": 5,
+              "MGU-K": 4,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 7
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 6
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          }
+        ],
+        "penalties": [
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "elements": [
+              {
+                "nth": 6,
+                "element": "ES"
+              },
+              {
+                "nth": 6,
+                "element": "PU-CE"
+              },
+              {
+                "nth": 5,
+                "element": "MGU-K"
+              }
+            ],
+            "decision": "Required to start the Race from the pit lane.",
+            "pitLane": true,
+            "url": "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_infringement_-_car_14_-_pu_elements_changed_during_parc_ferme.pdf"
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "elements": [
+              {
+                "nth": 6,
+                "element": "ICE"
+              },
+              {
+                "nth": 6,
+                "element": "TC"
+              },
+              {
+                "nth": 6,
+                "element": "EXH"
+              },
+              {
+                "nth": 4,
+                "element": "MGU-K"
+              },
+              {
+                "nth": 7,
+                "element": "PU-ANC"
+              }
+            ],
+            "decision": "Drop of 35 grid positions for the next Race in which the driver participates.",
+            "gridDrop": 35,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_infringement_-_car_30_-_change_to_pu_elements.pdf"
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "elements": [
+              {
+                "nth": 5,
+                "element": "ICE"
+              },
+              {
+                "nth": 4,
+                "element": "PU-CE"
+              }
+            ],
+            "decision": "Drop of 20 grid positions for the next Race in which the driver participates.",
+            "gridDrop": 20,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_infringement_-_car_23_-_changes_to_pu_elements.pdf"
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "elements": [
+              {
+                "nth": 5,
+                "element": "ICE"
+              },
+              {
+                "nth": 4,
+                "element": "ES"
+              },
+              {
+                "nth": 4,
+                "element": "PU-CE"
+              }
+            ],
+            "decision": "Drop of 30 grid positions for the next Race in which the driver participates.",
+            "gridDrop": 30,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_infringement_-_car_12_-_changes_to_pu_elements.pdf"
+          }
+        ],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_new_pu_elements_for_this_competition_1.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_new_pu_elements_for_this_competition_0.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_new_pu_elements_for_this_competition.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_infringement_-_car_14_-_pu_elements_changed_during_parc_ferme.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_infringement_-_car_30_-_change_to_pu_elements.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_infringement_-_car_23_-_changes_to_pu_elements.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_infringement_-_car_12_-_changes_to_pu_elements.pdf"
+        ]
+      },
+      "14": {
+        "event": "Spanish Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 5,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 2,
+              "MGU-K": 5,
+              "ES": 6,
+              "PU-CE": 6,
+              "PU-ANC": 7
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 6
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 5,
+              "TC": 5,
+              "EXH": 3,
+              "MGU-K": 5,
+              "ES": 6,
+              "PU-CE": 5,
+              "PU-ANC": 7
+            }
+          },
+          {
+            "car": 22,
+            "driver": "Yuki Tsunoda",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 5,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hulkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 6,
+              "TC": 6,
+              "EXH": 6,
+              "MGU-K": 4,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 7
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 6
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          }
+        ],
+        "penalties": [
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "elements": [
+              {
+                "nth": 4,
+                "element": "ES"
+              },
+              {
+                "nth": 4,
+                "element": "PU-CE"
+              },
+              {
+                "nth": 4,
+                "element": "MGU-K"
+              }
+            ],
+            "decision": "Required to start the Race from the Pit Lane.",
+            "pitLane": true,
+            "url": "https://www.fia.com/system/files/decision-document/2026_spanish_grand_prix_-_infringement_-_car_87_-_pu_elements_changed_during_parc_ferme.pdf"
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "elements": [
+              {
+                "nth": 5,
+                "element": "ICE"
+              },
+              {
+                "nth": 5,
+                "element": "TC"
+              },
+              {
+                "nth": 6,
+                "element": "ES"
+              },
+              {
+                "nth": 5,
+                "element": "MGU-K"
+              },
+              {
+                "nth": 7,
+                "element": "PU-ANC"
+              }
+            ],
+            "decision": "Drop of 40 grid positions for the next Race in which the driver participates.",
+            "gridDrop": 40,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_spanish_grand_prix_-_infringement_-_car_18_-_pu_elements_changed.pdf"
+          }
+        ],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_spanish_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_spanish_grand_prix_-_new_pu_elements_for_this_competition.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_spanish_grand_prix_-_infringement_-_car_87_-_pu_elements_changed_during_parc_ferme.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_spanish_grand_prix_-_infringement_-_car_18_-_pu_elements_changed.pdf"
+        ]
+      },
+      "15": {
+        "event": "Azerbaijan Grand Prix",
+        "drivers": [
+          {
+            "car": 1,
+            "driver": "Lando Norris",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 3,
+            "driver": "Max Verstappen",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 5,
+            "driver": "Gabriel Bortoleto",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 10,
+            "driver": "Pierre Gasly",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 11,
+            "driver": "Sergio Perez",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 12,
+            "driver": "Kimi Antonelli",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 5,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 2,
+              "MGU-K": 5,
+              "ES": 6,
+              "PU-CE": 6,
+              "PU-ANC": 8
+            }
+          },
+          {
+            "car": 16,
+            "driver": "Charles Leclerc",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 6
+            }
+          },
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "team": "Aston Martin Aramco Honda",
+            "constructorId": "aston_martin",
+            "counts": {
+              "ICE": 5,
+              "TC": 5,
+              "EXH": 3,
+              "MGU-K": 5,
+              "ES": 6,
+              "PU-CE": 5,
+              "PU-ANC": 7
+            }
+          },
+          {
+            "car": 22,
+            "driver": "Yuki Tsunoda",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 23,
+            "driver": "Alexander Albon",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 5,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 27,
+            "driver": "Nico Hülkenberg",
+            "team": "Audi",
+            "constructorId": "audi",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 3,
+              "ES": 1,
+              "PU-CE": 1,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 30,
+            "driver": "Liam Lawson",
+            "team": "Red Bull Racing RB Ford",
+            "constructorId": "red_bull",
+            "counts": {
+              "ICE": 6,
+              "TC": 6,
+              "EXH": 6,
+              "MGU-K": 4,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 7
+            }
+          },
+          {
+            "car": 31,
+            "driver": "Esteban Ocon",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 41,
+            "driver": "Arvid Lindblad",
+            "team": "Racing Bulls RB Ford",
+            "constructorId": "rb",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 43,
+            "driver": "Franco Colapinto",
+            "team": "Alpine Mercedes",
+            "constructorId": "alpine",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 44,
+            "driver": "Lewis Hamilton",
+            "team": "Ferrari",
+            "constructorId": "ferrari",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 6
+            }
+          },
+          {
+            "car": 55,
+            "driver": "Carlos Sainz",
+            "team": "Atlassian Williams Mercedes",
+            "constructorId": "williams",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 3,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 63,
+            "driver": "George Russell",
+            "team": "Mercedes",
+            "constructorId": "mercedes",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 5
+            }
+          },
+          {
+            "car": 77,
+            "driver": "Valtteri Bottas",
+            "team": "Cadillac Ferrari",
+            "constructorId": "cadillac",
+            "counts": {
+              "ICE": 3,
+              "TC": 3,
+              "EXH": 2,
+              "MGU-K": 3,
+              "ES": 3,
+              "PU-CE": 3,
+              "PU-ANC": 3
+            }
+          },
+          {
+            "car": 81,
+            "driver": "Oscar Piastri",
+            "team": "McLaren Mercedes",
+            "constructorId": "mclaren",
+            "counts": {
+              "ICE": 4,
+              "TC": 3,
+              "EXH": 3,
+              "MGU-K": 2,
+              "ES": 2,
+              "PU-CE": 2,
+              "PU-ANC": 4
+            }
+          },
+          {
+            "car": 87,
+            "driver": "Oliver Bearman",
+            "team": "Haas Ferrari",
+            "constructorId": "haas",
+            "counts": {
+              "ICE": 4,
+              "TC": 4,
+              "EXH": 4,
+              "MGU-K": 4,
+              "ES": 4,
+              "PU-CE": 4,
+              "PU-ANC": 4
+            }
+          }
+        ],
+        "penalties": [
+          {
+            "car": 18,
+            "driver": "Lance Stroll",
+            "elements": [
+              {
+                "nth": 6,
+                "element": "TC"
+              },
+              {
+                "nth": 7,
+                "element": "ES"
+              },
+              {
+                "nth": 6,
+                "element": "PU-CE"
+              },
+              {
+                "nth": 8,
+                "element": "PU-ANC"
+              }
+            ],
+            "decision": "Drop of 20 grid positions for the next Race in which the driver participates.",
+            "gridDrop": 20,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_azerbaijan_grand_prix_-_infringement_-_car_18_-_pu_elements.pdf"
+          },
+          {
+            "car": 14,
+            "driver": "Fernando Alonso",
+            "elements": [
+              {
+                "nth": 5,
+                "element": "ICE"
+              },
+              {
+                "nth": 5,
+                "element": "TC"
+              },
+              {
+                "nth": 9,
+                "element": "PU-ANC"
+              }
+            ],
+            "decision": "Drop of 25 grid positions for the next Race in which the driver participates",
+            "gridDrop": 25,
+            "pitLane": false,
+            "url": "https://www.fia.com/system/files/decision-document/2026_azerbaijan_grand_prix_-_infringement_-_car_14_-_pu_elements.pdf"
+          }
+        ],
+        "sources": [
+          "https://www.fia.com/system/files/decision-document/2026_azerbaijan_grand_prix_-_pu_elements_used_per_driver_up_to_now.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_azerbaijan_grand_prix_-_new_pu_elements_for_this_competition.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_azerbaijan_grand_prix_-_infringement_-_car_18_-_pu_elements.pdf",
+          "https://www.fia.com/system/files/decision-document/2026_azerbaijan_grand_prix_-_infringement_-_car_14_-_pu_elements.pdf"
+        ]
+      }
+    }
+  }
+}

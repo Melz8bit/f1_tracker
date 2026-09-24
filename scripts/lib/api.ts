@@ -3,7 +3,7 @@
 import { createHash } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { fetchJson, fetchPage, jolpicaUrl, openF1Url } from './http.ts'
+import { fetchBytes, fetchJson, fetchPage, jolpicaUrl, openF1Url } from './http.ts'
 
 const CACHE_DIR = join(import.meta.dirname, '..', '.cache')
 
@@ -36,4 +36,17 @@ export function jolpica<T>(path: string): Promise<T> {
 // Articles don't change once published, so pages are cached; feeds and sitemaps (`useCache` false) aren't
 export function webPage(url: string, useCache = true): Promise<string> {
     return cached(join(CACHE_DIR, 'pages', `${hash(url)}.html`), useCache, () => fetchPage(url), s => s, s => s)
+}
+
+// Published FIA documents never change (re-issues get a new filename), so PDFs are cached too
+export async function pdfFile(url: string): Promise<Uint8Array> {
+    const file = join(CACHE_DIR, 'fia', `${hash(url)}.pdf`)
+    try {
+        return new Uint8Array(await readFile(file))
+    } catch {
+        const bytes = await fetchBytes(url)
+        await mkdir(join(CACHE_DIR, 'fia'), { recursive: true })
+        await writeFile(file, bytes)
+        return bytes
+    }
 }

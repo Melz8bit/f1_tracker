@@ -40,13 +40,29 @@ export async function fetchJson<T>(url: string, emptyOn404: boolean): Promise<T>
 // Identify ourselves honestly to news sites
 const USER_AGENT = 'f1-dashboard-news/1.0 (personal project; summaries with source links)'
 
+// News sites and fia.com: one request per second, a few retries on server errors (fia.com 502s occasionally)
+async function politeGet(url: string): Promise<Response> {
+    for (let attempt = 0; ; attempt++) {
+        await pageSlot()
+        const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT } })
+        if (res.status >= 500 && attempt < 3) {
+            await wait(3000 * (attempt + 1))
+            continue
+        }
+        if (!res.ok) throw new Error(`${res.status} ${url}`)
+        return res
+    }
+}
+
 export async function fetchPage(url: string): Promise<string> {
-    await pageSlot()
-    const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT } })
-    if (!res.ok) throw new Error(`${res.status} ${url}`)
-    return res.text()
+    return (await politeGet(url)).text()
 }
 
 // OpenF1 answers 404 for an empty result set
 export const openF1Url = (path: string) => `https://api.openf1.org/v1${path}`
 export const jolpicaUrl = (path: string) => `https://api.jolpi.ca/ergast/f1${path}`
+
+// Binary download (FIA PDFs), same politeness as pages
+export async function fetchBytes(url: string): Promise<Uint8Array> {
+    return new Uint8Array(await (await politeGet(url)).arrayBuffer())
+}

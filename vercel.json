@@ -1,5 +1,10 @@
 {
   "functions": {
-    "api/news.js": { "maxDuration": 300 }
+    "api/news.js": {
+      "maxDuration": 300
+    },
+    "api/power-units.js": {
+      "maxDuration": 300
+    }
   }
 }

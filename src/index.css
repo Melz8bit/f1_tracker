@@ -159,6 +159,36 @@
   .press-sources a { color: #777; text-decoration: none; }
   .press-sources a:hover { color: #ccc; text-decoration: underline; }
 
+  /* Component usage (power unit elements) */
+  .comp-toggle { display: flex; align-items: center; gap: 6px; margin-top: 12px; cursor: pointer; user-select: none; background: #161616; border: 1px solid #242424; border-radius: 6px; padding: 6px 10px; width: fit-content; transition: background 0.15s; }
+  .comp-toggle:hover { background: #1e1e1e; }
+  .comp-toggle-label { font-size: 11px; color: #666; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+  .comp-toggle-arrow { font-size: 10px; color: #444; transition: transform 0.2s; }
+  .comp-toggle-arrow.open { transform: rotate(180deg); }
+  .comp-panel { margin-top: 8px; background: #141414; border: 1px solid #1e1e1e; border-radius: 8px; overflow: hidden; }
+  .comp-header-row, .comp-row { display: grid; grid-template-columns: 1fr 60px 60px 60px 120px; gap: 6px; padding: 6px 12px; }
+  .comp-header-row { border-bottom: 1px solid #1e1e1e; }
+  .comp-header-row span { font-size: 10px; color: #444; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  .comp-header-row span:nth-child(n+2):nth-child(-n+4) { text-align: center; }
+  .comp-header-row span:nth-child(5) { text-align: right; }
+  .comp-row { padding: 7px 12px; border-bottom: 1px solid #181818; align-items: center; }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-name { font-size: 12px; color: #aaa; }
+  .comp-used { font-size: 12px; font-weight: 600; text-align: center; }
+  .comp-alloc { font-size: 12px; color: #555; text-align: center; }
+  .comp-left { font-size: 11px; font-weight: 600; text-align: center; }
+  .comp-pips { display: flex; gap: 3px; justify-content: flex-end; flex-wrap: wrap; }
+  .comp-pip { width: 10px; height: 10px; border-radius: 2px; }
+  .comp-pip-left { background: #2a2a2a; border: 1px solid #333; }
+  .comp-pip-warn { background: #3a2000; border: 1px solid #5a3000; }
+  .comp-pip-over { background: #ff4411; }
+  .comp-note { font-size: 10px; color: #555; padding: 5px 12px 7px; line-height: 1.6; }
+  .comp-note strong { color: #aaa; }
+  .comp-driver { padding: 7px 12px 3px; border-top: 1px solid #1e1e1e; display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+  .comp-driver-name { font-size: 11px; font-weight: 600; color: #888; min-width: 100px; }
+  .comp-penalty { font-size: 10px; background: #3a0e00; color: #ff6633; border: 1px solid #5a1800; border-radius: 4px; padding: 2px 7px; font-weight: 600; line-height: 1.5; text-decoration: none; }
+  .comp-penalty:hover { border-color: #ff6633; }
+
   @media (max-width: 600px) {
     .pts-bar-wrap { width: 50px; }
     .con-bar-wrap { width: 60px; }

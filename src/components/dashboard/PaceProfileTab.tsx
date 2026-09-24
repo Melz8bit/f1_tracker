@@ -2,6 +2,9 @@ import { useFilterStore } from "../../store/filterStore";
 import { useSeason } from "../../hooks/useSeason";
 import { DIMENSIONS, latestMovers, scoreTeams, type SeasonPace, type TeamPace } from "../../lib/pace";
 import { powerUnit, teamColor, teamNameById } from "../../lib/teams";
+import { usePowerUnits } from "../../hooks/usePowerUnits";
+import { supplierFromEntry, type PUPenalty, type RoundPU } from "../../lib/powerUnits";
+import ComponentUsage from "./ComponentUsage";
 import paceRatingsJson from "../../data/paceRatings.json"
 
 const paceRatings = paceRatingsJson as unknown as Record<string, SeasonPace | undefined>
@@ -17,6 +20,7 @@ export default function PaceProfileTab() {
     const { season, state } = useSeason()
     const { roundMin } = useFilterStore()
     const seasonPace = paceRatings[String(season)]
+    const puRounds = usePowerUnits(season)
 
     if (!state) return <p className="text-sm text-[#666]">Loading…</p>
     if (!seasonPace || Object.keys(seasonPace.rounds).length === 0) {
@@ -38,6 +42,13 @@ export default function PaceProfileTab() {
     const movers = latestMovers(inRange.map(([r, p]) => [r, p]))
     const corners = inRange.reduce((sum, [, p]) => ({ slow: sum.slow + p.corners.slow, high: sum.high + p.corners.high }), { slow: 0, high: 0 })
     const lastRound = inRange.length ? Math.max(...inRange.map(([r]) => r)) : undefined
+
+    // Power unit usage as of the selected round (the FIA reports come per event, counts are cumulative)
+    const puRound = Math.max(0, ...Object.keys(puRounds).map(Number).filter(r => r <= toRound))
+    const puSnapshot: RoundPU | undefined = puRounds[puRound]
+    const puPenalties = Object.entries(puRounds)
+        .filter(([r]) => Number(r) <= toRound)
+        .flatMap(([r, data]) => data.penalties.map(p => ({ ...p, round: Number(r) })))
 
     return (
         <>
@@ -67,7 +78,9 @@ export default function PaceProfileTab() {
                 return (
                     <div key={tier.label}>
                         <div className={`tier-divider${tier.from === 0 ? ' mt-0 border-t-0 pt-0' : ''}`}>{tier.label}</div>
-                        {tierTeams.map(t => <TeamBlock key={t.team} season={season} pace={t} />)}
+                        {tierTeams.map(t => (
+                            <TeamBlock key={t.team} season={season} pace={t} pu={puSnapshot} puRound={puRound} puPenalties={puPenalties} />
+                        ))}
                     </div>
                 )
             })}
@@ -75,9 +88,20 @@ export default function PaceProfileTab() {
     )
 }
 
-function TeamBlock({ season, pace }: { season: number; pace: TeamPace }) {
+interface TeamBlockProps {
+    season: number;
+    pace: TeamPace;
+    pu?: RoundPU;
+    puRound: number;
+    puPenalties: Array<PUPenalty & { round: number }>;
+}
+
+function TeamBlock({ season, pace, pu: puData, puRound, puPenalties }: TeamBlockProps) {
     const color = teamColor(pace.team)
-    const pu = powerUnit(season, pace.team)
+    const teamDrivers = puData?.drivers.filter(d => d.constructorId === pace.team) ?? []
+    const teamCars = new Set(teamDrivers.map(d => d.car))
+    // Supplier from the FIA entry name when we have it ("Haas Ferrari" → Ferrari), else the static list
+    const pu = teamDrivers[0] ? supplierFromEntry(teamDrivers[0].team) : powerUnit(season, pace.team)
     return (
         <div className="team-block">
             <div className="team-head">
@@ -95,6 +119,13 @@ function TeamBlock({ season, pace }: { season: number; pace: TeamPace }) {
                     </div>
                 )
             })}
+            <ComponentUsage
+                season={season}
+                color={color}
+                drivers={teamDrivers}
+                penalties={puPenalties.filter(p => teamCars.has(p.car))}
+                asOfRound={puRound}
+            />
         </div>
     )
 }

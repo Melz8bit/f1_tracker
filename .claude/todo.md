@@ -45,13 +45,15 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 
 - [ ] Pace tuning ideas: weight rounds by corner count; medium-speed corners are detected but unused; aero proxy could use speed gain on straights once more data exists
 
-## Phase 4 — FIA PU pipeline (`scripts/fia-pu`)
-- [ ] Never seed from the mockup — its component counts were estimates, frozen since R10
-- [ ] Crawl event pages → find `pu_elements_used_per_driver_up_to_now.pdf` + `infringement_-_car_NN_-_pu_elements*.pdf`
-- [ ] Parse PDFs in Node (pdfjs-dist, x/y coordinates — pdftotext merges digits in layout mode)
-- [ ] Output `src/data/powerUnits.json`: per-driver per-round element counts (7 elements incl. PU-ANC) + penalties (elements, grid drop / pit-lane)
-- [ ] Verify 2026 element allocation limits from the FIA Sporting Regulations (mockup's values unverified)
-- [ ] Component usage panel in Pace Profiles
+## Phase 4 — FIA PU pipeline (`scripts/fia-pu`) ✅ (2026-09-24)
+- [x] Never seed from the mockup — its component counts were estimates, frozen since R10
+- [x] Crawl event pages → find `pu_elements_used_per_driver_up_to_now.pdf` + `infringement_-_car_NN_-_pu_elements*.pdf`
+- [x] Parse PDFs in Node (pdfjs-dist, x/y coordinates — pdftotext merges digits in layout mode)
+- [x] Output `src/data/powerUnits.json`: per-driver per-round element counts (7 elements incl. PU-ANC) + penalties (elements, grid drop / pit-lane)
+- [x] Verify 2026 element allocation limits from the FIA Sporting Regulations (mockup's values unverified)
+- [x] Component usage panel in Pace Profiles
+- [x] Auto-update: /api/power-units re-checks fia.com every 3 h (no API cost)
+- [x] PU supplier label now from the FIA entry names (static list is only a fallback)
 
 ## Phase 5 — Manual-data tabs
 - [ ] `regulations.json` + Reg Changes tab (with live-computed claims)
