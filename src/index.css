@@ -55,7 +55,8 @@
   .con-pts { font-size: 13px; font-weight: 600; min-width: 36px; text-align: right; }
 
   /* Title pill */
-  .title-pill { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; white-space: nowrap; min-width: 60px; text-align: center; display: inline-block; }
+  /* Fixed width (fits the longest label, "In the fight") so bars and points line up whatever the status */
+  .title-pill { font-size: 10px; font-weight: 700; padding: 3px 0; border-radius: 20px; white-space: nowrap; width: 84px; text-align: center; display: inline-block; flex-shrink: 0; }
   .pill-yes  { background: #0e2a0e; color: #4caf50; border: 1px solid #1e4a1e; }
   .pill-no   { background: #3a0800; color: #ff4422; border: 1px solid #661100; }
   .pill-math { background: #1a1400; color: #cc9900; border: 1px solid #3a2e00; }

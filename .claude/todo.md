@@ -67,6 +67,15 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 - [ ] Remaining pages (Calendar, RaceDetail, DriverProfile, ConstructorProfile)
 - [ ] Mobile polish
 
+## Phase 7 — Move hosting to the Raspberry Pi (after the build is done; user request 2026-09-24)
+- [ ] Ask how the other web apps are hosted on the Pi (reverse proxy, process manager, Docker?) and match it
+- [ ] Static site: serve `dist/` (vite build)
+- [ ] /api/news without Vercel: small Node server (same pipeline) — replace Vercel Blob with a JSON file on
+      the Pi, replace `waitUntil` with a plain background task (a long-running server can just keep going)
+- [ ] Summarizer auth on the Pi: ANTHROPIC_API_KEY in the server's env (Sonnet 5, ~$0.08/race)
+- [ ] Optional: a daily systemd timer/cron to summarize new races even if nobody opens the site
+- [ ] Carry over the Vercel Blob summaries (R15+) into the Pi's JSON file, then retire the Vercel project
+
 ## Cleanup (needs your OK — file deletion was blocked for Claude)
 - [ ] Delete unused: `src/App.css`, `src/data/circuits.json` (placeholder dates), `src/hooks/useOpenF1CarData.ts`, `src/hooks/useSeasonFilter.ts` (empty)
 - [ ] Mobile: filter bar sliders + tab row at < 640px (Phase 6 polish)

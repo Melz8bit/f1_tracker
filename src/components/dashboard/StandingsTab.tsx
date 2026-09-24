@@ -187,7 +187,7 @@ function DriverTable({ standings, maxLeft }: { standings: DriverStanding[]; maxL
                     <th className="r" style={{ width: 48 }}>Pts</th>
                     <th style={{ width: 90, paddingLeft: 10 }}>Bar</th>
                     <th className="r" style={{ width: 44 }}>Gap</th>
-                    <th style={{ width: 80, textAlign: 'center' }}>Title?</th>
+                    <th style={{ width: 96, textAlign: 'center' }}>Title?</th>
                 </tr>
             </thead>
             <tbody>
