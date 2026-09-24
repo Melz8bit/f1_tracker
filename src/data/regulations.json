@@ -1,0 +1,78 @@
+{
+  "2026": {
+    "asOfRound": 14,
+    "reviewedOn": "2026-09-24",
+    "intro": "The 2026 regulations are a complete reset of chassis, aerodynamics and power units — nothing from 2025 carries over.",
+    "cards": [
+      {
+        "title": "Active aerodynamics replace DRS",
+        "body": "Movable front and rear wings open on straights (**Straight Mode**) to cut drag and close in corners (**Corner Mode**) for downforce — every driver, every lap. Straight-line speed and cornering grip are no longer a simple trade-off."
+      },
+      {
+        "title": "50/50 power split",
+        "body": "Close to equal power from the combustion engine and the MGU-K (around 350 kW of electrical power). The battery depletes fast, so cars harvest energy for stretches of every lap — **energy management software is now as decisive as hardware**."
+      },
+      {
+        "title": "Overtake Mode",
+        "body": "Within one second of the car ahead at the detection point, a driver gets extra electrical deployment that works in corners too — overtakes now build across sequences of corners, not just down one straight."
+      },
+      {
+        "title": "Power unit manufacturers",
+        "body": "Audi arrives as a works team, Red Bull build their own engine with Ford (RB Powertrains), and Honda returns as Aston Martin's exclusive supplier.",
+        "live": "suppliers"
+      },
+      {
+        "title": "Cadillac — the 11th team",
+        "body": "General Motors' Cadillac joins as the first new team since 2016, running Ferrari power with **Sergio Pérez** and **Valtteri Bottas**.",
+        "live": "teamPoints:cadillac"
+      },
+      {
+        "title": "Tighter power unit allocation",
+        "body": "Each driver may use 4 engines, 4 turbochargers, 4 exhaust sets, 3 MGU-Ks, 3 energy stores, 3 control electronics units and 6 of each ancillary component in 2026 (Sporting Regulations B8.2.2 plus one extra of each for the first season). Going over costs 10 grid places the first time for each element, 5 for each one after. Live usage per driver is in Team Pace Profiles → Component usage."
+      }
+    ],
+    "aduo": {
+      "explainer": "**Additional Development and Upgrade Opportunities** let a power unit manufacturer whose combustion engine is at least 2% down on the best one make extra upgrades to its homologated engine. The FIA measures an **ICE performance index** — built from engine torque, engine speed, MGU-K power and how sensitive lap time is to power — over set review periods. It targets engine power only, not championship position: a team can be low in the standings and get nothing if its engine is competitive.",
+      "thresholds": [
+        { "gap": "2–4%", "upgrades2026": 1, "upgrades2027": 1, "budget": "up to $3.0m" },
+        { "gap": "4–6%", "upgrades2026": 2, "upgrades2027": 2, "budget": "up to $4.65m" },
+        { "gap": "6–8%", "upgrades2026": 2, "upgrades2027": 2, "budget": "up to $6.35m" },
+        { "gap": "8–10%", "upgrades2026": 2, "upgrades2027": 2, "budget": "up to $8m" },
+        { "gap": "10%+", "upgrades2026": 2, "upgrades2027": 2, "budget": "up to $11m, plus up to $8m of future cost cap brought forward (2026 only)" }
+      ],
+      "thresholdsNote": "Budget figures are extra cost-cap allowance per review period. Qualifying also brings extra dyno testing time.",
+      "periods": [
+        {
+          "name": "Period 1",
+          "fromCircuit": "albert_park",
+          "toCircuit": "villeneuve",
+          "result": "Mercedes 2–4% behind (1 extra homologation in 2026 + 1 in 2027). Audi, Ferrari and Honda more than 4% behind (2 in 2026 + 2 in 2027).",
+          "resultDate": "2026-08-26"
+        },
+        {
+          "name": "Period 2",
+          "fromCircuit": "monaco",
+          "toCircuit": "hungaroring",
+          "result": "No additional homologations granted to any manufacturer.",
+          "resultDate": "2026-08-26"
+        },
+        {
+          "name": "Period 3",
+          "fromCircuit": "zandvoort",
+          "toCircuit": "rodriguez"
+        }
+      ],
+      "manufacturers": [
+        { "supplier": "RB Ford", "gap": "Within 2%", "upgrades2026": 0, "upgrades2027": 0, "note": "Not granted any ADUO — its engine was within 2% of the best in both periods. The FIA doesn't name the benchmark engine." },
+        { "supplier": "Mercedes", "gap": "2–4%", "upgrades2026": 1, "upgrades2027": 1, "note": "Granted after Period 1." },
+        { "supplier": "Ferrari", "gap": "4%+", "upgrades2026": 2, "upgrades2027": 2, "note": "Granted after Period 1." },
+        { "supplier": "Audi", "gap": "4%+", "upgrades2026": 2, "upgrades2027": 2, "note": "Granted after Period 1." },
+        { "supplier": "Honda", "gap": "4%+", "upgrades2026": 2, "upgrades2027": 2, "note": "Granted after Period 1." }
+      ],
+      "sources": [
+        { "title": "FIA announces ADUO results following first and second review periods of 2026", "url": "https://www.fia.com/news/fia-announces-aduo-results-following-first-and-second-review-periods-2026" },
+        { "title": "Power Ups: How F1's Additional Development Upgrade Opportunities will be applied", "url": "https://api.fia.com/news/power-ups-how-f1s-additional-development-upgrade-opportunities-will-be-applied-and-whats" }
+      ]
+    }
+  }
+}

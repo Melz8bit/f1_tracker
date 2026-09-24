@@ -1,0 +1,546 @@
+{
+  "2026": {
+    "asOfRound": 14,
+    "reviewedOn": "2026-09-24",
+    "source": "Hand-maintained from press reporting (Sky Sports F1, The Race, ESPN, Formula1.com), ported from f1_2026_dashboard.html. Contract lengths are rarely confirmed officially — these are the best-reported estimates. Entries with a date and source link were updated individually.",
+    "drivers": {
+      "antonelli": {
+        "expiry": "2027",
+        "status": "Signed through 2027 (Sky Sports). Multi-year deal signed Oct 2025 alongside Russell. Believed to include a 2028 option for Mercedes.",
+        "talks": "No reported talks with other teams. Mercedes priority #1 — Wolff has called Antonelli \"the future of the team.\" Any renewal discussion expected post-season.",
+        "history": [
+          {
+            "period": "2026–2027",
+            "team": "Mercedes",
+            "note": "Multi-year deal, announced Oct 2025"
+          },
+          {
+            "period": "2025",
+            "team": "Mercedes",
+            "note": "Promoted from junior driver programme for debut season"
+          },
+          {
+            "period": "2022–2024",
+            "team": "Mercedes junior",
+            "note": "Formula 2 and reserve driver role"
+          }
+        ]
+      },
+      "russell": {
+        "expiry": "2027",
+        "status": "Signed through 2027 (Sky Sports, The Race). Finalised late in the 2025 off-season after Verstappen speculation complicated negotiations.",
+        "talks": "Russell has publicly acknowledged uncertainty around his own future beyond 2027, especially if Antonelli continues to outperform him. No confirmed external talks.",
+        "history": [
+          {
+            "period": "2026–2027",
+            "team": "Mercedes",
+            "note": "Multi-year renewal — announced Oct 2025"
+          },
+          {
+            "period": "2022–2025",
+            "team": "Mercedes",
+            "note": "First contracted with Mercedes; won first championship in 2025"
+          },
+          {
+            "period": "2019–2021",
+            "team": "Williams",
+            "note": "Three-season stint, developed under Mercedes patronage"
+          }
+        ]
+      },
+      "leclerc": {
+        "expiry": "2030+",
+        "status": "Extended ahead of 2026 Monaco GP (Formula1.com, F1 Live Pulse). New deal understood to run to 2030 and potentially beyond — Ferrari's longest modern-era contract.",
+        "talks": "No external talks. Leclerc is deeply embedded at Ferrari and has committed his career to the team. Renewal removes him from the market entirely.",
+        "history": [
+          {
+            "period": "2026–2030+",
+            "team": "Ferrari",
+            "note": "Extension signed May 2026 — longest Ferrari deal in modern era"
+          },
+          {
+            "period": "2024–2025",
+            "team": "Ferrari",
+            "note": "Previous multi-year deal"
+          },
+          {
+            "period": "2019–2023",
+            "team": "Ferrari",
+            "note": "Initial Ferrari contract; multiple extensions"
+          },
+          {
+            "period": "2018",
+            "team": "Sauber",
+            "note": "First F1 season on Ferrari-backed deal"
+          }
+        ]
+      },
+      "hamilton": {
+        "expiry": "2027+",
+        "status": "Ferrari multi-year deal (2025–2027). Hamilton confirmed at Canada 2026 he holds a 2027 contract. Sky Sports reports he also holds a unilateral 2028 option.",
+        "talks": "Retirement speculation has intensified after a difficult 2026 season (multiple penalties, car issues). Hamilton has not publicly addressed 2028 option. Ferrari would retain him if performing.",
+        "history": [
+          {
+            "period": "2025–2027+",
+            "team": "Ferrari",
+            "note": "Announced Feb 2024 — one of the biggest moves in F1 history"
+          },
+          {
+            "period": "2021–2024",
+            "team": "Mercedes",
+            "note": "Final Mercedes chapter; 6 WDCs with team"
+          },
+          {
+            "period": "2013–2020",
+            "team": "Mercedes",
+            "note": "Dominant Mercedes era — record-tying 7 titles"
+          },
+          {
+            "period": "2007–2012",
+            "team": "McLaren",
+            "note": "Career began; first title 2008"
+          }
+        ]
+      },
+      "norris": {
+        "expiry": "2030",
+        "status": "Extended Aug 2026 until at least 2030 (Formula1.com). Announced during Dutch GP weekend alongside a championship-winning car as a gift. Option for multi-year extension beyond 2030.",
+        "talks": "None. Norris is fully committed to McLaren after 8 seasons. Extension removes him from silly season entirely.",
+        "history": [
+          {
+            "period": "2026–2030+",
+            "team": "McLaren",
+            "note": "Long-term renewal Aug 2026"
+          },
+          {
+            "period": "2024–2025",
+            "team": "McLaren",
+            "note": "Previous extension — through 2026 with long-term language"
+          },
+          {
+            "period": "2019–2023",
+            "team": "McLaren",
+            "note": "Original deal — grew from rookie to title contender"
+          }
+        ]
+      },
+      "piastri": {
+        "expiry": "2028",
+        "status": "Signed March 2025 multi-year extension (Sky Sports, ESPN). Runs to at least 2028; long-term language suggests 2029 option. Ongoing speculation about his long-term future given McLaren's internal dynamics.",
+        "talks": "The Race reported in mid-2026 that Piastri's camp had held preliminary conversations with Ferrari about a 2029 or 2030 seat. Both sides deny active talks. Ferrari were understood to be monitoring the situation.",
+        "history": [
+          {
+            "period": "2025–2028",
+            "team": "McLaren",
+            "note": "Multi-year extension signed Mar 2025"
+          },
+          {
+            "period": "2023–2024",
+            "team": "McLaren",
+            "note": "Debut deal — replaced Ricciardo mid-negotiation"
+          },
+          {
+            "period": "2022",
+            "team": "Alpine (disputed)",
+            "note": "Signed Alpine deal but rejected via statement — McLaren legal battle"
+          }
+        ]
+      },
+      "max_verstappen": {
+        "expiry": "2030",
+        "status": "Extended to 2030 ahead of Dutch GP (ESPN, The Race). Previous deal ran to 2028. New contract includes championship-winning car gift. Performance clauses reportedly removed in new deal.",
+        "talks": "Verstappen publicly ended Mercedes speculation with Dutch GP extension. Hinted at retirement post-2030. No current external talks.",
+        "history": [
+          {
+            "period": "2026–2030",
+            "team": "Red Bull",
+            "note": "Extension announced Aug 2026 Dutch GP weekend"
+          },
+          {
+            "period": "2022–2025",
+            "team": "Red Bull",
+            "note": "Previous deal — originally to 2028"
+          },
+          {
+            "period": "2016–2021",
+            "team": "Red Bull",
+            "note": "Promoted from Racing Bulls; dominant era"
+          },
+          {
+            "period": "2015",
+            "team": "Racing Bulls",
+            "note": "F1 debut aged 17 — youngest ever at the time"
+          }
+        ]
+      },
+      "hadjar": {
+        "expiry": "2027",
+        "status": "Extended through 2027, announced by Red Bull on 23 Sep 2026 ahead of his return from a wrist injury at the Azerbaijan GP (Formula1.com). Partners Verstappen again in 2027. Hadjar admitted he hadn’t checked how long the new deal runs.",
+        "talks": "Settled: Red Bull chose Hadjar over Lawson for the 2027 seat alongside Verstappen.",
+        "history": [
+          {
+            "period": "2027",
+            "team": "Red Bull",
+            "note": "Extension announced 23 Sep 2026"
+          },
+          {
+            "period": "2026",
+            "team": "Red Bull",
+            "note": "Promoted from Racing Bulls — debut Red Bull seat"
+          },
+          {
+            "period": "2025",
+            "team": "Racing Bulls",
+            "note": "Rookie season alongside Lawson"
+          },
+          {
+            "period": "2024",
+            "team": "Racing Bulls",
+            "note": "F2 champion — joined as reserve driver"
+          }
+        ],
+        "source": "https://www.formula1.com/en/latest/article/red-bull-announce-new-deal-with-hadjar-for-2027-ahead-of-his-return-in-azerbaijan.3QcucG3BkfbWJNk4M5dWme",
+        "updated": "2026-09-23"
+      },
+      "lawson": {
+        "expiry": "2026",
+        "status": "One-year Racing Bulls deal for 2026 (The Race). Stood in at Red Bull while Hadjar was injured; back at Racing Bulls from the Azerbaijan GP.",
+        "talks": "Red Bull have confirmed Hadjar for 2027, so Lawson’s route to the senior team is closed for now; his 2027 Racing Bulls seat is unconfirmed.",
+        "history": [
+          {
+            "period": "2026",
+            "team": "Racing Bulls",
+            "note": "Retained after strong Monza showing in 2025"
+          },
+          {
+            "period": "2025",
+            "team": "Racing Bulls",
+            "note": "Stepped in for Ricciardo; signed full season"
+          },
+          {
+            "period": "2024 (partial)",
+            "team": "Racing Bulls",
+            "note": "Mid-season call-up; replaced Ricciardo"
+          },
+          {
+            "period": "2023 (partial)",
+            "team": "AlphaTauri",
+            "note": "Stood in for injured De Vries"
+          }
+        ],
+        "updated": "2026-09-23"
+      },
+      "arvid_lindblad": {
+        "expiry": "2026",
+        "status": "One-year deal for 2026 (The Race). Red Bull junior driver on evaluation season.",
+        "talks": "Red Bull will assess Lindblad's 2026 performance — multiple points finishes and strong racecraft have impressed the team. A confirmed 2027 Racing Bulls seat or promotion is possible. No external team links.",
+        "history": [
+          {
+            "period": "2026",
+            "team": "Racing Bulls",
+            "note": "Debut F1 season as Red Bull junior"
+          },
+          {
+            "period": "2025",
+            "team": "Campos (F2)",
+            "note": "F2 season — won rookie class"
+          },
+          {
+            "period": "2024",
+            "team": "Prema (F2)",
+            "note": "F2 debut season"
+          }
+        ]
+      },
+      "gasly": {
+        "expiry": "2027",
+        "status": "Extended in 2025 H2 into 2027 (The Race). Has been Alpine's cornerstone since 2023. First career pole at Monza 2026.",
+        "talks": "No reported external interest. Alpine's 2027 plans depend on whether Colapinto is retained. Gasly's pole at Monza strengthened his position considerably.",
+        "history": [
+          {
+            "period": "2023–2027",
+            "team": "Alpine",
+            "note": "Initial multi-year deal, extended in 2025"
+          },
+          {
+            "period": "2021–2022",
+            "team": "AlphaTauri",
+            "note": "Returned to Red Bull junior team after Ferrari links fell through"
+          },
+          {
+            "period": "2019 (partial)",
+            "team": "Red Bull",
+            "note": "Promoted mid-season; demoted after difficult spell"
+          },
+          {
+            "period": "2017–2020",
+            "team": "AlphaTauri/Toro Rosso",
+            "note": "Developed as Red Bull junior"
+          }
+        ]
+      },
+      "colapinto": {
+        "expiry": "2027",
+        "status": "Retained for 2027 (The Race). Briatore held out before confirming Colapinto's second full F1 season.",
+        "talks": "Alpine are committed to Colapinto through 2027. Beyond that, his trajectory will determine whether a top team comes calling — his pace has drawn attention from several paddock figures.",
+        "history": [
+          {
+            "period": "2026–2027",
+            "team": "Alpine",
+            "note": "Full-season deal after strong debut"
+          },
+          {
+            "period": "2025 (partial)",
+            "team": "Williams",
+            "note": "Mid-season promotion — replaced Sargeant"
+          },
+          {
+            "period": "2022–2024",
+            "team": "Williams junior",
+            "note": "F2 and junior programme"
+          }
+        ]
+      },
+      "bearman": {
+        "expiry": "2026",
+        "status": "Contract status for 2027 unconfirmed (GPFans). Haas have not announced 2027 driver lineup. Ferrari backing may influence his future.",
+        "talks": "Bearman has Ferrari backing and has impressed in his first full Haas season. Ferrari are evaluating whether to loan him to a higher-profile seat or keep him at Haas for development. No confirmed external interest.",
+        "history": [
+          {
+            "period": "2026",
+            "team": "Haas",
+            "note": "First full F1 season with Ferrari backing"
+          },
+          {
+            "period": "2024 (GP substitute)",
+            "team": "Ferrari",
+            "note": "One-race substitute at Saudi Arabia for ill Sainz"
+          },
+          {
+            "period": "2024 (partial)",
+            "team": "Haas",
+            "note": "Mid-season promotion replacing Magnussen"
+          }
+        ]
+      },
+      "ocon": {
+        "expiry": "2026",
+        "status": "Contract status unconfirmed for 2027. Haas signed Ocon for 2026 but have not confirmed renewal.",
+        "talks": "Ocon's 2026 season has been underwhelming relative to Bearman. Haas may look at other options for 2027 if a competitive replacement is available. No confirmed talks elsewhere.",
+        "history": [
+          {
+            "period": "2026",
+            "team": "Haas",
+            "note": "Signed after Alpine did not renew"
+          },
+          {
+            "period": "2020–2025",
+            "team": "Alpine/Renault",
+            "note": "Five seasons with Alpine including 2021 Hungaroring win"
+          },
+          {
+            "period": "2017–2019",
+            "team": "Force India / Racing Point",
+            "note": "Established as a race driver"
+          }
+        ]
+      },
+      "hulkenberg": {
+        "expiry": "2027",
+        "status": "2025–2026 deal with option for 2027 (The Race). Reports suggest 2027 is likely to be exercised given Audi's need for stability.",
+        "talks": "Hülkenberg is committed to Audi's project long-term. No external interest reported. His priority is to develop the Audi PU into a competitive force.",
+        "history": [
+          {
+            "period": "2025–2027",
+            "team": "Audi (Sauber)",
+            "note": "Signed as lead driver for Audi's F1 entry"
+          },
+          {
+            "period": "2023–2024",
+            "team": "Haas",
+            "note": "Two-season stint — best result P4 in 2023"
+          },
+          {
+            "period": "2022",
+            "team": "Aston Martin",
+            "note": "Covered for Vettel early-season"
+          },
+          {
+            "period": "2013–2019",
+            "team": "Force India / Racing Point",
+            "note": "Multiple seasons — never scored podium"
+          }
+        ]
+      },
+      "bortoleto": {
+        "expiry": "2027",
+        "status": "Multi-year Audi deal (The Race). Exact length unconfirmed but understood to run to at least 2027.",
+        "talks": "No external talks. Bortoleto is central to Audi's future plans as the team builds toward 2029 GM engine.",
+        "history": [
+          {
+            "period": "2026–2027+",
+            "team": "Audi (Sauber)",
+            "note": "Promoted from McLaren junior programme"
+          },
+          {
+            "period": "2025",
+            "team": "Invicta (F2)",
+            "note": "F2 champion — won title in 2024"
+          },
+          {
+            "period": "2024",
+            "team": "Invicta (F2)",
+            "note": "F2 debut — won feature race at Monza from P22"
+          }
+        ]
+      },
+      "sainz": {
+        "expiry": "2026",
+        "status": "Signed Williams for 2026 after Ferrari replaced him with Hamilton. Contract length unconfirmed but widely reported as a one-year deal.",
+        "talks": "Sainz has openly stated he wants a top-team seat for 2027. Linked to Aston Martin (if Alonso retires) and potentially Red Bull (if Hadjar's situation remains unclear). Multiple reputable sources (The Race, Sky) confirm conversations with Aston Martin.",
+        "history": [
+          {
+            "period": "2026",
+            "team": "Williams",
+            "note": "Signed after Ferrari seat lost to Hamilton"
+          },
+          {
+            "period": "2023–2025",
+            "team": "Ferrari",
+            "note": "Three strong seasons; won multiple races"
+          },
+          {
+            "period": "2021–2022",
+            "team": "Ferrari",
+            "note": "First Ferrari contract"
+          },
+          {
+            "period": "2019–2020",
+            "team": "McLaren",
+            "note": "Two seasons before Ferrari switch"
+          }
+        ]
+      },
+      "albon": {
+        "expiry": "2026",
+        "status": "Williams deal believed to run to end of 2026 (GPFans). No renewal confirmed.",
+        "talks": "Albon's 2026 season has been difficult — DNF at Zandvoort, points-less at Monza. Williams are reportedly evaluating their 2027 lineup. Albon has no confirmed external offers.",
+        "history": [
+          {
+            "period": "2022–2026",
+            "team": "Williams",
+            "note": "Revived career at Williams after Red Bull exit"
+          },
+          {
+            "period": "2020",
+            "team": "Red Bull",
+            "note": "Promoted from Racing Bulls; lost seat after poor form"
+          },
+          {
+            "period": "2019 (partial)",
+            "team": "Red Bull",
+            "note": "Mid-season promotion from AlphaTauri"
+          },
+          {
+            "period": "2019 (start)",
+            "team": "AlphaTauri",
+            "note": "F1 debut"
+          }
+        ]
+      },
+      "alonso": {
+        "expiry": "2026",
+        "status": "Contract expires end of 2026 (GPFans). Alonso has told media he will not renew unless the car is competitive. With Newey's B-spec showing promise, his decision is pending.",
+        "talks": "Alonso has confirmed he is evaluating whether the Newey-led Aston Martin can compete at the front in 2027. No other teams have been linked credibly. A decision is expected before the end of the season.",
+        "history": [
+          {
+            "period": "2023–2026",
+            "team": "Aston Martin",
+            "note": "Joined from Alpine in blockbuster move"
+          },
+          {
+            "period": "2021–2022",
+            "team": "Alpine/Renault",
+            "note": "Return to the team that launched his career"
+          },
+          {
+            "period": "2018–2020",
+            "team": "McLaren (IndyCar/WEC)",
+            "note": "Sabbatical from F1, pursued other championships"
+          },
+          {
+            "period": "2015–2017",
+            "team": "McLaren-Honda",
+            "note": "Difficult years; multiple DNS/DNFs"
+          }
+        ]
+      },
+      "stroll": {
+        "expiry": "2026",
+        "status": "Contract expires end of 2026 (GPFans). His renewal is entirely linked to his father Lawrence Stroll's continued ownership of Aston Martin.",
+        "talks": "No external interest. Renewal at Aston Martin assumed unless a commercial change in team ownership occurs.",
+        "history": [
+          {
+            "period": "2019–2026",
+            "team": "Aston Martin / Racing Point / Force India",
+            "note": "Has raced for the same entity throughout career"
+          },
+          {
+            "period": "2017–2018",
+            "team": "Williams",
+            "note": "First two F1 seasons"
+          }
+        ]
+      },
+      "perez": {
+        "expiry": "2027+",
+        "status": "Multi-year Cadillac deal (GPFans). Exact length unconfirmed — reported as 2–3 years.",
+        "talks": "No external interest. Pérez is one of Cadillac's founding drivers for their F1 project.",
+        "history": [
+          {
+            "period": "2026–2027+",
+            "team": "Cadillac",
+            "note": "Founding driver for new constructor"
+          },
+          {
+            "period": "2021–2025",
+            "team": "Red Bull",
+            "note": "Five seasons alongside Verstappen; won 2023 Monaco GP and others"
+          },
+          {
+            "period": "2014–2020",
+            "team": "Force India / Racing Point",
+            "note": "Established as a consistent points scorer"
+          }
+        ]
+      },
+      "bottas": {
+        "expiry": "2027+",
+        "status": "Multi-year Cadillac deal (GPFans). Widely understood to be a 2-year deal.",
+        "talks": "No external interest. Bottas bringing extensive F1 experience to help Cadillac develop the car.",
+        "history": [
+          {
+            "period": "2026–2027+",
+            "team": "Cadillac",
+            "note": "Returned to F1 after one year away"
+          },
+          {
+            "period": "2022–2025",
+            "team": "Sauber / Alfa Romeo",
+            "note": "Four seasons as team leader"
+          },
+          {
+            "period": "2017–2021",
+            "team": "Mercedes",
+            "note": "Won multiple races alongside Hamilton"
+          },
+          {
+            "period": "2013–2016",
+            "team": "Williams",
+            "note": "Early career — consistent points scorer"
+          }
+        ]
+      }
+    }
+  }
+}

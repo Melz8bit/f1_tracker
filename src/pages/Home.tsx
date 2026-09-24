@@ -3,6 +3,8 @@ import StandingsTab from "../components/dashboard/StandingsTab";
 import RaceByRaceTab from "../components/dashboard/RaceByRaceTab";
 import PaceProfileTab from "../components/dashboard/PaceProfileTab";
 import FormGuideTab from "../components/dashboard/FormGuideTab";
+import RegChangesTab from "../components/dashboard/RegChangesTab";
+import DriverContractsTab from "../components/dashboard/DriverContractsTab";
 import RangeFilter from "../components/dashboard/RangeFilter";
 import { useSeason } from "../hooks/useSeason";
 import { formatDay, shortRaceName } from "../lib/format";
@@ -58,18 +60,9 @@ export default function Home() {
             {tab === 'standings' && <StandingsTab />}
             {tab === 'pace' && <PaceProfileTab />}
             {tab === 'races' && <RaceByRaceTab />}
-            {tab === 'regs' && <ComingSoon phase={5} what="Regulation changes and the ADUO tracker" />}
+            {tab === 'regs' && <RegChangesTab />}
             {tab === 'form' && <FormGuideTab />}
-            {tab === 'contracts' && <ComingSoon phase={5} what="Driver contracts" />}
-        </div>
-    )
-}
-
-function ComingSoon({ phase, what }: { phase: number; what: string }) {
-    return (
-        <div className="card">
-            <div className="ct">Coming in phase {phase}</div>
-            <div className="cb">{what}.</div>
+            {tab === 'contracts' && <DriverContractsTab />}
         </div>
     )
 }

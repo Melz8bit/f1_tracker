@@ -55,12 +55,14 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 - [x] Auto-update: /api/power-units re-checks fia.com every 3 h (no API cost)
 - [x] PU supplier label now from the FIA entry names (static list is only a fallback)
 
-## Phase 5 — Manual-data tabs
-- [ ] `regulations.json` + Reg Changes tab (with live-computed claims)
-- [ ] `aduo.json` + ADUO tracker (review-window race lists derived from schedule)
+## Phase 5 — Manual-data tabs ✅ (2026-09-24)
+- [x] `regulations.json` + Reg Changes tab (live: supplier→teams from FIA entries, Cadillac points)
+- [x] ADUO tracker in regulations.json, from the FIA's 26 Aug results article (corrects the mockup: Ferrari & Audi 4%+, P2 no grants); periods' races + status from the schedule; ADUO mentions from press summaries
+- [ ] ADUO Period 3 result (after Mexico City, R19) — update regulations.json when the FIA publishes it
 - [x] Form Guide (2026-09-24): 8 computed cards (leader, latest winner, hottest form behind the leader, fastest car, closest P2–P7 fight, reliability, PU penalty watch, next race) + drivers'/constructors' title write-ups incl. clinch maths + latest press headline
-- [ ] `contracts.json` + Driver Contracts tab
-- [ ] "Last reviewed Rn" staleness badge for every manual file
+- [x] `contracts.json` (mockup data keyed by driverId) + Driver Contracts tab; teams live; contract news from press summaries
+- [ ] Contract notes: add Tsunoda; review all (last reviewed R13 — tab shows "Review due")
+- [x] "Last reviewed Rn" / "Review due" badges on regulations + contracts
 
 ## Phase 6 — Automation & polish
 - [ ] GitHub Action: cron after race weekends → run scripts → commit JSON → Vercel redeploy

@@ -45,7 +45,9 @@ round range slider). On mobile it collapses into a bottom sheet.
 Live in the browser (TanStack Query):
 - Schedule, sprint flags, results, sprint results, qualifying, per-round standings → Jolpica
 - Cancelled rounds → OpenF1 `sessions.is_cancelled` (Jolpica omits them)
-- Driver numbers → OpenF1 `/drivers` (team colours are the mockup palette in `src/lib/teams.ts`)
+- Current line-up → OpenF1 `/drivers` for the current/next meeting (useLineup). Applied only when viewing
+  the latest round, because Jolpica only reflects a seat swap after a race result (e.g. Lawson back to
+  Racing Bulls for Baku). Past rounds keep the team raced for. Team colours: mockup palette in teams.ts
 - Race facts (SC/VSC, steward penalties, pit stops, tyre stints, overtakes, weather) → OpenF1
 - Everything derived: title-eligibility pills, max points remaining (uses real sprint count), gaps,
   zone headers, constructor badges, "next race", numeric narrative sentences
@@ -112,7 +114,11 @@ Event page: /documents/championships/fia-formula-one-world-championship-14/seaso
   `power-units/<season>.json`. PDF parsing only — no AI, no API cost. 2026 limits in src/lib/powerUnits.ts
   (B8.2.2 + B8.2.3a): ICE/TC/EXH 4, MGU-K/ES/PU-CE 3, PU-ANC 6. FIA numbers are shown as published
   (e.g. Antonelli EXH 4 → 3 between the R12 and R13 reports is the FIA's own revision).
-- contracts.json, aduo.json, regulations.json — manual, each with `asOfRound`
+- regulations.json — manual: reg-change cards (optional `live`: "suppliers" | "teamPoints:<id>") + ADUO
+  (thresholds, periods by circuitId range, manufacturer status from the FIA's published results).
+  The FIA publishes ADUO results as news articles, not event documents — cite them in `sources`.
+- contracts.json — manual, keyed by Jolpica driverId; teams come live from standings. Both files carry
+  `asOfRound`/`reviewedOn`; the tabs show "Review due" once a newer round has been raced.
 - raceNews.json — committed press summaries (R14) that seed /api/news; newer races live in Vercel Blob.
   Per round: headline, bullets citing source ids, verified quotes, source list, link-only headlines.
   Model claude-sonnet-5 (~$0.08/race; tested 2026-09-24: Haiku 4.5 made factual errors, Opus 5 ~2.5× cost).
@@ -142,7 +148,8 @@ Event page: /documents/championships/fia-formula-one-world-championship-14/seaso
 
 ## Build Order
 Done: Phase 1 (live Standings + points progression, mockup styling), Phase 2 (Race by Race with auto facts),
-Phase 3 (pace pipeline + Pace Profiles tab), Phase 4 (FIA PU scraper + component usage panel).
+Phase 3 (pace pipeline + Pace Profiles tab), Phase 4 (FIA PU scraper + component usage panel),
+Phase 5 (Form Guide computed; Reg Changes/ADUO and Driver Contracts from manual JSON). All 6 tabs live.
 api/ holds bundled functions (news.js, power-units.js) and api/_chunks/ shared code — underscore paths
 aren't endpoints. Rebuild with `npm run build:api` after editing server/ or the shared scripts.
 Scripts in scripts/ run with Node's type stripping (Node 22+): imports need explicit .ts extensions,

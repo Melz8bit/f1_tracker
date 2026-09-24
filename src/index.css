@@ -196,9 +196,56 @@
   .vteam { font-size: 15px; font-weight: 700; }
   .vsub { font-size: 11px; color: #666; margin-top: 3px; line-height: 1.4; }
 
+  /* Reg changes + ADUO */
+  .reg-card { background: #161616; border: 1px solid #242424; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+  .reg-card.aduo { border-color: #2a3a2a; }
+  .reg-title { font-size: 13px; font-weight: 600; color: #e8e8e8; margin-bottom: 6px; }
+  .reg-card.aduo .reg-title { color: #4caf50; }
+  .reg-body { font-size: 13px; color: #666; line-height: 1.65; }
+  .reg-body strong { color: #aaa; font-weight: 600; }
+  .reg-live { margin-top: 6px; font-size: 12px; color: #999; border-left: 2px solid #333; padding-left: 8px; }
+  .aduo-section { margin-top: 24px; padding-top: 16px; border-top: 1px solid #2a2a2a; }
+  .aduo-live { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: #0e2a1a; color: #4caf50; border: 1px solid #1a4a2a; text-transform: uppercase; }
+  table.aduo-tbl { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 4px; }
+  table.aduo-tbl th { text-align: left; padding: 7px 8px; color: #666; font-weight: 500; text-transform: uppercase; font-size: 10px; letter-spacing: 0.04em; border-bottom: 1px solid #2a2a2a; }
+  table.aduo-tbl td { padding: 7px 8px; color: #aaa; border-bottom: 1px solid #1e1e1e; vertical-align: top; }
+  table.aduo-tbl tr:last-child td { border-bottom: none; }
+  table.aduo-tbl .c { text-align: center; }
+  table.aduo-tbl .r { text-align: right; }
+  table.aduo-tbl .strong { color: #e8e8e8; font-weight: 500; }
+  table.aduo-tbl .muted { color: #777; }
+  .aduo-sub { font-size: 10px; color: #444; margin-top: 2px; }
+  .aduo-note { font-size: 11px; color: #444; padding: 8px 8px 2px; font-style: italic; }
+  .aduo-pill { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; white-space: nowrap; display: inline-block; }
+  .aduo-pill.yes { background: #0e2a0e; color: #4caf50; border: 1px solid #1a4a1a; }
+  .aduo-pill.active { background: #1a1400; color: #cc9900; border: 1px solid #3a2e00; }
+  .aduo-pill.none { background: #1e1e1e; color: #555; border: 1px solid #2a2a2a; }
+
+  /* Driver contracts */
+  .contract-block { border-bottom: 1px solid #1e1e1e; padding-bottom: 18px; margin-bottom: 18px; }
+  .contract-block:last-child { border-bottom: none; margin-bottom: 0; }
+  .contract-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  .contract-name { font-size: 14px; font-weight: 600; flex: 1; min-width: 120px; }
+  .contract-team { font-size: 11px; color: #555; font-weight: 400; margin-left: 8px; }
+  .contract-expiry { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 6px; white-space: nowrap; }
+  .exp-secure { background: #0e2a0e; color: #4caf50; border: 1px solid #1a4a1a; }
+  .exp-near   { background: #1a1400; color: #cc9900; border: 1px solid #3a2e00; }
+  .exp-this   { background: #3a0e00; color: #ff6633; border: 1px solid #5a1800; }
+  .contract-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+  .contract-meta-item { background: #161616; border-radius: 6px; padding: 8px 10px; }
+  .cmi-label { font-size: 10px; color: #444; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px; font-weight: 600; }
+  .cmi-value { font-size: 12px; color: #aaa; line-height: 1.45; }
+  .contract-talks { background: #1a1400; border: 1px solid #3a2e00; border-radius: 6px; padding: 8px 10px; margin-bottom: 6px; font-size: 12px; color: #cc9900; line-height: 1.5; }
+  .contract-talks strong { color: #e0b840; font-weight: 600; }
+  .contract-history { font-size: 11px; color: #555; line-height: 1.6; }
+  .contract-press { font-size: 12px; color: #777; line-height: 1.55; border-left: 2px solid #333; padding: 2px 0 2px 10px; margin-top: 6px; }
+  .contract-press strong { color: #bbb; }
+  .contracts-note { font-size: 11px; color: #444; font-style: italic; line-height: 1.6; margin-bottom: 16px; }
+
   @media (max-width: 600px) {
     .pts-bar-wrap { width: 50px; }
     .con-bar-wrap { width: 60px; }
     .alabel { min-width: 120px; font-size: 11px; }
+    .contract-meta { grid-template-columns: 1fr; }
   }
 }

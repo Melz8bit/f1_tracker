@@ -1,6 +1,7 @@
 // Internal Imports
 import { useSeason } from '../../hooks/useSeason'
 import { useDriverStandings } from '../../hooks/useDriverStandings'
+import { applyLineup, useLineup } from '../../hooks/useLineup'
 import { useConstructorStandings } from '../../hooks/useConstructorStandings'
 import { useFilterStore } from '../../store/filterStore'
 import { maxRemainingPoints, pointsSystem, titleStatus, TITLE_ZONE, type MaxRemaining } from '../../lib/championship'
@@ -24,6 +25,7 @@ export default function StandingsTab() {
     const round = state && !state.isLatest ? state.asOfRound : undefined
     const enabled = !!state && state.asOfRound > 0
     const drivers = useDriverStandings(season, round, enabled)
+    const lineup = useLineup(season)
     const constructors = useConstructorStandings(season, round, enabled)
 
     if (isLoading || drivers.isLoading || constructors.isLoading) return <p className="text-sm text-[#666]">Loading standings…</p>
@@ -34,7 +36,8 @@ export default function StandingsTab() {
         return <p className="text-sm text-[#666]">The {season} season hasn't started yet{first ? ` — ${first.raceName}, ${formatWeekend(first)}` : ''}.</p>
     }
 
-    const driverRows = drivers.data ?? []
+    // Viewing the latest round: show this weekend's line-up (seat swaps land before any race result)
+    const driverRows = state.isLatest ? applyLineup(drivers.data ?? [], lineup) : drivers.data ?? []
     const constructorRows = constructors.data ?? []
     const maxLeft = maxRemainingPoints(season, state.racesLeft, state.sprintsLeft)
     const latestRace = races.find(r => r.round === state.asOfRound)
@@ -174,7 +177,7 @@ function ConstructorList({ standings, latestRace, maxLeft }: { standings: Constr
 
 // ── Drivers ───────────────────────────────────────────────────────
 
-function DriverTable({ standings, maxLeft }: { standings: DriverStanding[]; maxLeft: number }) {
+function DriverTable({ standings, maxLeft }: { standings: Array<DriverStanding & { notEntered?: boolean }>; maxLeft: number }) {
     const leader = standings[0]?.points ?? 0
     const runnerUp = standings[1]?.points ?? 0
     const statuses = standings.map(s => titleStatus(s.points, leader, runnerUp, maxLeft, 'drivers'))
@@ -205,7 +208,10 @@ function DriverTable({ standings, maxLeft }: { standings: DriverStanding[]; maxL
                                     <DriverFlag nationality={s.driver.nationality} />
                                     <div>
                                         <div className="drv-name">{driverShortName(s.driver)}</div>
-                                        <div className="drv-team"><span className="pip" style={{ background: color }} />{teamName(s.constructor)}</div>
+                                        <div className="drv-team">
+                                            <span className="pip" style={{ background: color }} />{teamName(s.constructor)}
+                                            {s.notEntered && <span className="text-[#444]"> · not entered this weekend</span>}
+                                        </div>
                                     </div>
                                 </div>
                             </td>
