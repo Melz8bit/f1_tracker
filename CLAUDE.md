@@ -117,7 +117,10 @@ Event page: /documents/championships/fia-formula-one-world-championship-14/seaso
 - regulations.json — manual: reg-change cards (optional `live`: "suppliers" | "teamPoints:<id>") + ADUO
   (thresholds, periods by circuitId range, manufacturer status from the FIA's published results).
   The FIA publishes ADUO results as news articles, not event documents — cite them in `sources`.
-- contracts.json — manual, keyed by Jolpica driverId; teams come live from standings. Both files carry
+- contracts.json — manual, keyed by Jolpica driverId; teams come live from standings. Automatic layer:
+  each race summary also returns confirmed contract announcements (same Claude call) from race articles +
+  contract stories since the previous race; kept only if the driver is in the results and any expiry year
+  appears in the cited article. Shown as "Latest" on the driver card; a newer one overrides the expiry chip. Both files carry
   `asOfRound`/`reviewedOn`; the tabs show "Review due" once a newer round has been raced.
 - raceNews.json — committed press summaries (R14) that seed /api/news; newer races live in Vercel Blob.
   Per round: headline, bullets citing source ids, verified quotes, source list, link-only headlines.

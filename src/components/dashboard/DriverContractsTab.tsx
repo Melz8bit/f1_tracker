@@ -6,7 +6,7 @@ import { applyLineup, useLineup } from "../../hooks/useLineup";
 import { teamColor, teamName } from "../../lib/teams";
 import { driverShortName, formatDay } from "../../lib/format";
 import type { DriverStanding } from "../../types/f1";
-import type { RoundNews } from "../../lib/news";
+import type { ContractNews, RoundNews } from "../../lib/news";
 import DriverFlag from "../shared/DriverFlag";
 import RichText from "../shared/RichText";
 import contractsJson from "../../data/contracts.json"
@@ -48,6 +48,18 @@ function pressMentions(rounds: Record<string, RoundNews>, familyName: string) {
         .slice(0, 2)
 }
 
+// Newest confirmed contract announcement per driver, from the automatic race summaries
+function latestContractNews(rounds: Record<string, RoundNews>): Map<string, ContractNews> {
+    const latest = new Map<string, ContractNews>()
+    for (const news of Object.values(rounds)) {
+        for (const c of news.contracts ?? []) {
+            const current = latest.get(c.driverId)
+            if (!current || c.published > current.published) latest.set(c.driverId, c)
+        }
+    }
+    return latest
+}
+
 function expiryClass(expiry: string, season: number): string {
     const year = parseInt(expiry)
     if (!year || year <= season) return 'exp-this'
@@ -73,6 +85,7 @@ export default function DriverContractsTab() {
     for (const d of current) byTeam.set(d.constructor.constructorId, [...(byTeam.get(d.constructor.constructorId) ?? []), d])
     const teams = [...byTeam.keys()].sort((a, b) => (teamPosition.get(a) ?? 99) - (teamPosition.get(b) ?? 99))
     const stale = state && state.roundsDone > data.asOfRound
+    const autoUpdates = latestContractNews(news.rounds)
 
     return (
         <>
@@ -88,7 +101,15 @@ export default function DriverContractsTab() {
                     <div key={tier.label}>
                         <div className={`tier-divider${tier.from === 1 ? ' mt-0 border-t-0 pt-0' : ''}`}>{tier.label}</div>
                         {tierTeams.flatMap(team => byTeam.get(team)!.map(d => (
-                            <DriverContract key={d.driver.driverId} standing={d} contract={data.drivers[d.driver.driverId]} season={season} news={news.rounds} />
+                            <DriverContract
+                                key={d.driver.driverId}
+                                standing={d}
+                                contract={data.drivers[d.driver.driverId]}
+                                auto={autoUpdates.get(d.driver.driverId)}
+                                reviewedOn={data.reviewedOn}
+                                season={season}
+                                news={news.rounds}
+                            />
                         )))}
                     </div>
                 )
@@ -97,9 +118,21 @@ export default function DriverContractsTab() {
     )
 }
 
-function DriverContract({ standing, contract, season, news }: { standing: DriverStanding; contract?: Contract; season: number; news: Record<string, RoundNews> }) {
+interface DriverContractProps {
+    standing: DriverStanding;
+    contract?: Contract;
+    auto?: ContractNews; // Newest announcement found automatically in the press
+    reviewedOn: string;
+    season: number;
+    news: Record<string, RoundNews>;
+}
+
+function DriverContract({ standing, contract, auto, reviewedOn, season, news }: DriverContractProps) {
     const color = teamColor(standing.constructor.constructorId)
     const mentions = pressMentions(news, standing.driver.familyName)
+    // An automatic update newer than the hand-written entry wins the expiry chip
+    const autoIsNewer = auto && auto.published > (contract?.updated ?? reviewedOn)
+    const expiry = autoIsNewer && auto.expiry ? auto.expiry : contract?.expiry
     return (
         <div className="contract-block">
             <div className="contract-head">
@@ -108,8 +141,16 @@ function DriverContract({ standing, contract, season, news }: { standing: Driver
                     {driverShortName(standing.driver)}
                     <span className="contract-team"><span className="pip" style={{ background: color }} />{teamName(standing.constructor)}</span>
                 </div>
-                {contract && <span className={`contract-expiry ${expiryClass(contract.expiry, season)}`}>Until {contract.expiry}</span>}
+                {expiry && <span className={`contract-expiry ${expiryClass(expiry, season)}`}>Until {expiry}</span>}
             </div>
+            {auto && (
+                <div className="contract-auto">
+                    <span className="contract-auto-tag">Latest</span>
+                    {auto.change}{auto.expiry && ` Runs to ${auto.expiry}.`}
+                    <span className="text-[#555]"> · {formatDay(auto.published)} · </span>
+                    <a href={auto.url} target="_blank" rel="noreferrer" className="underline decoration-[#333] hover:text-[#ccc]">{auto.site}</a>
+                </div>
+            )}
             {contract ? (
                 <>
                     <div className="contract-meta">

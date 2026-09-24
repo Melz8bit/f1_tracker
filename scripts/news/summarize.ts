@@ -16,10 +16,18 @@ export interface SourceArticle {
     text: string;
 }
 
+export interface ContractChange {
+    driver: string; // Full name as written in DATA or the article
+    change: string; // One sentence: what was announced
+    expiry: string; // "2027", "2028+", or "" when the article doesn't say
+    source: number;
+}
+
 export interface WeekendSummary {
     headline: string;
     bullets: Array<{ text: string; sources: number[] }>;
     quotes: Array<{ speaker: string; quote: string; source: number }>;
+    contracts: ContractChange[];
 }
 
 const SCHEMA = {
@@ -53,8 +61,23 @@ const SCHEMA = {
                 additionalProperties: false,
             },
         },
+        contracts: {
+            type: 'array',
+            description: 'Confirmed driver contract news: extensions, new signings, confirmed moves or retirements. Empty if none.',
+            items: {
+                type: 'object',
+                properties: {
+                    driver: { type: 'string', description: 'Driver full name' },
+                    change: { type: 'string', description: 'One sentence in your own words: what was announced and by whom' },
+                    expiry: { type: 'string', description: 'Final season of the deal as stated in the article, e.g. "2027" or "2028+"; empty string if not stated' },
+                    source: { type: 'integer', description: 'Id of the article that reports it' },
+                },
+                required: ['driver', 'change', 'expiry', 'source'],
+                additionalProperties: false,
+            },
+        },
     },
-    required: ['headline', 'bullets', 'quotes'],
+    required: ['headline', 'bullets', 'quotes', 'contracts'],
     additionalProperties: false,
 }
 
@@ -70,7 +93,8 @@ Rules:
 - Every bullet cites the article ids it draws on. Only say what the articles or DATA support.
 - Write in your own words. Don't copy sentences from the articles; the only verbatim text allowed is in "quotes".
 - Quotes must be copied exactly, character for character, from an article, and must be something a driver, team principal or team member said. Skip quotes rather than paraphrase them.
-- Neutral, factual tone. No speculation beyond what the articles report.`
+- Neutral, factual tone. No speculation beyond what the articles report.
+- "contracts" lists only announcements confirmed by the team or driver (extensions, signings, confirmed moves, retirements) — never rumours, talks or "expected" moves. Give the expiry only if the article states it; otherwise leave it empty.`
 
 export function formatArticles(articles: SourceArticle[], maxCharsEach: number): string {
     return articles.map(a => `<article id="${a.id}" site="${a.site}" published="${a.published}">
@@ -110,5 +134,12 @@ export async function summarizeWeekend(client: Anthropic, data: string, articles
             const article = byId.get(q.source)
             return article !== undefined && normalise(article.text).includes(normalise(q.quote))
         }),
+        // A contract change must cite a real article, and any expiry year must appear in that article
+        contracts: (summary.contracts ?? [])
+            .filter(c => byId.has(c.source))
+            .map(c => {
+                const year = c.expiry.match(/20\d\d/)?.[0]
+                return year && !byId.get(c.source)!.text.includes(year) ? { ...c, expiry: '' } : c
+            }),
     }
 }

@@ -556,12 +556,45 @@ const SCHEMA = {
 				],
 				additionalProperties: false
 			}
+		},
+		contracts: {
+			type: "array",
+			description: "Confirmed driver contract news: extensions, new signings, confirmed moves or retirements. Empty if none.",
+			items: {
+				type: "object",
+				properties: {
+					driver: {
+						type: "string",
+						description: "Driver full name"
+					},
+					change: {
+						type: "string",
+						description: "One sentence in your own words: what was announced and by whom"
+					},
+					expiry: {
+						type: "string",
+						description: "Final season of the deal as stated in the article, e.g. \"2027\" or \"2028+\"; empty string if not stated"
+					},
+					source: {
+						type: "integer",
+						description: "Id of the article that reports it"
+					}
+				},
+				required: [
+					"driver",
+					"change",
+					"expiry",
+					"source"
+				],
+				additionalProperties: false
+			}
 		}
 	},
 	required: [
 		"headline",
 		"bullets",
-		"quotes"
+		"quotes",
+		"contracts"
 	],
 	additionalProperties: false
 };
@@ -577,7 +610,8 @@ Rules:
 - Every bullet cites the article ids it draws on. Only say what the articles or DATA support.
 - Write in your own words. Don't copy sentences from the articles; the only verbatim text allowed is in "quotes".
 - Quotes must be copied exactly, character for character, from an article, and must be something a driver, team principal or team member said. Skip quotes rather than paraphrase them.
-- Neutral, factual tone. No speculation beyond what the articles report.`;
+- Neutral, factual tone. No speculation beyond what the articles report.
+- "contracts" lists only announcements confirmed by the team or driver (extensions, signings, confirmed moves, retirements) — never rumours, talks or "expected" moves. Give the expiry only if the article states it; otherwise leave it empty.`;
 function formatArticles(articles, maxCharsEach) {
 	return articles.map((a) => `<article id="${a.id}" site="${a.site}" published="${a.published}">
 <title>${a.title}</title>
@@ -613,6 +647,13 @@ async function summarizeWeekend(client, data, articles) {
 		quotes: summary.quotes.filter((q) => {
 			const article = byId.get(q.source);
 			return article !== void 0 && normalise(article.text).includes(normalise(q.quote));
+		}),
+		contracts: (summary.contracts ?? []).filter((c) => byId.has(c.source)).map((c) => {
+			const year = c.expiry.match(/20\d\d/)?.[0];
+			return year && !byId.get(c.source).text.includes(year) ? {
+				...c,
+				expiry: ""
+			} : c;
 		})
 	};
 }
@@ -711,6 +752,15 @@ function pickForWeekend(listings, race, sources, limit) {
 		return true;
 	}).slice(0, limit);
 }
+const CONTRACT_WORDS = /contract|extension|extends|extended|signs|signed|re-sign|seat|confirm(s|ed)?[^/]*20\d\d|retire|joins|leave|leaving/i;
+const MAX_CONTRACT_ARTICLES = 4;
+function pickContractNews(listings, sources, from, to, exclude) {
+	return listings.filter((l) => {
+		const source = sources.find((s) => s.id === l.source);
+		const at = Date.parse(l.published);
+		return source !== void 0 && source.isF1(l.url) && at >= from && at <= to && !exclude.has(l.url) && CONTRACT_WORDS.test(`${l.title} ${l.url}`);
+	}).sort((a, b) => b.published.localeCompare(a.published)).filter((l, i, all) => all.findIndex((x) => x.url === l.url) === i).slice(0, MAX_CONTRACT_ARTICLES);
+}
 async function collectListings(deps, oldestNeeded) {
 	const listings = [];
 	for (const source of SOURCES) {
@@ -794,20 +844,47 @@ async function prepareWeekend(deps, data, round, listings) {
 	if (!race || !info) throw new Error(`Round ${round} has no results yet`);
 	const summarizable = SOURCES.filter((s) => s.summarize);
 	const linkOnly = SOURCES.filter((s) => !s.summarize);
+	const racePicks = pickForWeekend(listings, info, summarizable, MAX_ARTICLES);
+	const previous = data.schedule.find((r) => r.round === round - 1);
+	const contractPicks = pickContractNews(listings, summarizable, previous ? Date.parse(`${previous.date}T00:00:00Z`) + DAY : weekendWindow(info)[0], weekendWindow(info)[1], new Set(racePicks.map((p) => p.url)));
+	const articles = await fetchArticles(deps, [...racePicks, ...contractPicks]);
+	const links = pickForWeekend(listings, info, linkOnly, MAX_LINKS).map((l) => ({
+		site: linkOnly.find((s) => s.id === l.source).name,
+		title: l.title,
+		url: l.url,
+		published: l.published.slice(0, 10)
+	}));
+	const drivers = race.results.map((r) => ({
+		driverId: r.driver.driverId,
+		givenName: r.driver.givenName,
+		familyName: r.driver.familyName
+	}));
 	return {
-		articles: await fetchArticles(deps, pickForWeekend(listings, info, summarizable, MAX_ARTICLES)),
-		links: pickForWeekend(listings, info, linkOnly, MAX_LINKS).map((l) => ({
-			site: linkOnly.find((s) => s.id === l.source).name,
-			title: l.title,
-			url: l.url,
-			published: l.published.slice(0, 10)
-		})),
-		data: await buildData(deps, data, info, race)
+		articles,
+		links,
+		data: await buildData(deps, data, info, race),
+		drivers
 	};
 }
+const plain = (s) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 async function summarizeRound(client, inputs) {
+	const { contracts, ...summary } = await summarizeWeekend(client, inputs.data, inputs.articles);
+	const byId = new Map(inputs.articles.map((a) => [a.id, a]));
+	const contractNews = contracts.flatMap((c) => {
+		const driver = inputs.drivers.find((d) => plain(c.driver).includes(plain(d.familyName)));
+		const article = byId.get(c.source);
+		return driver && article ? [{
+			driverId: driver.driverId,
+			change: c.change,
+			expiry: c.expiry,
+			url: article.url,
+			site: article.site,
+			published: article.published
+		}] : [];
+	});
 	return {
-		...await summarizeWeekend(client, inputs.data, inputs.articles),
+		...summary,
+		contracts: contractNews,
 		generatedAt: (/* @__PURE__ */ new Date()).toISOString(),
 		model: MODEL,
 		sources: inputs.articles.map(({ id, site, title, url, published }) => ({

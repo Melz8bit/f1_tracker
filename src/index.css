@@ -240,6 +240,8 @@
   .contract-history { font-size: 11px; color: #555; line-height: 1.6; }
   .contract-press { font-size: 12px; color: #777; line-height: 1.55; border-left: 2px solid #333; padding: 2px 0 2px 10px; margin-top: 6px; }
   .contract-press strong { color: #bbb; }
+  .contract-auto { background: #0e1a2a; border: 1px solid #1a2e4a; border-radius: 6px; padding: 8px 10px; margin-bottom: 8px; font-size: 12px; color: #9bb8e0; line-height: 1.5; }
+  .contract-auto-tag { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #4488ee; border: 1px solid #1a3a6a; border-radius: 4px; padding: 1px 5px; margin-right: 6px; }
   .contracts-note { font-size: 11px; color: #444; font-style: italic; line-height: 1.6; margin-bottom: 16px; }
 
   @media (max-width: 600px) {

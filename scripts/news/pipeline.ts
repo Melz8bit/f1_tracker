@@ -99,6 +99,24 @@ function pickForWeekend(listings: Listing[], race: ScheduleRace, sources: Source
         .slice(0, limit)
 }
 
+// Contract news breaks any day of the week, not just around a race: also take contract stories published
+// since the previous race, however they rank for the weekend itself
+const CONTRACT_WORDS = /contract|extension|extends|extended|signs|signed|re-sign|seat|confirm(s|ed)?[^/]*20\d\d|retire|joins|leave|leaving/i
+const MAX_CONTRACT_ARTICLES = 4
+
+function pickContractNews(listings: Listing[], sources: Source[], from: number, to: number, exclude: Set<string>): Listing[] {
+    return listings
+        .filter(l => {
+            const source = sources.find(s => s.id === l.source)
+            const at = Date.parse(l.published)
+            return source !== undefined && source.isF1(l.url) && at >= from && at <= to && !exclude.has(l.url)
+                && CONTRACT_WORDS.test(`${l.title} ${l.url}`)
+        })
+        .sort((a, b) => b.published.localeCompare(a.published))
+        .filter((l, i, all) => all.findIndex(x => x.url === l.url) === i)
+        .slice(0, MAX_CONTRACT_ARTICLES)
+}
+
 // ── collection ────────────────────────────────────────────────────
 
 // Every source's feed, plus dated sitemaps when a weekend is older than the feed reaches
@@ -187,6 +205,7 @@ export interface WeekendInputs {
     articles: SourceArticle[];
     links: RoundNews['links'];
     data: string;
+    drivers: Array<{ driverId: string; givenName: string; familyName: string }>; // To match contract news
 }
 
 // Everything the summarizer needs for one round (no Claude call yet — used by --dry-run too)
@@ -196,16 +215,33 @@ export async function prepareWeekend(deps: PipelineDeps, data: SeasonData, round
     if (!race || !info) throw new Error(`Round ${round} has no results yet`)
     const summarizable = SOURCES.filter(s => s.summarize)
     const linkOnly = SOURCES.filter(s => !s.summarize)
-    const articles = await fetchArticles(deps, pickForWeekend(listings, info, summarizable, MAX_ARTICLES))
+    const racePicks = pickForWeekend(listings, info, summarizable, MAX_ARTICLES)
+    const previous = data.schedule.find(r => r.round === round - 1)
+    const since = previous ? Date.parse(`${previous.date}T00:00:00Z`) + DAY : weekendWindow(info)[0]
+    const contractPicks = pickContractNews(listings, summarizable, since, weekendWindow(info)[1], new Set(racePicks.map(p => p.url)))
+    const articles = await fetchArticles(deps, [...racePicks, ...contractPicks])
     const links = pickForWeekend(listings, info, linkOnly, MAX_LINKS)
         .map(l => ({ site: linkOnly.find(s => s.id === l.source)!.name, title: l.title, url: l.url, published: l.published.slice(0, 10) }))
-    return { articles, links, data: await buildData(deps, data, info, race) }
+    const drivers = race.results.map(r => ({ driverId: r.driver.driverId, givenName: r.driver.givenName, familyName: r.driver.familyName }))
+    return { articles, links, data: await buildData(deps, data, info, race), drivers }
 }
 
+// "Isack Hadjar" / "Hülkenberg" → driverId, ignoring accents and case
+const plain = (s: string) => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
+
 export async function summarizeRound(client: Anthropic, inputs: WeekendInputs): Promise<RoundNews> {
-    const summary = await summarizeWeekend(client, inputs.data, inputs.articles)
+    const { contracts, ...summary } = await summarizeWeekend(client, inputs.data, inputs.articles)
+    const byId = new Map(inputs.articles.map(a => [a.id, a]))
+    const contractNews = contracts.flatMap(c => {
+        const driver = inputs.drivers.find(d => plain(c.driver).includes(plain(d.familyName)))
+        const article = byId.get(c.source)
+        return driver && article
+            ? [{ driverId: driver.driverId, change: c.change, expiry: c.expiry, url: article.url, site: article.site, published: article.published }]
+            : []
+    })
     return {
         ...summary,
+        contracts: contractNews,
         generatedAt: new Date().toISOString(),
         model: MODEL,
         sources: inputs.articles.map(({ id, site, title, url, published }) => ({ id, site, title, url, published })),

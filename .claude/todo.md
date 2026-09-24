@@ -61,7 +61,10 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 - [ ] ADUO Period 3 result (after Mexico City, R19) — update regulations.json when the FIA publishes it
 - [x] Form Guide (2026-09-24): 8 computed cards (leader, latest winner, hottest form behind the leader, fastest car, closest P2–P7 fight, reliability, PU penalty watch, next race) + drivers'/constructors' title write-ups incl. clinch maths + latest press headline
 - [x] `contracts.json` (mockup data keyed by driverId) + Driver Contracts tab; teams live; contract news from press summaries
-- [ ] Contract notes: add Tsunoda; review all (last reviewed R13 — tab shows "Review due")
+- [x] Hadjar 2027 extension + Lawson return (2026-09-24, reviewed after R14)
+- [x] Automatic contract updates from the per-race summary (confirmed announcements only, verified expiry)
+- [ ] Contract notes: add Tsunoda (not entered at Baku)
+- [ ] After R15 (~Sep 28): check the Hadjar extension was picked up automatically
 - [x] "Last reviewed Rn" / "Review due" badges on regulations + contracts
 
 ## Phase 6 — Automation & polish

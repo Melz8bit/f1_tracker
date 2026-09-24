@@ -8,12 +8,22 @@ export interface PressSource {
     published: string; // YYYY-MM-DD
 }
 
+export interface ContractNews {
+    driverId: string;
+    change: string;
+    expiry: string; // "2027", "2028+", or "" when not stated
+    url: string;
+    site: string;
+    published: string; // YYYY-MM-DD
+}
+
 export interface RoundNews {
     headline: string;
     bullets: Array<{ text: string; sources: number[] }>; // text uses **bold** markers
     quotes: Array<{ speaker: string; quote: string; source: number }>; // verified word-for-word against the article
     sources: PressSource[];
     links: Array<{ site: string; title: string; url: string; published: string }>; // headline-only sources
+    contracts?: ContractNews[]; // Confirmed contract announcements found in this round's coverage
     generatedAt: string;
     model: string;
 }
