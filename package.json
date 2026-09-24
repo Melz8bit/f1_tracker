@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "pace": "node --experimental-strip-types --no-warnings=ExperimentalWarning scripts/pace/index.ts"
+    "pace": "node --experimental-strip-types --no-warnings=ExperimentalWarning scripts/pace/index.ts",
+    "news": "node --env-file-if-exists=.env.local --experimental-strip-types --no-warnings=ExperimentalWarning scripts/news/index.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.100.8",
@@ -21,6 +22,7 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.128.0",
     "@eslint/js": "^10.0.1",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",

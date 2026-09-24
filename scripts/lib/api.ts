@@ -61,3 +61,36 @@ export function openF1<T>(path: string, useCache = true): Promise<T> {
 export function jolpica<T>(path: string): Promise<T> {
     return fetchJson<T>(`https://api.jolpi.ca/ergast/f1${path}`, false)
 }
+
+// ── news sites ────────────────────────────────────────────────────
+
+// Identify ourselves honestly and go slowly: one page per second across all sites
+const USER_AGENT = 'f1-dashboard-news/1.0 (personal project; offline summaries with source links)'
+const PAGE_GAP_MS = 1000
+let nextPageSlot = 0
+
+async function politeFetch(url: string): Promise<string> {
+    const now = Date.now()
+    const start = Math.max(now, nextPageSlot)
+    nextPageSlot = start + PAGE_GAP_MS
+    await wait(start - now)
+    const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT } })
+    if (!res.ok) throw new Error(`${res.status} ${url}`)
+    return res.text()
+}
+
+// Articles don't change once published, so pages are cached; feeds and sitemaps (`useCache` false) aren't
+export async function webPage(url: string, useCache = true): Promise<string> {
+    const file = join(CACHE_DIR, 'pages', `${createHash('sha1').update(url).digest('hex')}.html`)
+    if (useCache) {
+        try {
+            return await readFile(file, 'utf8')
+        } catch {
+            // Not cached yet
+        }
+    }
+    const html = await politeFetch(url)
+    await mkdir(join(CACHE_DIR, 'pages'), { recursive: true })
+    await writeFile(file, html)
+    return html
+}

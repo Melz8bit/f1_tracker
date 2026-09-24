@@ -148,6 +148,16 @@
   .tier-divider { font-size: 11px; color: #444; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin: 22px 0 14px; padding-top: 6px; border-top: 1px solid #1e1e1e; }
   .new { display: inline-block; font-size: 9px; padding: 2px 6px; border-radius: 6px; font-weight: 700; margin-left: 6px; vertical-align: middle; background: #3a1a0a; color: #e07040; border: 1px solid #5a2a0a; text-transform: uppercase; }
 
+  /* Press coverage */
+  .press-headline { font-size: 12px; color: #aaa; font-style: italic; margin: 2px 0 6px; line-height: 1.5; }
+  .press-ref { font-size: 9px; color: #666; margin-left: 3px; text-decoration: none; vertical-align: super; }
+  .press-ref:hover { color: #e07040; }
+  .press-quote { font-size: 12px; color: #999; line-height: 1.55; border-left: 2px solid #333; padding: 2px 0 2px 10px; margin: 6px 0; }
+  .press-quote .who { color: #666; font-size: 11px; margin-left: 4px; }
+  .press-sources { font-size: 11px; color: #555; line-height: 1.7; margin: 6px 0 12px; }
+  .press-sources a { color: #777; text-decoration: none; }
+  .press-sources a:hover { color: #ccc; text-decoration: underline; }
+
   @media (max-width: 600px) {
     .pts-bar-wrap { width: 50px; }
     .con-bar-wrap { width: 60px; }

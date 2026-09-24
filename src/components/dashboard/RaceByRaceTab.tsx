@@ -15,6 +15,8 @@ import type { Pole, Race, RaceResult, ScheduleRace } from "../../types/f1"
 import type { OpenF1Meeting } from "../../lib/openf1"
 import RichText from "../shared/RichText"
 import raceNotesJson from "../../data/raceNotes.json"
+import raceNewsJson from "../../data/raceNews.json"
+import type { NewsFile, RoundNews } from "../../lib/news"
 
 interface SeasonNotes {
     asOfRound: number;
@@ -22,6 +24,7 @@ interface SeasonNotes {
     cancelled: Record<string, string>;
 }
 const raceNotes = raceNotesJson as Record<string, SeasonNotes | undefined>
+const raceNews = raceNewsJson as NewsFile
 
 type Row =
     | { kind: 'race'; date: string; race: Race; info: ScheduleRace; sprint?: Race; pole?: Pole }
@@ -74,6 +77,7 @@ export default function RaceByRaceTab() {
                                 open={expanded === row.race.round}
                                 onToggle={() => setOpenRound(expanded === row.race.round ? null : row.race.round)}
                                 notes={notes?.rounds[String(row.race.round)]}
+                                press={raceNews[String(season)]?.[String(row.race.round)]}
                             />
                         )
                     )}
@@ -81,8 +85,10 @@ export default function RaceByRaceTab() {
             </table>
             {notes && (
                 <p className="note">
-                    Race facts are generated from Jolpica results and OpenF1 timing data. "Notes" are hand-written
-                    (src/data/raceNotes.json, last reviewed after R{notes.asOfRound}).
+                    Race facts are generated from Jolpica results and OpenF1 timing data. "From the press" is summarized
+                    offline from linked articles, with quotes checked word-for-word against the source; where results
+                    and an article disagree, the results win. Rounds without press coverage show hand-written notes
+                    (last reviewed after R{notes.asOfRound}).
                 </p>
             )}
         </>
@@ -138,9 +144,10 @@ interface RaceRowsProps {
     open: boolean;
     onToggle: () => void;
     notes?: string[];
+    press?: RoundNews;
 }
 
-function RaceRows({ row, label, isNew, open, onToggle, notes }: RaceRowsProps) {
+function RaceRows({ row, label, isNew, open, onToggle, notes, press }: RaceRowsProps) {
     const { race, info, sprint, pole } = row
     const [p1, p2, p3] = [1, 2, 3].map(pos => race.results.find(r => r.position === pos))
     return (
@@ -166,7 +173,8 @@ function RaceRows({ row, label, isNew, open, onToggle, notes }: RaceRowsProps) {
                                 {sprint && <span className="text-[11px] text-[#cc9900]">Sprint weekend</span>}
                             </div>
                             <RaceFacts race={race} pole={pole} />
-                            {notes && notes.length > 0 && (
+                            {press && <PressCoverage press={press} />}
+                            {!press && notes && notes.length > 0 && (
                                 <>
                                     <div className="res-section-label">Notes<span className="res-section-hint">hand-written</span></div>
                                     <ul className="race-bullet-list">{notes.map((n, i) => <li key={i}><RichText text={n} /></li>)}</ul>
@@ -196,6 +204,52 @@ function RaceFacts({ race, pole }: { race: Race; pole?: Pole }) {
                 Race facts{waitingOnOpenF1 && <span className="res-section-hint">loading timing data…</span>}
             </div>
             <ul className="race-bullet-list">{facts.map((f, i) => <li key={i}><RichText text={f} /></li>)}</ul>
+        </>
+    )
+}
+
+// ── Press coverage ────────────────────────────────────────────────
+
+function PressCoverage({ press }: { press: RoundNews }) {
+    const byId = new Map(press.sources.map(src => [src.id, src]))
+    const Refs = ({ ids }: { ids: number[] }) => (
+        <>
+            {ids.map(id => {
+                const src = byId.get(id)
+                return src && (
+                    <a key={id} className="press-ref" href={src.url} target="_blank" rel="noreferrer" title={`${src.site}: ${src.title}`}>[{id}]</a>
+                )
+            })}
+        </>
+    )
+    return (
+        <>
+            <div className="res-section-label">
+                From the press<span className="res-section-hint">summarized from {press.sources.length} articles</span>
+            </div>
+            {press.headline && <p className="press-headline">{press.headline}</p>}
+            <ul className="race-bullet-list">
+                {press.bullets.map((b, i) => <li key={i}><RichText text={b.text} /><Refs ids={b.sources} /></li>)}
+            </ul>
+            {press.quotes.map((q, i) => (
+                <div key={i} className="press-quote">
+                    "{q.quote}"<span className="who">— {q.speaker}</span><Refs ids={[q.source]} />
+                </div>
+            ))}
+            <div className="press-sources">
+                {press.sources.map(src => (
+                    <div key={src.id}>
+                        [{src.id}] <a href={src.url} target="_blank" rel="noreferrer">{src.title}</a> · {src.site} · {src.published}
+                    </div>
+                ))}
+                {press.links.length > 0 && (
+                    <div className="mt-1">
+                        More coverage: {press.links.map((l, i) => (
+                            <span key={l.url}>{i > 0 && ' · '}<a href={l.url} target="_blank" rel="noreferrer">{l.title}</a> ({l.site})</span>
+                        ))}
+                    </div>
+                )}
+            </div>
         </>
     )
 }

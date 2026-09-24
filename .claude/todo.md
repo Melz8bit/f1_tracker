@@ -20,14 +20,17 @@ Goal: mirror `f1_2026_dashboard.html` as a fully API-driven app (see CLAUDE.md �
 - [ ] Pit stop times: OpenF1 `stop_duration` is always null in 2026 and `lane_duration` has outliers — revisit if the feed improves
 
 ## Phase 2b — News pipeline (`scripts/news`) — decided 2026-09-23: scrape + summarize
-- [ ] Collect: RSS (The Race, RacingNews365 Atom, GPFans, PlanetF1, Crash.net) for new weekends; sitemaps with dates (The Race, RN365, PlanetF1) to backfill R1–R14
-- [ ] Respect robots.txt; Crash.net blocks GPTBot → headline links only, never fed to the summarizer
-- [ ] Match articles to a race weekend (published FP1 → race+3 days, F1 keywords), fetch pages, extract article text
-- [ ] Summarize offline with Claude (never at runtime): race storylines, quotes, off-track context — grounded in the articles + our API facts, API wins on numbers
+- [x] Collect: RSS (The Race, RacingNews365 Atom, GPFans, PlanetF1, Crash.net) for new weekends; sitemaps with dates (The Race, RN365, PlanetF1) to backfill R1–R14
+- [x] Respect robots.txt; Crash.net blocks GPTBot → headline links only, never fed to the summarizer
+- [x] Match articles to a race weekend (published FP1 → race+3 days, F1 keywords), fetch pages, extract article text
+- [x] Summarize offline with Claude (never at runtime): race storylines, quotes, off-track context — grounded in the articles + our API facts, API wins on numbers
 - [ ] Output generated notes with source links per bullet; replace hand-written raceNotes.json content (keep `cancelled` reasons)
 - [ ] Season narrative + Form Guide summary text from the same pipeline (Phase 5 consumes it)
-- [ ] UI: "From the press" section with source links in Race by Race
-- [ ] Needs ANTHROPIC_API_KEY (local .env.local; GitHub secret in Phase 6)
+- [x] UI: "From the press" section with source links in Race by Race
+- [ ] Add ANTHROPIC_API_KEY to .env.local, then `npm run news -- 2026 --force` to generate R1–R14 (~$3 on claude-opus-5), review output
+- [ ] After review: drop the mockup-ported `rounds` bullets from raceNotes.json (keep `cancelled`)
+- [ ] Backfill depth: only The Race's sitemap reaches past rounds; RN365/GPFans/PlanetF1 feeds cover ~1–10 days, so run `npm run news` within a few days of each race (Phase 6 cron)
+- [ ] PlanetF1/RN365 archive backfill — RN365 has sitemap_contentItem-recent-news*.xml (racingnews365.com/cache/site/RN365EN/sitemap/); PlanetF1 wp-sitemap-posts-post-N.xml needs page-range discovery
 
 ## Phase 3 — Pace pipeline (`scripts/pace`) ✅ (2026-09-23)
 - [x] Qualifying one-lap: team best lap, % gap to pole per round
