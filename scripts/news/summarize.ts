@@ -1,9 +1,11 @@
-// Summarize one race weekend's press coverage with Claude. Runs offline only; the app reads the
-// saved JSON. Claude gets our API facts as the authority on numbers, plus the articles, and must cite
+// Summarize one race weekend's press coverage with Claude. Runs server-side only (the /api/news function
+// or the CLI); the page reads saved JSON. Claude gets our API facts as the authority on numbers, plus the articles, and must cite
 // article ids for every bullet. Quotes are checked word-for-word against the articles afterwards.
 import Anthropic from '@anthropic-ai/sdk'
 
-export const MODEL = 'claude-opus-5'
+// Sonnet 5: accurate on facts at under half the cost of Opus (Haiku made factual errors in testing).
+// Guard rails below: API data as authority, cited source ids, word-for-word quote checks.
+export const MODEL = 'claude-sonnet-5'
 
 export interface SourceArticle {
     id: number;
@@ -81,12 +83,9 @@ ${a.text.slice(0, maxCharsEach)}
 const normalise = (s: string) => s.replace(/[“”„]/g, '"').replace(/[‘’]/g, "'").replace(/\s+/g, ' ').trim().toLowerCase()
 
 export async function summarizeWeekend(client: Anthropic, data: string, articles: SourceArticle[]): Promise<WeekendSummary> {
-    const response = await client.beta.messages.create({
+    const response = await client.messages.create({
         model: MODEL,
         max_tokens: 16000,
-        // Server-side fallback: if a safety classifier declines, the API re-runs on the recommended model
-        betas: ['server-side-fallback-2026-07-01'],
-        fallbacks: 'default',
         system: SYSTEM,
         output_config: { format: { type: 'json_schema', schema: SCHEMA } },
         messages: [{

@@ -575,7 +575,7 @@ async function allowedByRobots(url, fetchText) {
 }
 //#endregion
 //#region scripts/news/summarize.ts
-const MODEL = "claude-opus-5";
+const MODEL = "claude-sonnet-5";
 const SCHEMA = {
 	type: "object",
 	properties: {
@@ -650,11 +650,9 @@ ${a.text.slice(0, maxCharsEach)}
 }
 const normalise = (s) => s.replace(/[“”„]/g, "\"").replace(/[‘’]/g, "'").replace(/\s+/g, " ").trim().toLowerCase();
 async function summarizeWeekend(client, data, articles) {
-	const response = await client.beta.messages.create({
+	const response = await client.messages.create({
 		model: MODEL,
 		max_tokens: 16e3,
-		betas: ["server-side-fallback-2026-07-01"],
-		fallbacks: "default",
 		system: SYSTEM,
 		output_config: { format: {
 			type: "json_schema",

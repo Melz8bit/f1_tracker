@@ -57,7 +57,7 @@ Press summaries (decided 2026-09-23/24) — automatic via the Vercel function `/
 - Every page load calls `/api/news?season=…` (useRaceNews). The function returns all summaries and, if a
   finished race is due (race day + 2 days) and not yet summarized, scrapes + summarizes it in the
   background (waitUntil) and stores it in Vercel Blob (`race-news/<season>.json`, private). Each race is
-  summarized once (~$0.20); max 3 attempts, 10-min lock against duplicates.
+  summarized once (~$0.08 on Sonnet 5); max 3 attempts, 10-min lock against duplicates.
 - Only races after the newest one in `src/data/raceNews.json` are auto-generated (R15 onward for 2026);
   earlier races keep hand-written notes — never backfill.
 - Sources: The Race, RacingNews365, GPFans, PlanetF1 (Crash.net: links only, it blocks AI crawlers).
@@ -109,7 +109,7 @@ Event page: /documents/championships/fia-formula-one-world-championship-14/seaso
 - contracts.json, aduo.json, regulations.json — manual, each with `asOfRound`
 - raceNews.json — committed press summaries (R14) that seed /api/news; newer races live in Vercel Blob.
   Per round: headline, bullets citing source ids, verified quotes, source list, link-only headlines.
-  Model claude-opus-5 with server-side refusal fallback.
+  Model claude-sonnet-5 (~$0.08/race; tested 2026-09-24: Haiku 4.5 made factual errors, Opus 5 ~2.5× cost).
 - raceNotes.json — manual (fallback when a round has no raceNews entry): `{ "<season>": { asOfRound, rounds: { "<round>": ["**bold** bullet", …] },
   cancelled: { "<OpenF1 meeting_name>": "reason" } } }`. Shown as "Notes" under the auto race facts.
 
